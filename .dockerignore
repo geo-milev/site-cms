@@ -1,0 +1,14 @@
+Dockerfile
+.dockerignore
+.git
+.gitignore
+README.md
+.npmrc
+.prettierrc
+**/.env
+build
+dist
+.idea
+.editorconfig
+node_modules
+compose.dev.yml

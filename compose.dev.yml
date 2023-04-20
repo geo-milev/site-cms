@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  payload:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app:Z
+    depends_on:
+      - mongo
+    environment:
+      MONGO_PROTOCOL: mongodb
+      MONGO_USER: payload
+      MONGO_PASSWORD: development
+      MONGO_HOST: mongo
+      PORT: 3000
+      PAYLOAD_SECRET: DEVELOPMENT
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - db:/data/db
+    logging:
+      driver: none
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: payload
+      MONGO_INITDB_ROOT_PASSWORD: development
+
+volumes:
+  db:
