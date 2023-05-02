@@ -41,13 +41,12 @@ const News: CollectionConfig = {
             type: 'date',
             admin: {
                 position: 'sidebar'
-            },
-            required: true
+            }
         },
         {
             name: 'content',
-            type: "richText",
-            minLength: 1
+            type: 'richText',
+            required: true
         }
     ],
 }
