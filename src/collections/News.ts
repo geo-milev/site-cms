@@ -44,6 +44,19 @@ const News: CollectionConfig = {
             }
         },
         {
+            name: 'description',
+            type: 'textarea',
+            required: true,
+            minLength: 1,
+            maxLength: 200
+        },
+        {
+            name: 'postImage',
+            type: 'upload',
+            relationTo: 'media',
+            required: true,
+        },
+        {
             name: 'content',
             type: 'richText',
             required: true
