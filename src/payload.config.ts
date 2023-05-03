@@ -5,6 +5,7 @@ import News from "./collections/News";
 import Media from "./collections/Media";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
+import NewsCategory from "./collections/NewsCategory";
 
 const adapter = gcsAdapter({
   options: {
@@ -21,6 +22,7 @@ export default buildConfig({
   collections: [
     Users,
     News,
+    NewsCategory,
     Media
   ],
   typescript: {

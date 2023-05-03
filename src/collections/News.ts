@@ -57,6 +57,15 @@ const News: CollectionConfig = {
             required: true,
         },
         {
+            name: 'category',
+            type: 'relationship',
+            relationTo: 'news-category',
+            required: true,
+            admin: {
+                position: 'sidebar'
+            }
+        },
+        {
             name: 'content',
             type: 'richText',
             required: true
