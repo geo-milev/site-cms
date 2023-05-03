@@ -1,26 +1,9 @@
 import { CollectionConfig } from 'payload/types';
 
-const updatePublishDate = ({ data, req, operation }) => {
-    if (operation === 'create' || operation === 'update') {
-        if (req.body && !req.body.publishDate) {
-            const now = new Date()
-            return {
-                ...data,
-                publishDate: now,
-            }
-        }
-    }
-
-    return data
-}
-
 const News: CollectionConfig = {
     slug: 'news',
     admin: {
         useAsTitle: 'title'
-    },
-    hooks: {
-        beforeChange: [updatePublishDate]
     },
     versions: {
         drafts: true,
@@ -35,13 +18,6 @@ const News: CollectionConfig = {
             minLength: 1,
             maxLength: 60,
             required: true,
-        },
-        {
-            name: 'publishDate',
-            type: 'date',
-            admin: {
-                position: 'sidebar'
-            }
         },
         {
             name: 'description',
