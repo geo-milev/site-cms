@@ -1,7 +1,19 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
-// import Examples from './collections/Examples';
 import Users from './collections/Users';
+import News from "./collections/News";
+import Media from "./collections/Media";
+import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
+import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
+import NewsCategory from "./collections/NewsCategory";
+
+const adapter = gcsAdapter({
+  options: {
+    apiEndpoint: process.env.GCS_ENDPOINT,
+    projectId: process.env.GCS_PROJECT_ID,
+  },
+  bucket: process.env.GCS_BUCKET,
+})
 
 export default buildConfig({
   admin: {
@@ -9,8 +21,9 @@ export default buildConfig({
   },
   collections: [
     Users,
-    // Add Collections here
-    // Examples,
+    News,
+    NewsCategory,
+    Media
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -18,4 +31,15 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
+  plugins: [
+    // Only use cloud storage in prod
+    process.env.NODE_ENV == 'production' ? cloudStorage({
+      collections: {
+        'media': {
+          adapter,
+          disableLocalStorage: true
+        },
+      },
+    }) : null,
+  ].filter(value => value !== null),
 });
