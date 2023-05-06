@@ -6,6 +6,7 @@ import Media from "./collections/Media";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
 import NewsCategory from "./collections/NewsCategory";
+import MainInfo from "./globals/MainInfo";
 
 const adapter = gcsAdapter({
   options: {

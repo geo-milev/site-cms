@@ -4,8 +4,12 @@ const Users: CollectionConfig = {
   slug: 'users',
   auth: true,
   labels: {
-    singular: "Потребител",
-    plural: "Потребители"
+    singular: {
+      en: "User", bg: "Потребител"
+    },
+    plural: {
+      en: "Users", bg: "Потребители"
+    }
   },
   admin: {
     useAsTitle: 'email',
