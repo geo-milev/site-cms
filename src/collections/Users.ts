@@ -5,10 +5,10 @@ const Users: CollectionConfig = {
   auth: true,
   labels: {
     singular: {
-      en: "User", bg: "Потребител"
+      en: 'User', bg: 'Потребител'
     },
     plural: {
-      en: "Users", bg: "Потребители"
+      en: 'Users', bg: 'Потребители'
     }
   },
   admin: {

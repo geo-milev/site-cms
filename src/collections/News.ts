@@ -18,10 +18,10 @@ const News: CollectionConfig = {
     slug: 'news',
     labels: {
         singular: {
-            en: "News", bg: "Новина"
+            en: 'News', bg: 'Новина'
         },
         plural: {
-            en: "News", bg: "Новини"
+            en: 'News', bg: 'Новини'
         }
     },
     admin: {

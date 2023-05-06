@@ -1,14 +1,14 @@
-import path from "path";
-import {CollectionConfig} from "payload/types";
+import path from 'path';
+import {CollectionConfig} from 'payload/types';
 
 export const Media: CollectionConfig = {
     slug: 'media',
     labels: {
        singular: {
-           en: "Media", bg: "Медия"
+           en: 'Media', bg: 'Медия'
        },
        plural: {
-           en: "Media", bg: "Медия"
+           en: 'Media', bg: 'Медия'
        }
     },
     admin: {
