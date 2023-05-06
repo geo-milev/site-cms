@@ -1,9 +1,9 @@
-import {GlobalConfig} from "payload/types";
+import {GlobalConfig} from 'payload/types';
 
 export const WhatIsStudied: GlobalConfig = {
     slug: 'what-is-studied',
     label: {
-        en: "What is studied", bg: "Какво се учи"
+        en: 'What is studied', bg: 'Какво се учи'
     },
     access: {
         read: () => true,
@@ -12,10 +12,10 @@ export const WhatIsStudied: GlobalConfig = {
         {
             name: 'header',
             type: 'text',
-            defaultValue: "Какво се учи в ППМГ “Гео Милев”",
+            defaultValue: 'Какво се учи в ППМГ “Гео Милев”',
             required: true,
             label: {
-                en: "Header", bg: "Заглавие"
+                en: 'Header', bg: 'Заглавие'
             }
         },
         {
@@ -23,7 +23,7 @@ export const WhatIsStudied: GlobalConfig = {
             type: 'textarea',
             required: true,
             label: {
-                en: "Text", bg: "Текст"
+                en: 'Text', bg: 'Текст'
             },
         },
         {
@@ -31,10 +31,10 @@ export const WhatIsStudied: GlobalConfig = {
             type: 'array',
             required: true,
             minRows: 1,
-            label: { en: "Profiles", bg: "Профили" },
+            label: { en: 'Profiles', bg: 'Профили' },
             labels: {
-                singular: { en: "Profile", bg: "Профил" },
-                plural: { en: "Profiles", bg: "Профили" }
+                singular: { en: 'Profile', bg: 'Профил' },
+                plural: { en: 'Profiles', bg: 'Профили' }
             },
             fields: [
                 {
@@ -42,12 +42,12 @@ export const WhatIsStudied: GlobalConfig = {
                     type: 'upload',
                     relationTo: 'media',
                     required: true,
-                    label: { en: "Image", bg: "Картина" },
+                    label: { en: 'Image', bg: 'Картина' },
                 },
                 {
-                    name: "description",
-                    type: "textarea",
-                    label: { en: "Profile description", bg: "Описание на профила" },
+                    name: 'description',
+                    type: 'textarea',
+                    label: { en: 'Profile description', bg: 'Описание на профила' },
                 }
             ]
         },

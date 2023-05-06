@@ -1,9 +1,9 @@
-import {GlobalConfig} from "payload/types";
+import {GlobalConfig} from 'payload/types';
 
 export const Footer: GlobalConfig = {
     slug: 'footer',
     label: {
-        en: "Footer", bg: "Долен колонтитул"
+        en: 'Footer', bg: 'Долен колонтитул'
     },
     access: {
         read: () => true,
@@ -12,10 +12,10 @@ export const Footer: GlobalConfig = {
         {
             name: 'address',
             type: 'text',
-            defaultValue: "Августа Траяна 42, Стара Загора, 6000",
+            defaultValue: 'Августа Траяна 42, Стара Загора, 6000',
             required: true,
             label: {
-                en: "Address", bg: "Адрес"
+                en: 'Address', bg: 'Адрес'
             }
         },
         {
@@ -23,7 +23,7 @@ export const Footer: GlobalConfig = {
             type: 'group',
             required: true,
             label: {
-                en: "Contacts", bg: "Контакти"
+                en: 'Contacts', bg: 'Контакти'
             },
             fields: [
                 {
@@ -31,7 +31,7 @@ export const Footer: GlobalConfig = {
                     type: 'email',
                     required: true,
                     label: {
-                        en: "Email", bg: "Имейл"
+                        en: 'Email', bg: 'Имейл'
                     },
                 },
                 {
@@ -39,7 +39,7 @@ export const Footer: GlobalConfig = {
                     type: 'text',
                     required: true,
                     label: {
-                        en: "Phone", bg: "Телефон"
+                        en: 'Phone', bg: 'Телефон'
                     },
                 }
             ]

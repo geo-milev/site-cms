@@ -1,9 +1,9 @@
-import {GlobalConfig} from "payload/types";
+import {GlobalConfig} from 'payload/types';
 
 export const MainInfo: GlobalConfig = {
     slug: 'main-info',
     label: {
-        en: "Main info", bg: "Главна информация"
+        en: 'Main info', bg: 'Главна информация'
     },
     access: {
         read: () => true,
@@ -12,10 +12,10 @@ export const MainInfo: GlobalConfig = {
         {
             name: 'name',
             type: 'text',
-            defaultValue: "Профилирана природоматематическа гимназия “Гео Милев”",
+            defaultValue: 'Профилирана природоматематическа гимназия “Гео Милев”',
             required: true,
             label: {
-                en: "School name", bg: "Име на училището"
+                en: 'School name', bg: 'Име на училището'
             }
         },
         {
@@ -24,7 +24,7 @@ export const MainInfo: GlobalConfig = {
             relationTo: 'media',
             required: true,
             label: {
-                en: "School logo", bg: "Лого на училището"
+                en: 'School logo', bg: 'Лого на училището'
             },
         },
     ]

@@ -1,4 +1,4 @@
-import {GlobalConfig} from "payload/types";
+import {GlobalConfig} from 'payload/types';
 
 // @ts-ignore is needed because the admin.placeholder does not exist in the generic Field typescript definition
 // This means that the button link text field placeholder is flagged as an error
@@ -6,7 +6,7 @@ import {GlobalConfig} from "payload/types";
 export const Slideshow: GlobalConfig = {
     slug: 'slideshow',
     label: {
-        en: "Slideshow", bg: "Слайдшоу"
+        en: 'Slideshow', bg: 'Слайдшоу'
     },
     access: {
         read: () => true,
@@ -17,10 +17,10 @@ export const Slideshow: GlobalConfig = {
             type: 'array',
             required: true,
             minRows: 1,
-            label: { en: "Slides", bg: "Слайдове" },
+            label: { en: 'Slides', bg: 'Слайдове' },
             labels: {
-                singular: { en: "Slide", bg: "Слайд" },
-                plural: { en: "Slides", bg: "Слайдове" }
+                singular: { en: 'Slide', bg: 'Слайд' },
+                plural: { en: 'Slides', bg: 'Слайдове' }
             },
             fields: [
                 {
@@ -28,29 +28,29 @@ export const Slideshow: GlobalConfig = {
                     type: 'upload',
                     relationTo: 'media',
                     required: true,
-                    label: { en: "Image", bg: "Снимка" },
+                    label: { en: 'Image', bg: 'Снимка' },
                 },
                 {
-                    name: "text",
-                    type: "text",
-                    label: { en: "Slide text", bg: "Текст на слайда" },
+                    name: 'text',
+                    type: 'text',
+                    label: { en: 'Slide text', bg: 'Текст на слайда' },
                 },
                 {
-                    name: "button",
-                    type: "group",
-                    label: { en: "Slide button", bg: "Бутон на слайда" },
+                    name: 'button',
+                    type: 'group',
+                    label: { en: 'Slide button', bg: 'Бутон на слайда' },
                     fields: [
                         {
-                            name: "text",
-                            type: "text",
-                            label: { en: "Button text", bg: "Текст на бутона" },
+                            name: 'text',
+                            type: 'text',
+                            label: { en: 'Button text', bg: 'Текст на бутона' },
                         },
                         {
-                            name: "href",
-                            type: "text",
-                            label: { en: "Button link", bg: "Връзка на бутона" },
+                            name: 'href',
+                            type: 'text',
+                            label: { en: 'Button link', bg: 'Връзка на бутона' },
                             admin: {
-                                placeholder: "/about-us"
+                                placeholder: '/about-us'
                             }
                         }
                     ]

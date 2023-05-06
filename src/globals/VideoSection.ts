@@ -1,9 +1,9 @@
-import {GlobalConfig} from "payload/types";
+import {GlobalConfig} from 'payload/types';
 
 export const VideoSection: GlobalConfig = {
     slug: 'video-section',
     label: {
-        en: "Video section", bg: "Видео секция"
+        en: 'Video section', bg: 'Видео секция'
     },
     access: {
         read: () => true,
@@ -12,10 +12,10 @@ export const VideoSection: GlobalConfig = {
         {
             name: 'header',
             type: 'text',
-            defaultValue: "Здравейте",
+            defaultValue: 'Здравейте',
             required: true,
             label: {
-                en: "Header", bg: "Заглавие"
+                en: 'Header', bg: 'Заглавие'
             }
         },
         {
@@ -23,7 +23,7 @@ export const VideoSection: GlobalConfig = {
             type: 'textarea',
             required: true,
             label: {
-                en: "Text", bg: "Текст"
+                en: 'Text', bg: 'Текст'
             },
         },
         {
@@ -31,7 +31,7 @@ export const VideoSection: GlobalConfig = {
             type: 'text',
             required: true,
             label: {
-                en: "Video Link (YouTube)", bg: "Видео връзка (YouTube)"
+                en: 'Video Link (YouTube)', bg: 'Видео връзка (YouTube)'
             },
         },
     ]
