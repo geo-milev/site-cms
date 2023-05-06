@@ -16,6 +16,10 @@ const updatePublishDate = ({ data, req, operation }) => {
 
 const News: CollectionConfig = {
     slug: 'news',
+    labels: {
+        singular: "Новина",
+        plural: "Новини"
+    },
     admin: {
         useAsTitle: 'title'
     },

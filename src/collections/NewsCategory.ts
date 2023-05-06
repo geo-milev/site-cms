@@ -2,6 +2,10 @@ import {CollectionConfig} from "payload/types";
 
 const NewsCategory: CollectionConfig = {
     slug: 'news-category',
+    labels: {
+        singular: "Категория новини",
+        plural: "Категории новини"
+    },
     admin: {
         useAsTitle: 'name'
     },

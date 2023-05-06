@@ -3,6 +3,10 @@ import {CollectionConfig} from "payload/types";
 
 export const Media: CollectionConfig = {
     slug: 'media',
+    labels: {
+       singular: "Медия",
+       plural: "Медия"
+    },
     admin: {
         useAsTitle: 'alt'
     },
