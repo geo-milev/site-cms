@@ -14,12 +14,18 @@ export const MainInfo: GlobalConfig = {
             type: 'text',
             defaultValue: "Профилирана природоматематическа гимназия “Гео Милев”",
             required: true,
+            label: {
+                en: "School name", bg: "Име на училището"
+            }
         },
         {
             name: 'logo',
             type: 'upload',
             relationTo: 'media',
             required: true,
+            label: {
+                en: "School logo", bg: "Лого на училището"
+            },
         },
     ]
 }
