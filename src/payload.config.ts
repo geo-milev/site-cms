@@ -7,6 +7,7 @@ import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
 import NewsCategory from "./collections/NewsCategory";
 import MainInfo from "./globals/MainInfo";
+import Slideshow from "./globals/Slideshow";
 
 const adapter = gcsAdapter({
   options: {
@@ -27,7 +28,7 @@ export default buildConfig({
     Media
   ],
   globals: [
-    MainInfo
+    MainInfo, Slideshow
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
