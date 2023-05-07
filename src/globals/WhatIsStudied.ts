@@ -45,9 +45,16 @@ export const WhatIsStudied: GlobalConfig = {
                     label: { en: 'Image', bg: 'Картина' },
                 },
                 {
+                    name: 'name',
+                    type: 'text',
+                    label: { en: 'Profile name', bg: 'Име на профила' },
+                    required: true
+                },
+                {
                     name: 'description',
                     type: 'textarea',
                     label: { en: 'Profile description', bg: 'Описание на профила' },
+                    required: true
                 }
             ]
         },
