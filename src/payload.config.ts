@@ -10,7 +10,7 @@ import MainInfo from "./globals/MainInfo";
 import Slideshow from "./globals/Slideshow";
 import VideoSection from "./globals/VideoSection";
 import WhatIsStudied from "./globals/WhatIsStudied";
-import Footer from "./globals/Footer";
+import Contact from "./globals/Contact";
 
 const adapter = gcsAdapter({
   options: {
@@ -31,7 +31,7 @@ export default buildConfig({
     Media
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Footer
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
