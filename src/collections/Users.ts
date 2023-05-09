@@ -3,6 +3,14 @@ import { CollectionConfig } from 'payload/types';
 const Users: CollectionConfig = {
   slug: 'users',
   auth: true,
+  labels: {
+    singular: {
+      en: 'User', bg: 'Потребител'
+    },
+    plural: {
+      en: 'Users', bg: 'Потребители'
+    }
+  },
   admin: {
     useAsTitle: 'email',
   },
