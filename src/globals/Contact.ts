@@ -2,7 +2,7 @@ import {GlobalConfig} from 'payload/types';
 
 
 const validateDates = (siblingData) => {
-    if (!siblingData) return tru
+    if (!siblingData) return true
     const workingHoursStart = new Date(siblingData.workingHoursStart)
     const workingHoursEnd = new Date(siblingData.workingHoursEnd)
 
@@ -41,7 +41,6 @@ export const Contact: GlobalConfig = {
         {
             name: 'workingHours',
             type: 'group',
-            required: true,
             label: {
                 en: 'Working hours', bg: 'Работно време'
             },
