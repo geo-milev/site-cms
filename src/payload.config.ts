@@ -11,6 +11,7 @@ import Slideshow from "./globals/Slideshow";
 import VideoSection from "./globals/VideoSection";
 import WhatIsStudied from "./globals/WhatIsStudied";
 import Contact from "./globals/Contact";
+import formBuilder from "@payloadcms/plugin-form-builder";
 
 const adapter = gcsAdapter({
   options: {
@@ -49,5 +50,30 @@ export default buildConfig({
         },
       },
     }) : null,
+    formBuilder({
+      fields: {
+        text: true,
+        textarea: true,
+        select: true,
+        email: true,
+        state: false,
+        country: false,
+        checkbox: true,
+        number: true,
+        message: true,
+        payment: false
+      },
+      formOverrides: {
+        slug: 'forms',
+        labels: {
+          singular: {
+            en: 'Form', bg: 'Формуляр'
+          },
+          plural: {
+            en: 'Forms', bg: 'Формуляри'
+          }
+        }
+      }
+    })
   ].filter(value => value !== null),
 });
