@@ -11,6 +11,8 @@ import Slideshow from "./globals/Slideshow";
 import VideoSection from "./globals/VideoSection";
 import WhatIsStudied from "./globals/WhatIsStudied";
 import Contact from "./globals/Contact";
+import WeeklySchedule from "./globals/WeeklySchedule";
+import Subjects from "./collections/Subjects";
 
 const adapter = gcsAdapter({
   options: {
@@ -28,10 +30,11 @@ export default buildConfig({
     Users,
     News,
     NewsCategory,
-    Media
+    Media,
+    Subjects
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, WeeklySchedule
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

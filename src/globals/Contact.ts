@@ -1,22 +1,7 @@
 import {GlobalConfig} from 'payload/types';
+import {validateDates} from "../lib/validateHourRange";
 
-
-const validateDates = (siblingData) => {
-    if (!siblingData) return true
-    const workingHoursStart = new Date(siblingData.workingHoursStart)
-    const workingHoursEnd = new Date(siblingData.workingHoursEnd)
-
-    const dateFormatOptions: Intl.DateTimeFormatOptions = {hour: '2-digit', minute: '2-digit', hour12: false}
-
-    const workingHoursStartTimeString = workingHoursStart.toLocaleTimeString('en', dateFormatOptions)
-    const workingHoursEndTimeString = workingHoursEnd.toLocaleTimeString('en', dateFormatOptions)
-
-    if (workingHoursStartTimeString > workingHoursEndTimeString) {
-        return 'Не може началото на работните часове да е след края.'
-    }
-
-    return true
-}
+const dateError = 'Не може началото на работните часове да е след края.'
 
 // @ts-ignore is needed because the generic Field type doesn't recognise the custom date admin properties like 'pickerAppearance'
 //@ts-ignore
@@ -60,7 +45,10 @@ export const Contact: GlobalConfig = {
                         }
                     },
                     validate: (data, { siblingData }) => {
-                        return validateDates(siblingData)
+                        return validateDates(siblingData,
+                            'workingHoursStart',
+                            'workingHoursEnd',
+                            dateError)
                     }
                 },
                 {
@@ -78,7 +66,10 @@ export const Contact: GlobalConfig = {
                         }
                     },
                     validate: (data, { siblingData }) => {
-                        return validateDates(siblingData)
+                        return validateDates(siblingData,
+                            'workingHoursStart',
+                            'workingHoursEnd',
+                            dateError)
                     }
                 },
             ]
