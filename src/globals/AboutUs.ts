@@ -1,7 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 
 export const AboutUs: GlobalConfig = {
-    slug: 'aboutUs',
+    slug: 'about-us',
     label: {
         en: 'About Us', bg: 'За нас'
     },
