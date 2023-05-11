@@ -33,7 +33,20 @@ const Books: CollectionConfig = {
             name: 'author',
             type: 'text',
             required: true,
-            label: { en: 'Authors', bg: 'Автори'}
+            label: { en: 'Authors', bg: 'Автори' }
+        },
+        {
+            name: 'year',
+            type: 'number',
+            required: true,
+            label: { en: 'Year', bg: 'Години'}
+        },
+        {
+            name: 'publisher',
+            type: 'relationship',
+            relationTo: '',
+            required: true,
+            label: { en: 'Publisher', bg: 'Издател' }
         },
         {
             name: 'image',
