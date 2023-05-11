@@ -39,6 +39,21 @@ export const WeeklySchedule: GlobalConfig = {
                     label: { en: 'File', bg: 'Файл' },
                 },
                 {
+                    name: 'bigBreak',
+                    type: 'group',
+                    label: {
+                        en: 'Big break', bg: 'Голямо междучасие'
+                    },
+                    fields: [
+                        {
+                          name: 'after',
+                          type: 'number',
+                          required: true,
+                          label: { en: 'After hour', bg: 'След час' }
+                        },
+                    ]
+                },
+                {
                     name: 'hours',
                     type: 'array',
                     required: true,
@@ -58,7 +73,7 @@ export const WeeklySchedule: GlobalConfig = {
                             }
                         },
                         {
-                            name: 'Hour',
+                            name: 'hour',
                             type: 'group',
                             label: {
                                 en: 'Hour', bg: 'Час'
