@@ -12,7 +12,6 @@ export const AboutUs: GlobalConfig = {
         {
             name: 'aboutUs',
             type: 'group',
-            required: true,
             label: {
                 en: 'About Us', bg: 'За нас'
             },
@@ -46,7 +45,6 @@ export const AboutUs: GlobalConfig = {
         {
             name: 'history',
             type: 'group',
-            required: true,
             label: {
                 en: 'History', bg: 'История'
             },

@@ -17,7 +17,6 @@ export const Contact: GlobalConfig = {
         {
             name: 'locationInfo',
             type: 'group',
-            required: true,
             label: {
                 en: 'Location info', bg: 'Информация за локация'
             },
