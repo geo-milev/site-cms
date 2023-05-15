@@ -22,6 +22,10 @@ const NewsCategory: CollectionConfig = {
             type: 'text',
             minLength: 1,
             maxLength: 60,
+            label: {
+                en: 'Name',
+                bg: 'Име'
+            },
             required: true,
         }
     ],
