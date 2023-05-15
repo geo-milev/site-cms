@@ -5,6 +5,7 @@ import News from "./collections/News";
 import Media from "./collections/Media";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
+import formBuilder from "@payloadcms/plugin-form-builder";
 import NewsCategory from "./collections/NewsCategory";
 import MainInfo from "./globals/MainInfo";
 import Slideshow from "./globals/Slideshow";
@@ -50,5 +51,30 @@ export default buildConfig({
         },
       },
     }) : null,
+    formBuilder({
+      fields: {
+        text: true,
+        textarea: true,
+        select: true,
+        email: true,
+        state: false,
+        country: false,
+        checkbox: true,
+        number: true,
+        message: true,
+        payment: false
+      },
+      formOverrides: {
+        slug: 'forms',
+        labels: {
+          singular: {
+            en: 'Form', bg: 'Формуляр'
+          },
+          plural: {
+            en: 'Forms', bg: 'Формуляри'
+          }
+        }
+      }
+    })
   ].filter(value => value !== null),
 });
