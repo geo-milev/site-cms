@@ -3,8 +3,10 @@ import path from 'path';
 import Users from './collections/Users';
 import News from "./collections/News";
 import Media from "./collections/Media";
+import Publishers from "./collections/Publishers";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
+import formBuilder from "@payloadcms/plugin-form-builder";
 import NewsCategory from "./collections/NewsCategory";
 import MainInfo from "./globals/MainInfo";
 import Slideshow from "./globals/Slideshow";
@@ -33,8 +35,9 @@ export default buildConfig({
     News,
     NewsCategory,
     Media,
-    Books,
-    Subjects
+    Subjects,
+    Publishers,
+    Books
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, WeeklySchedule, AboutUs

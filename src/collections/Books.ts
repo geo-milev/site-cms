@@ -44,9 +44,16 @@ const Books: CollectionConfig = {
         {
             name: 'publisher',
             type: 'relationship',
-            relationTo: '',
+            relationTo: 'publishers',
             required: true,
             label: { en: 'Publisher', bg: 'Издател' }
+        },
+        {
+            name: 'subject',
+            type: 'relationship',
+            relationTo: 'subjects',
+            required: true,
+            label: { en: 'Subject', bg: 'Предмет' }
         },
         {
             name: 'image',
