@@ -30,10 +30,18 @@ const Books: CollectionConfig = {
             label: { en: 'Name', bg: 'Име'}
         },
         {
-            name: 'author',
-            type: 'text',
-            required: true,
-            label: { en: 'Authors', bg: 'Автори' }
+            name: 'authors',
+            type: 'array',
+            minRows: 1,
+            label: { en: 'Authors', bg: 'Автори' },
+            fields: [
+                {
+                    name: 'author',
+                    type: 'text',
+                    required: true,
+                    label: { en: 'Author', bg: 'Автор' },
+                }
+            ]
         },
         {
             name: 'year',
