@@ -17,7 +17,6 @@ export const WeeklySchedule: GlobalConfig = {
         {
             name: 'dailySchedule',
             type: 'group',
-            required: true,
             label: {
                 en: 'Daily hourly schedule', bg: 'Дневна часова програма'
             },
@@ -130,7 +129,6 @@ export const WeeklySchedule: GlobalConfig = {
         {
             name: 'weeklySchedule',
             type: 'group',
-            required: true,
             label: {
                 en: 'Weekly hourly', bg: 'Семична часова програма'
             },
