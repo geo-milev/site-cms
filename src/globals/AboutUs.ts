@@ -88,7 +88,7 @@ export const AboutUs: GlobalConfig = {
                             }
                         },
                         {
-                            name: 'title',
+                            name: 'text',
                             type: 'textarea',
                             required: true,
                             label: {
