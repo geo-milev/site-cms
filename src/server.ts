@@ -1,5 +1,6 @@
 import express from 'express';
 import payload from 'payload';
+import {formData} from "./lib/formData";
 
 require('dotenv').config();
 const app = express();
@@ -13,6 +14,19 @@ const start = async () => {
   let mongoURL = `${process.env.MONGO_PROTOCOL}://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}/`;
   if(process.env.MONGO_OPTIONS !== undefined) mongoURL += `?${process.env.MONGO_OPTIONS}`;
 
+  const fillInForms = async () => {
+    const formsCollection = await payload.find({
+      collection: 'forms',
+    })
+    if (formsCollection.docs.length !== 0) {
+      return
+    }
+    await payload.create({
+      collection: 'forms',
+      data: formData
+    })
+  }
+
   // Initialize Payload
   await payload.init({
     secret: process.env.PAYLOAD_SECRET,
@@ -20,6 +34,8 @@ const start = async () => {
     express: app,
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
+
+      await fillInForms()
     },
   })
 

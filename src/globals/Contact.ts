@@ -15,13 +15,31 @@ export const Contact: GlobalConfig = {
     },
     fields: [
         {
-            name: 'address',
-            type: 'text',
-            defaultValue: 'Августа Траяна 42, Стара Загора, 6000',
+            name: 'locationInfo',
+            type: 'group',
             required: true,
             label: {
-                en: 'Address', bg: 'Адрес'
-            }
+                en: 'Location info', bg: 'Информация за локация'
+            },
+            fields: [
+                {
+                    name: 'address',
+                    type: 'text',
+                    defaultValue: 'Августа Траяна 42, Стара Загора, 6000',
+                    required: true,
+                    label: {
+                        en: 'Address', bg: 'Адрес'
+                    }
+                },
+                {
+                    name: 'locationLink',
+                    type: 'text',
+                    required: true,
+                    label: {
+                        en: 'Google maps location embed link', bg: 'Връзка за вграждане на Google Карти'
+                    }
+                }
+            ]
         },
         {
             name: 'workingHours',
