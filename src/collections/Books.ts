@@ -67,7 +67,6 @@ const Books: CollectionConfig = {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
-            required: true,
             label: { en: 'Image', bg: 'Снимка' },
         },
     ],
