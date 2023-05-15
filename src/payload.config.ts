@@ -5,13 +5,14 @@ import News from "./collections/News";
 import Media from "./collections/Media";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
+import formBuilder from "@payloadcms/plugin-form-builder";
 import NewsCategory from "./collections/NewsCategory";
 import MainInfo from "./globals/MainInfo";
 import Slideshow from "./globals/Slideshow";
 import VideoSection from "./globals/VideoSection";
 import WhatIsStudied from "./globals/WhatIsStudied";
 import Contact from "./globals/Contact";
-import formBuilder from "@payloadcms/plugin-form-builder";
+import AboutUs from "./globals/AboutUs";
 
 const adapter = gcsAdapter({
   options: {
@@ -32,7 +33,7 @@ export default buildConfig({
     Media
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, AboutUs
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
