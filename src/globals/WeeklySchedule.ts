@@ -13,6 +13,19 @@ export const WeeklySchedule: GlobalConfig = {
     access: {
         read: () => true,
     },
+    hooks: {
+        beforeValidate: [ async ({req , data}) => {
+            const fileObject = await req.payload.findByID({
+                collection: 'media',
+                id: data.weeklySchedule.fileCsv
+            })
+            fetch(process.env.SERVER_URL + fileObject.url)
+                .then(res => res.arrayBuffer())
+                .then(buffer => {
+
+                })
+        }]
+    },
     fields: [
         {
             name: 'dailySchedule',
@@ -141,10 +154,18 @@ export const WeeklySchedule: GlobalConfig = {
                     label: { en: 'File', bg: 'Файл' },
                 },
                 {
+                    name: 'fileCsv',
+                    type: 'upload',
+                    relationTo: 'media',
+                    required: true,
+                    label: {
+                        en: 'File .csv (autofill the weekly schedule)',
+                        bg: 'Файл във формат .csv (за автоматично попълване на програмата)'
+                    }
+                },
+                {
                     name: 'classes',
                     type: 'array',
-                    required: true,
-                    minRows: 1,
                     label: {en: 'Classes', bg: 'Класове'},
                     labels: {
                         singular: {en: 'Class', bg: 'Клас'},
