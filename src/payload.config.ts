@@ -15,6 +15,7 @@ import Contact from "./globals/Contact";
 import WeeklySchedule from "./globals/WeeklySchedule";
 import Subjects from "./collections/Subjects";
 import AboutUs from "./globals/AboutUs";
+import Teachers from "./collections/Teachers";
 
 const adapter = gcsAdapter({
   options: {
@@ -33,7 +34,8 @@ export default buildConfig({
     News,
     NewsCategory,
     Media,
-    Subjects
+    Subjects,
+    Teachers
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, WeeklySchedule, AboutUs
