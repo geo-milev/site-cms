@@ -20,7 +20,6 @@ import Books from "./collections/Books";
 
 const adapter = gcsAdapter({
   options: {
-    apiEndpoint: process.env.GCS_ENDPOINT,
     projectId: process.env.GCS_PROJECT_ID,
   },
   bucket: process.env.GCS_BUCKET,
