@@ -67,7 +67,7 @@ const extractSchedule = (text,
             }).join(delimiter)
 
             // Now the lines are parsable into .csv format
-            const schedules = lines.slice(index + 1, index + rowsPerClass - 2).join('\n')
+            const schedules = lines.slice(index + 1, index + rowsPerClass - 1).join('\n')
             const recordList = parse(schedules, {
                 columns: true,
                 skip_empty_lines: true,

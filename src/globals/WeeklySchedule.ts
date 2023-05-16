@@ -33,6 +33,62 @@ export const WeeklySchedule: GlobalConfig = {
                     5,
                     13,
                     '^[0-9]+$')
+
+                const getSubjectId = async (subjectString) => {
+                    if (subjectString === '') return undefined
+
+                    const subject = (await payload.find({
+                        collection: 'subjects',
+                        limit: 1,
+                        where: {
+                            name: {
+                                equals: subjectString
+                            }
+                        }
+                    })).docs[0]
+
+                    if (subject !== undefined) {
+                        return subject.id
+                    } else {
+                        const newSubject = await payload.create({
+                            collection: 'subjects',
+                            data: {
+                                name: subjectString,
+                                shortName: subjectString,
+                            },
+                        })
+
+                        return newSubject.id
+                    }
+                }
+
+                data.weeklySchedule.classes = []
+
+                for (const [className, days] of schedule.classes) {
+                    const dataDays = []
+
+                    for (const [day, lessons] of days.days) {
+                        const hours = []
+
+                        for (const [index, subjectString] of lessons.subjects.entries()) {
+                            const subject = await getSubjectId(subjectString)
+                            hours.push({
+                                num: index + 1,
+                                subject: subject
+                            })
+                        }
+
+                        dataDays.push({
+                            day: day,
+                            hours: hours
+                        })
+                    }
+
+                    data.weeklySchedule.classes.push({
+                        class: className,
+                        days: dataDays
+                    })
+                }
             }
         }]
     },
@@ -153,7 +209,7 @@ export const WeeklySchedule: GlobalConfig = {
             name: 'weeklySchedule',
             type: 'group',
             label: {
-                en: 'Weekly hourly', bg: 'Семична часова програма'
+                en: 'Weekly hourly', bg: 'Седмична часова програма'
             },
             fields: [
                 {
@@ -186,7 +242,7 @@ export const WeeklySchedule: GlobalConfig = {
                             name: 'class',
                             type: 'text',
                             required: true,
-                            label: { en: 'Class', bg: 'Класс' },
+                            label: { en: 'Class', bg: 'Клас' },
                         },
                         {
                             name: 'days',
@@ -198,19 +254,6 @@ export const WeeklySchedule: GlobalConfig = {
                                 singular: {en: 'Day', bg: 'Ден'},
                                 plural: {en: 'Days', bg: 'Дни'}
                             },
-                            defaultValue: [
-                                'Понеделник',
-                                'Вторник',
-                                'Сряда',
-                                'Четвъртък',
-                                'Петък',
-                                'Събота',
-                                'Неделя'
-                            ].map((day) => {
-                                return {
-                                    day: day
-                                }
-                            }),
                             fields: [
                                 {
                                     name: 'day',
@@ -228,11 +271,6 @@ export const WeeklySchedule: GlobalConfig = {
                                         singular: { en: 'Hour', bg: 'Час' },
                                         plural: { en: 'Hours', bg: 'Часове' }
                                     },
-                                    defaultValue: [1, 2, 3, 4, 5, 6, 7, 8].map((value) => {
-                                        return {
-                                            num: value
-                                        }
-                                    }),
                                     fields: [
                                         {
                                             name: 'num',
@@ -246,7 +284,6 @@ export const WeeklySchedule: GlobalConfig = {
                                             name: 'subject',
                                             type: 'relationship',
                                             relationTo: 'subjects',
-                                            required: true,
                                             label: {
                                                 en: 'Subject', bg: 'Предмет'
                                             }
