@@ -12,7 +12,7 @@ const parseWeeklySchedule = async (fileObject,
     const decoder = new TextDecoder()
     let csvText = decoder.decode(buffer)
     csvText = removeStart(csvText, startingLine)
-    return extractClasses(csvText, classRegex, delimiter, noLessonNumberSubjects, daysInWeek, rowsPerClass, lessonNumberRegex)
+    return extractSchedule(csvText, classRegex, delimiter, noLessonNumberSubjects, daysInWeek, rowsPerClass, lessonNumberRegex)
 }
 
 interface Day {
@@ -27,7 +27,7 @@ interface WeeklySchedule {
     classes: Map<string, ClassName>
 }
 
-const extractClasses = (text,
+const extractSchedule = (text,
                         classRegex,
                         delimiter: string,
                         noLessonNumberSubjects: string[],
