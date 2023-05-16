@@ -40,7 +40,7 @@ const extractSchedule = (text,
     }
 
     // Split lines and remove empty lines immediately after days lines
-    const lines = text.split("\n").filter((value, index) => {
+    const lines = text.split('\n').filter((value, index) => {
             return (index - 2) % rowsPerClass != 0
     })
 
@@ -59,15 +59,15 @@ const extractSchedule = (text,
 
             // Concat class names to respective days
             // This creates unique .csv column names
-            // For example, instead of there being "ПЕТЪК" twice, there will be "5А ПЕТЪК" and "5Б ПЕТЪК"
-            lines[index+1] = lines[index+1].split(";").map((val, index) => {
+            // For example, instead of there being 'ПЕТЪК' twice, there will be '5А ПЕТЪК' and '5Б ПЕТЪК'
+            lines[index+1] = lines[index+1].split(';').map((val, index) => {
                 //config
                 let classIndex = Math.floor(index / daysInWeek)
-                return classes[classIndex] + " " + val
+                return classes[classIndex] + ' ' + val
             }).join(delimiter)
 
             // Now the lines are parsable into .csv format
-            const schedules = lines.slice(index + 1, index + rowsPerClass - 2).join("\n")
+            const schedules = lines.slice(index + 1, index + rowsPerClass - 2).join('\n')
             const recordList = parse(schedules, {
                 columns: true,
                 skip_empty_lines: true,
@@ -76,13 +76,13 @@ const extractSchedule = (text,
 
             // For every record iterate through all the days with their respective lessons
             for (let i = 0; i < recordList.length; i++) {
-                // The key is in format "CLASS DAY"
-                // The value is in format "lessonNumber.subject"
+                // The key is in format 'CLASS DAY'
+                // The value is in format 'lessonNumber.subject'
                 for (const [key, value] of Object.entries(recordList[i])) {
-                    const [className, day] = key.split(" ")
+                    const [className, day] = key.split(' ')
                     if (!className.match(classRegex)) continue;
 
-                    // The subject often has a . at the end, like "мат."
+                    // The subject often has a . at the end, like 'мат.'
                     // This causes the string to be split in three elements
                     // And the subject loses the dot
                     // This code captures the rest of the elements as ...subjectValues and then joins them into a string
@@ -111,7 +111,7 @@ const extractSchedule = (text,
                         if (lessonNumber.match(lessonNumberRegex)) {
                             // Compensate for empty first lessons by moving the lesson index
                             let emptyFirstLessons = 0;
-                            while(subjects[emptyFirstLessons] === "") emptyFirstLessons++;
+                            while(subjects[emptyFirstLessons] === '') emptyFirstLessons++;
                             subjects[parseInt(lessonNumber) + emptyFirstLessons - 1] = subject
                         } else {
                             subjects.push(subject)
@@ -135,7 +135,7 @@ const extractSchedule = (text,
 }
 
 const removeStart = (text, startingLine) => {
-    return text.split("\n").slice(startingLine).join("\n")
+    return text.split('\n').slice(startingLine).join('\n')
 }
 
 export { getScheduleFile, parseWeeklySchedule };
