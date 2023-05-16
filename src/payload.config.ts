@@ -3,6 +3,7 @@ import path from 'path';
 import Users from './collections/Users';
 import News from "./collections/News";
 import Media from "./collections/Media";
+import Publishers from "./collections/Publishers";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
 import formBuilder from "@payloadcms/plugin-form-builder";
@@ -15,6 +16,7 @@ import Contact from "./globals/Contact";
 import WeeklySchedule from "./globals/WeeklySchedule";
 import Subjects from "./collections/Subjects";
 import AboutUs from "./globals/AboutUs";
+import Books from "./collections/Books";
 
 const adapter = gcsAdapter({
   options: {
@@ -33,7 +35,9 @@ export default buildConfig({
     News,
     NewsCategory,
     Media,
-    Subjects
+    Subjects,
+    Publishers,
+    Books
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, WeeklySchedule, AboutUs
