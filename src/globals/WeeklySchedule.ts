@@ -1,6 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 import {validateDates} from "../lib/validateHourRange";
-import parseWeeklySchedule from "../lib/parseWeeklySchedule";
+import {getScheduleFile, parseWeeklySchedule} from "../lib/parseWeeklySchedule";
 
 const dateError = 'Не може началото на час да е след края.'
 
@@ -18,12 +18,15 @@ export const WeeklySchedule: GlobalConfig = {
         beforeValidate: [ async ({req , data}) => {
             const payload = req.payload
             if (!payload.local) {
+
                 const fileObject = await req.payload.findByID({
                     collection: 'media',
                     id: data.weeklySchedule.fileCsv
                 })
 
-                const schedule = await parseWeeklySchedule(fileObject, 3,
+                const csvText = await getScheduleFile(fileObject)
+
+                const schedule = await parseWeeklySchedule(csvText, 3,
                     "^[0-9][0-9]?[A-Za-zА-Яа-я]$",
                     ";",
                     ["спорт"],

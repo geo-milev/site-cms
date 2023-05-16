@@ -1,6 +1,10 @@
-import { parse } from 'csv-parse/sync';
+const getScheduleFile = async (fileObject) => {
+    const buffer = await (await fetch(process.env.SERVER_URL + fileObject.url)).arrayBuffer()
+    const decoder = new TextDecoder()
+    return decoder.decode(buffer)
+}
 
-const parseWeeklySchedule = async (fileObject,
+const parseWeeklySchedule = async (csvText: string,
                                    startingLine: number,
                                    classRegex: string,
                                    delimiter: string,
@@ -8,9 +12,6 @@ const parseWeeklySchedule = async (fileObject,
                                    daysInWeek: number,
                                    rowsPerClass: number,
                                    lessonNumberRegex: string) => {
-    const buffer = await (await fetch(process.env.SERVER_URL + fileObject.url)).arrayBuffer()
-    const decoder = new TextDecoder()
-    let csvText = decoder.decode(buffer)
     csvText = removeStart(csvText, startingLine)
     return extractSchedule(csvText, classRegex, delimiter, noLessonNumberSubjects, daysInWeek, rowsPerClass, lessonNumberRegex)
 }
@@ -42,6 +43,8 @@ const extractSchedule = (text,
     const lines = text.split("\n").filter((value, index) => {
             return (index - 2) % rowsPerClass != 0
     })
+
+    const parse = require('csv-parse/sync').parse
     
     lines.forEach((line, index) => {
         // Only use rows with classes, avoiding last line
@@ -135,4 +138,4 @@ const removeStart = (text, startingLine) => {
     return text.split("\n").slice(startingLine).join("\n")
 }
 
-export default parseWeeklySchedule;
+export { getScheduleFile, parseWeeklySchedule };
