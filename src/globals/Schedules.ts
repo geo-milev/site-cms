@@ -6,10 +6,10 @@ const dateError = 'Не може началото на час да е след �
 
 // @ts-ignore is needed because the generic Field type doesn't recognise the custom date admin properties like 'pickerAppearance'
 //@ts-ignore
-export const WeeklySchedule: GlobalConfig = {
-    slug: 'weekly-schedule',
+export const Schedules: GlobalConfig = {
+    slug: 'schedules',
     label: {
-        en: 'Weekly schedule', bg: 'Седмично разписание'
+        en: 'Schedules', bg: 'Графици'
     },
     access: {
         read: () => true,
@@ -62,8 +62,6 @@ export const WeeklySchedule: GlobalConfig = {
                     }
                 }
 
-                data.weeklySchedule.classes = []
-
                 for (const [className, days] of schedule.classes) {
                     const dataDays = []
 
@@ -84,9 +82,12 @@ export const WeeklySchedule: GlobalConfig = {
                         })
                     }
 
-                    data.weeklySchedule.classes.push({
-                        class: className,
-                        days: dataDays
+                    await payload.create({
+                        collection: 'weekly-schedules',
+                        data: {
+                            class: className,
+                            days: dataDays
+                        }
                     })
                 }
             }
@@ -228,75 +229,10 @@ export const WeeklySchedule: GlobalConfig = {
                         en: 'File .csv (autofill the weekly schedule)',
                         bg: 'Файл във формат .csv (за автоматично попълване на програмата)'
                     }
-                },
-                {
-                    name: 'classes',
-                    type: 'array',
-                    label: {en: 'Classes', bg: 'Класове'},
-                    labels: {
-                        singular: {en: 'Class', bg: 'Клас'},
-                        plural: {en: 'Classes', bg: 'Класове'}
-                    },
-                    fields: [
-                        {
-                            name: 'class',
-                            type: 'text',
-                            required: true,
-                            label: { en: 'Class', bg: 'Клас' },
-                        },
-                        {
-                            name: 'days',
-                            type: 'array',
-                            required: true,
-                            minRows: 1,
-                            label: {en: 'Days', bg: 'Дни'},
-                            labels: {
-                                singular: {en: 'Day', bg: 'Ден'},
-                                plural: {en: 'Days', bg: 'Дни'}
-                            },
-                            fields: [
-                                {
-                                    name: 'day',
-                                    type: 'text',
-                                    required: true,
-                                    label: { en: 'Day', bg: 'Ден' },
-                                },
-                                {
-                                    name: 'hours',
-                                    type: 'array',
-                                    required: true,
-                                    minRows: 1,
-                                    label: { en: 'Hours', bg: 'Часове' },
-                                    labels: {
-                                        singular: { en: 'Hour', bg: 'Час' },
-                                        plural: { en: 'Hours', bg: 'Часове' }
-                                    },
-                                    fields: [
-                                        {
-                                            name: 'num',
-                                            type: 'number',
-                                            required: true,
-                                            label: {
-                                                en: 'Hour num', bg: 'Номер на часа'
-                                            }
-                                        },
-                                        {
-                                            name: 'subject',
-                                            type: 'relationship',
-                                            relationTo: 'subjects',
-                                            label: {
-                                                en: 'Subject', bg: 'Предмет'
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                    ],
                 }
             ]
         },
     ]
 }
 
-export default WeeklySchedule;
+export default Schedules;
