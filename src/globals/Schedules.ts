@@ -35,7 +35,8 @@ export const Schedules: GlobalConfig = {
                     config.daysInWeek,
                     config.rowsPerSchedule,
                     config.lessonNumberRegex,
-                    config.dayAliases)
+                    config.dayAliases,
+                    config.maxNumberOfLessons)
 
                 const getSubjectId = async (subjectString) => {
                     if (subjectString === '') return undefined
@@ -326,6 +327,16 @@ export const Schedules: GlobalConfig = {
                             label: {
                                 en: 'Lesson number regex',
                                 bg: 'Регулярен израз за номер на час'
+                            }
+                        },
+                        {
+                            name: 'maxNumberOfLessons',
+                            type: 'number',
+                            required: true,
+                            defaultValue: 9,
+                            label: {
+                                en: 'The latest hour in the schedule',
+                                bg: 'Най-късния час в програмата'
                             }
                         },
                         {

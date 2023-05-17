@@ -12,9 +12,18 @@ const parseWeeklySchedule = async (csvText: string,
                                    daysInWeek: number,
                                    rowsPerClass: number,
                                    lessonNumberRegex: string,
-                                   dayAliases: { shortName: string, fullName: string }[]) => {
+                                   dayAliases: { shortName: string, fullName: string }[],
+                                   maxNumberOfLessons: number) => {
     csvText = removeStart(csvText, startingLine)
-    return extractSchedule(csvText, classRegex, delimiter, noLessonNumberSubjects, daysInWeek, rowsPerClass, lessonNumberRegex, dayAliases)
+    return extractSchedule(csvText,
+        classRegex,
+        delimiter,
+        noLessonNumberSubjects,
+        daysInWeek,
+        rowsPerClass,
+        lessonNumberRegex,
+        dayAliases,
+        maxNumberOfLessons)
 }
 
 interface Day {
@@ -36,7 +45,8 @@ const extractSchedule = (text,
                         daysInWeek: number,
                         rowsPerClass: number,
                         lessonNumberRegex: string,
-                        dayAliases: { shortName: string, fullName: string }[]) => {
+                        dayAliases: { shortName: string, fullName: string }[],
+                        maxNumberOfLessons: number) => {
     const schedule: WeeklySchedule = {
         classes: new Map()
     }
@@ -63,7 +73,6 @@ const extractSchedule = (text,
             // This creates unique .csv column names
             // For example, instead of there being 'ПЕТЪК' twice, there will be '5А ПЕТЪК' and '5Б ПЕТЪК'
             lines[index+1] = lines[index+1].split(';').map((val, index) => {
-                //config
                 let classIndex = Math.floor(index / daysInWeek)
 
                 if (val && (typeof val === 'string')) {
@@ -77,7 +86,7 @@ const extractSchedule = (text,
             }).join(delimiter)
 
             // Now the lines are parsable into .csv format
-            const schedules = lines.slice(index + 1, index + rowsPerClass - 1).join('\n')
+            const schedules = lines.slice(index + 1, index + 2 + maxNumberOfLessons).join('\n')
             const recordList = parse(schedules, {
                 columns: true,
                 skip_empty_lines: true,
