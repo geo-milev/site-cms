@@ -11,9 +11,10 @@ const parseWeeklySchedule = async (csvText: string,
                                    noLessonNumberSubjects: string[],
                                    daysInWeek: number,
                                    rowsPerClass: number,
-                                   lessonNumberRegex: string) => {
+                                   lessonNumberRegex: string,
+                                   dayAliases: { shortName: string, fullName: string }[]) => {
     csvText = removeStart(csvText, startingLine)
-    return extractSchedule(csvText, classRegex, delimiter, noLessonNumberSubjects, daysInWeek, rowsPerClass, lessonNumberRegex)
+    return extractSchedule(csvText, classRegex, delimiter, noLessonNumberSubjects, daysInWeek, rowsPerClass, lessonNumberRegex, dayAliases)
 }
 
 interface Day {
@@ -34,7 +35,8 @@ const extractSchedule = (text,
                         noLessonNumberSubjects: string[],
                         daysInWeek: number,
                         rowsPerClass: number,
-                        lessonNumberRegex: string) => {
+                        lessonNumberRegex: string,
+                        dayAliases: { shortName: string, fullName: string }[]) => {
     const schedule: WeeklySchedule = {
         classes: new Map()
     }
@@ -63,6 +65,14 @@ const extractSchedule = (text,
             lines[index+1] = lines[index+1].split(';').map((val, index) => {
                 //config
                 let classIndex = Math.floor(index / daysInWeek)
+
+                if (val && (typeof val === 'string')) {
+                    // Replace short day names with full ones
+                    dayAliases.forEach(({shortName, fullName}) => {
+                        if (val.trim() === shortName) val = fullName
+                    })
+                }
+
                 return classes[classIndex] + ' ' + val
             }).join(delimiter)
 
