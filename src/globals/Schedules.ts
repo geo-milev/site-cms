@@ -41,7 +41,7 @@ export const Schedules: GlobalConfig = {
                         collection: 'subjects',
                         limit: 1,
                         where: {
-                            name: {
+                            shortName: {
                                 equals: subjectString
                             }
                         }
