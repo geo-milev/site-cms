@@ -62,6 +62,11 @@ export const Schedules: GlobalConfig = {
                     }
                 }
 
+                await payload.delete({
+                    collection: "weekly-schedules",
+                    where: {}
+                })
+
                 for (const [className, days] of schedule.classes) {
                     const dataDays = []
 
