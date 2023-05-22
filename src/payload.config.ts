@@ -41,8 +41,8 @@ export default buildConfig({
     NewsCategory,
     Media,
     Subjects,
-    Teachers
-    WeeklySchedules
+    Teachers,
+    WeeklySchedules,
     Publishers,
     Books,
     ScheduleEntries,
