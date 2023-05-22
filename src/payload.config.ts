@@ -16,6 +16,7 @@ import Contact from "./globals/Contact";
 import Schedules from "./globals/Schedules";
 import Subjects from "./collections/Subjects";
 import AboutUs from "./globals/AboutUs";
+import Teachers from "./collections/Teachers";
 import WeeklySchedules from "./collections/WeeklySchedules";
 import Books from "./collections/Books";
 
@@ -36,6 +37,7 @@ export default buildConfig({
     NewsCategory,
     Media,
     Subjects,
+    Teachers
     WeeklySchedules
     Publishers,
     Books
