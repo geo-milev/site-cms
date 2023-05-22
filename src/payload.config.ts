@@ -18,6 +18,7 @@ import Subjects from "./collections/Subjects";
 import AboutUs from "./globals/AboutUs";
 import Books from "./collections/Books";
 import ScheduleEntries from "./collections/ScheduleEntries";
+import Documents from "./collections/Documents";
 
 const adapter = gcsAdapter({
   options: {
@@ -38,7 +39,8 @@ export default buildConfig({
     Subjects,
     Publishers,
     Books,
-    ScheduleEntries
+    ScheduleEntries,
+    Documents
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, WeeklySchedule, AboutUs
