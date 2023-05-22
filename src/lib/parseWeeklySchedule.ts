@@ -105,7 +105,7 @@ const extractSchedule = (text,
                     // This causes the string to be split in three elements
                     // And the subject loses the dot
                     // This code captures the rest of the elements as ...subjectValues and then joins them into a string
-                    let [lessonNumber, ...subject] = value.split('.')
+                    let [lessonNumber, ...subject] = value?.split('.')
                     subject = subject.join('.').trim()
 
                     // Ignore any record where the lesson number doesn't satisfy the lesson regex, which isn't empty or
