@@ -13,6 +13,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "jsx": "react",
+    "moduleResolution": "Node",
     "paths": {
       "payload/generated-types": [
         "./src/payload-types.ts",
