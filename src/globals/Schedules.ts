@@ -71,13 +71,13 @@ export const Schedules: GlobalConfig = {
                     where: {}
                 })
 
-                for (const [className, days] of schedule.classes) {
+                for (const [className, days] of Array.from(schedule.classes.entries())) {
                     const dataDays = []
 
-                    for (const [day, lessons] of days.days) {
+                    for (const [day, lessons] of Array.from(days.days.entries())) {
                         const hours = []
 
-                        for (const [index, subjectString] of lessons.subjects.entries()) {
+                        for (const [index, subjectString] of Array.from(lessons.subjects.entries())) {
                             const subject = await getSubjectId(subjectString)
                             hours.push({
                                 num: index + 1,
