@@ -57,7 +57,7 @@ const extractSchedule = (text,
     })
 
     const parse = require('csv-parse/sync').parse
-    
+
     lines.forEach((line, index) => {
         // Only use rows with classes, avoiding last line
         if (index % (rowsPerClass - 1) == 0 && index + 1 < lines.length) {
@@ -105,18 +105,18 @@ const extractSchedule = (text,
                     // This causes the string to be split in three elements
                     // And the subject loses the dot
                     // This code captures the rest of the elements as ...subjectValues and then joins them into a string
-                    let [lessonNumber, ...subject] = value?.split('.')
-                    subject = subject.join('.').trim()
+                    let [lessonNumber, ...subjectValues] = String(value).split('.')
+                    let subject = subjectValues.join('.').trim()
 
                     // Ignore any record where the lesson number doesn't satisfy the lesson regex, which isn't empty or
                     // which isn't included in the list of no lesson number subjects
-                    if (!lessonNumber.match(lessonNumberRegex) && 
-                        value !== '' && 
+                    if (!lessonNumber.match(lessonNumberRegex) &&
+                        value !== '' &&
                         !noLessonNumberSubjects.includes(value.toString())) continue;
 
                     // Since no lesson number subjects aren't parsed correctly, set them to subject
                     if (noLessonNumberSubjects.includes(value.toString())) {
-                        subject = value
+                        subject = value.toString()
                     }
 
                     // Get the days for the class
@@ -139,7 +139,7 @@ const extractSchedule = (text,
                         const subjects = []
                         if (lessonNumber.match(lessonNumberRegex)) {
                             // No need to compensate here
-                            subjects[lessonNumber - 1] = subject
+                            subjects[parseInt(lessonNumber) - 1] = subject
                         } else {
                             subjects.push(subject)
                         }
