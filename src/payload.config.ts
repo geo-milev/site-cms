@@ -19,6 +19,10 @@ import AboutUs from "./globals/AboutUs";
 import Teachers from "./collections/Teachers";
 import WeeklySchedules from "./collections/WeeklySchedules";
 import Books from "./collections/Books";
+import ScheduleEntries from "./collections/ScheduleEntries";
+import Documents from "./collections/Documents";
+import AdministrativeServicesInfo from "./collections/AdministrativeServicesInfo";
+import FormFiles from "./collections/FormFiles";
 
 const adapter = gcsAdapter({
   options: {
@@ -40,7 +44,11 @@ export default buildConfig({
     Teachers
     WeeklySchedules
     Publishers,
-    Books
+    Books,
+    ScheduleEntries,
+    Documents,
+    AdministrativeServicesInfo,
+    FormFiles
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs
