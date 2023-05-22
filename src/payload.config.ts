@@ -41,8 +41,8 @@ export default buildConfig({
     NewsCategory,
     Media,
     Subjects,
-    Teachers
-    WeeklySchedules
+    Teachers,
+    WeeklySchedules,
     Publishers,
     Books,
     ScheduleEntries,
@@ -59,7 +59,7 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
-  cors: [process.env.FRONTEND_URL],
+  cors: [String(process.env.FRONTEND_URL)],
   plugins: [
     // Only use cloud storage in prod
     process.env.NODE_ENV == 'production' ? cloudStorage({
