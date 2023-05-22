@@ -3,6 +3,7 @@ import path from 'path';
 import Users from './collections/Users';
 import News from "./collections/News";
 import Media from "./collections/Media";
+import Publishers from "./collections/Publishers";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
 import formBuilder from "@payloadcms/plugin-form-builder";
@@ -12,14 +13,15 @@ import Slideshow from "./globals/Slideshow";
 import VideoSection from "./globals/VideoSection";
 import WhatIsStudied from "./globals/WhatIsStudied";
 import Contact from "./globals/Contact";
-import WeeklySchedule from "./globals/WeeklySchedule";
+import Schedules from "./globals/Schedules";
 import Subjects from "./collections/Subjects";
 import AboutUs from "./globals/AboutUs";
 import Teachers from "./collections/Teachers";
+import WeeklySchedules from "./collections/WeeklySchedules";
+import Books from "./collections/Books";
 
 const adapter = gcsAdapter({
   options: {
-    apiEndpoint: process.env.GCS_ENDPOINT,
     projectId: process.env.GCS_PROJECT_ID,
   },
   bucket: process.env.GCS_BUCKET,
@@ -36,9 +38,12 @@ export default buildConfig({
     Media,
     Subjects,
     Teachers
+    WeeklySchedules
+    Publishers,
+    Books
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, WeeklySchedule, AboutUs
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
