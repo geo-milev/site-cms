@@ -74,10 +74,39 @@ const News: CollectionConfig = {
             }
         },
         {
+            name: 'isSuccess',
+            type: 'checkbox',
+            label: {en: 'Is a success', bg: 'Постижение е'},
+            defaultValue: false,
+        },
+        {
+            name: 'successCategory',
+            type: 'select',
+            options: [
+                {
+                    label: { en: 'Olympiad', bg: 'Олимпиада' },
+                    value: 'olympiads',
+                },
+                {
+                    label: { en: 'Sport', bg: 'Спорт' },
+                    value: 'sports',
+                },
+                {
+                    label: { en: 'Art', bg: 'Творчество' },
+                    value: 'arts',
+                }
+            ],
+            admin: {
+                condition: (data) => {
+                    return !!data.isSuccess;
+                }
+            }
+        },
+        {
             name: 'content',
             type: 'richText',
             required: true
-        }
+        },
     ],
 }
 
