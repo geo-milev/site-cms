@@ -20,11 +20,13 @@ const AdministrativeServicesInfo: CollectionConfig = {
         {
             name: 'name',
             type: 'text',
+            label: { en: 'Name', bg: 'Име'},
             required: true,
         },
         {
             name: 'file',
             type: 'upload',
+            label: { en: 'File', bg: 'Файл'},
             relationTo: 'media',
             required: true
         },
