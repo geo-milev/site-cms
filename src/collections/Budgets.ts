@@ -24,10 +24,21 @@ const Budgets: CollectionConfig = {
             label: { en: 'Name', bg: 'Име' }
         },
         {
-            name: 'year',
-            type: 'number',
-            required: true,
-            label: { en: 'Year', bg: 'Година' }
+            name: 'isYearly',
+            type: 'checkbox',
+            label: {en: 'Yearly', bg: 'Годишен'},
+            defaultValue: false,
+        },
+        {
+            name: 'yearly',
+            type: 'upload',
+            relationTo: 'media',
+            label: { en: 'Yearly budget', bg: 'Годишен бюджет' },
+            admin: {
+                condition: (data) => {
+                    return !!data.isYearly;
+                }
+            }
         },
         {
           name: 'yearlyQuarters',
@@ -59,7 +70,12 @@ const Budgets: CollectionConfig = {
                   relationTo: 'media',
                   label: { en: 'Fourth quarter', bg: 'Четвърто тримесечие' }
               },
-          ]
+          ],
+          admin: {
+              condition: (data) => {
+                  return !data.isYearly;
+              }
+          }
         },
     ],
 }

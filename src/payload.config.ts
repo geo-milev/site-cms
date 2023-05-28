@@ -24,6 +24,7 @@ import Documents from "./collections/Documents";
 import AdministrativeServicesInfo from "./collections/AdministrativeServicesInfo";
 import FormFiles from "./collections/FormFiles";
 import Budgets from "./collections/Budgets";
+import AvailableBudgets from "./globals/AvailableBudgets";
 
 const adapter = gcsAdapter({
   options: {
@@ -53,7 +54,7 @@ export default buildConfig({
     Budgets
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
