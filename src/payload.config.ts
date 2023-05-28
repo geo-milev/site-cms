@@ -23,6 +23,7 @@ import ScheduleEntries from "./collections/ScheduleEntries";
 import Documents from "./collections/Documents";
 import AdministrativeServicesInfo from "./collections/AdministrativeServicesInfo";
 import FormFiles from "./collections/FormFiles";
+import Budgets from "./collections/Budgets";
 
 const adapter = gcsAdapter({
   options: {
@@ -48,7 +49,8 @@ export default buildConfig({
     ScheduleEntries,
     Documents,
     AdministrativeServicesInfo,
-    FormFiles
+    FormFiles,
+    Budgets
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs
