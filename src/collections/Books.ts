@@ -64,6 +64,11 @@ const Books: CollectionConfig = {
             label: { en: 'Subject', bg: 'Предмет' }
         },
         {
+            name: 'note',
+            type: 'text',
+            label: { en: 'Note', bg: 'Забележка' }
+        },
+        {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
