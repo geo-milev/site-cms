@@ -48,28 +48,24 @@ const Budgets: CollectionConfig = {
               {
                   name: 'first',
                   type: 'upload',
-                  required: true,
                   relationTo: 'media',
                   label: { en: 'First quarter', bg: 'Първо тримесечие' }
               },
               {
                   name: 'second',
                   type: 'upload',
-                  required: true,
                   relationTo: 'media',
                   label: { en: 'Second quarter', bg: 'Второ тримесечие' }
               },
               {
                   name: 'third',
                   type: 'upload',
-                  required: true,
                   relationTo: 'media',
                   label: { en: 'Third quarter', bg: 'Трето тримесечие' }
               },
               {
                   name: 'fourth',
                   type: 'upload',
-                  required: true,
                   relationTo: 'media',
                   label: { en: 'Fourth quarter', bg: 'Четвърто тримесечие' }
               },
