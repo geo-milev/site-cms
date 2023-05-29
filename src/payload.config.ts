@@ -23,6 +23,8 @@ import ScheduleEntries from "./collections/ScheduleEntries";
 import Documents from "./collections/Documents";
 import AdministrativeServicesInfo from "./collections/AdministrativeServicesInfo";
 import FormFiles from "./collections/FormFiles";
+import Budgets from "./collections/Budgets";
+import AvailableBudgets from "./globals/AvailableBudgets";
 import Projects from "./collections/Projects";
 import BooksInfo from "./globals/BooksInfo";
 
@@ -51,10 +53,10 @@ export default buildConfig({
     Documents,
     AdministrativeServicesInfo,
     FormFiles,
-    Projects
+    Budgets
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, BooksInfo
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Projects
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
