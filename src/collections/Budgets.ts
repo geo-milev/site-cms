@@ -43,7 +43,6 @@ const Budgets: CollectionConfig = {
         {
           name: 'yearlyQuarters',
           type: 'group',
-          required: true,
           label: { en: 'Yearly quarters', bg: 'Тримесечия' },
           fields: [
               {

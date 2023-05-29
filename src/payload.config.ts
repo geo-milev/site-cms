@@ -53,10 +53,11 @@ export default buildConfig({
     Documents,
     AdministrativeServicesInfo,
     FormFiles,
-    Budgets
+    Budgets,
+    Projects
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Projects
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
