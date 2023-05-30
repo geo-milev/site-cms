@@ -22,7 +22,8 @@ const Budgets: CollectionConfig = {
             type: 'text',
             required: true,
             label: { en: 'Name', bg: 'Име' }
-        },{
+        },
+        {
             name: 'year',
             type: 'number',
             required: true,
