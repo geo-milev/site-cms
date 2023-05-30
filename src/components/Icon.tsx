@@ -1,4 +1,5 @@
 import React from 'react';
+import "./icon.css";
 
 export const Icon = () => (
     <div className="logo">
