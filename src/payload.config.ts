@@ -24,6 +24,10 @@ import Documents from "./collections/Documents";
 import AdministrativeServicesInfo from "./collections/AdministrativeServicesInfo";
 import FormFiles from "./collections/FormFiles";
 import Newspapers from "./collections/Newspapers";
+import Budgets from "./collections/Budgets";
+import AvailableBudgets from "./globals/AvailableBudgets";
+import Projects from "./collections/Projects";
+import BooksInfo from "./globals/BooksInfo";
 
 const adapter = gcsAdapter({
   options: {
@@ -50,10 +54,12 @@ export default buildConfig({
     Documents,
     AdministrativeServicesInfo,
     FormFiles,
-    Newspapers
+    Newspapers,
+    Budgets,
+    Projects
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
