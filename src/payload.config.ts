@@ -28,6 +28,8 @@ import Budgets from "./collections/Budgets";
 import AvailableBudgets from "./globals/AvailableBudgets";
 import Projects from "./collections/Projects";
 import BooksInfo from "./globals/BooksInfo";
+import {Logo} from "./components/Logo";
+import {Icon} from "./components/Icon";
 
 const adapter = gcsAdapter({
   options: {
@@ -39,6 +41,17 @@ const adapter = gcsAdapter({
 export default buildConfig({
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: '- ППМГ "Гео Милев"',
+      favicon: '/assets/favicon.png',
+      ogImage: '/assets/logo.svg',
+    },
+    components: {
+      graphics: {
+        Logo,
+        Icon,
+      },
+    },
   },
   collections: [
     Users,
