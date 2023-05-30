@@ -23,6 +23,7 @@ import ScheduleEntries from "./collections/ScheduleEntries";
 import Documents from "./collections/Documents";
 import AdministrativeServicesInfo from "./collections/AdministrativeServicesInfo";
 import FormFiles from "./collections/FormFiles";
+import Newspapers from "./collections/Newspapers";
 import Budgets from "./collections/Budgets";
 import AvailableBudgets from "./globals/AvailableBudgets";
 import Projects from "./collections/Projects";
@@ -53,6 +54,7 @@ export default buildConfig({
     Documents,
     AdministrativeServicesInfo,
     FormFiles,
+    Newspapers,
     Budgets,
     Projects
   ],
