@@ -27,6 +27,47 @@ export const MainInfo: GlobalConfig = {
                 en: 'School logo', bg: 'Лого на училището'
             },
         },
+        {
+          name: 'favicons',
+          type: 'array',
+          label: {
+            en: 'Favicons (recommended 16x16 and 32x32)', bg: 'Икони (очаква се да има 16x16 и 32x32 големини)'
+          },
+          defaultValue: [
+              {
+                  size: '16x16'
+              },
+              {
+                  size: '32x32'
+              }
+          ],
+          fields: [
+              {
+                  name: 'size',
+                  type: 'text',
+                  required: true,
+                  label: {
+                      en: 'Size', bg: 'Големина'
+                  },
+                  validate: (data, {}) => {
+                      if (data.match(/\d+x\d+/)) return true
+                      else return 'Големината трябва да е във формат <число><x><число>'
+                  }
+              },
+              {
+                  name: 'favicon',
+                  type: 'upload',
+                  relationTo: 'media',
+                  required: true,
+                  filterOptions: {
+                      mimeType: { equals: 'image/png'  }
+                  },
+                  label: {
+                      en: 'Favicon (.png file)', bg: 'Икона (.png файл)'
+                  },
+              }
+          ]
+        }
     ]
 }
 
