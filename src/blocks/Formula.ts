@@ -29,6 +29,20 @@ const Formula: Block = {
                     required: true
                 },
                 {
+                    name: 'min',
+                    type: 'number',
+                    label: { en: 'Minimum', bg: 'Минимум' },
+                    defaultValue: 0,
+                    required: true
+                },
+                {
+                    name: 'max',
+                    type: 'number',
+                    label: { en: 'Maximum', bg: 'Максимум' },
+                    defaultValue: 100,
+                    required: true
+                },
+                {
                     name: 'variable',
                     type: 'text',
                     label: { en: 'Variable (x, y, z)', bg: 'Променлива (x, y, z)' },
