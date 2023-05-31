@@ -24,6 +24,12 @@ const Budgets: CollectionConfig = {
             label: { en: 'Name', bg: 'Име' }
         },
         {
+            name: 'year',
+            type: 'number',
+            required: true,
+            label: { en: 'Year', bg: 'Година' },
+        },
+        {
             name: 'isYearly',
             type: 'checkbox',
             label: {en: 'Yearly', bg: 'Годишен'},

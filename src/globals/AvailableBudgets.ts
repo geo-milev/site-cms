@@ -13,12 +13,15 @@ export const AvailableBudgets: GlobalConfig = {
             name: 'years',
             type: 'array',
             label: { en: 'Years', bg: 'Години' },
-            validate: (data, {siblingData}) => {
-                const length = siblingData.years.map(val => val.year).filter((e, i, a) => a.indexOf(e) !== i).length
-                if (length == 0) {
-                    return true
+            validate: (data, {siblingData, operation}) => {
+                if (operation == 'update' && siblingData.years) {
+                    const years = siblingData.years.map(val => val.year)
+                    const hasDuplicates = years.filter((item, index) => years.indexOf(item) !== index).length > 0
+                    if (!hasDuplicates) {
+                        return true
+                    }
+                    return 'Трябва всеки елемент да има уникална година'
                 }
-                return 'Трябва всеки елемент да има уникална година'
             },
             fields: [
                 {
