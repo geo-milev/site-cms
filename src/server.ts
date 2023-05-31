@@ -1,6 +1,7 @@
 import express from 'express';
 import payload from 'payload';
 import {formData} from "./lib/formData";
+import * as path from "path";
 
 require('dotenv').config();
 const app = express();
@@ -9,6 +10,7 @@ const app = express();
 app.get('/', (_, res) => {
   res.redirect('/admin');
 });
+app.use('/assets', express.static(path.resolve(__dirname, './assets')));
 
 const start = async () => {
   let mongoURL = `${process.env.MONGO_PROTOCOL}://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}/`;
