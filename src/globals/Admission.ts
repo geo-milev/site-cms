@@ -2,6 +2,7 @@ import {GlobalConfig} from 'payload/types';
 import richTextUploadMetadata from "../lib/richTextUploadMetadata";
 import RichText from "../blocks/RichText";
 import AdmissionRequirements from "../blocks/AdmissionRequirements";
+import Formula from "../blocks/Formula";
 
 // The definitions for the admin field on richText don't properly include the upload field, causing errors
 // @ts-ignore
@@ -55,7 +56,8 @@ export const Admission: GlobalConfig = {
                             type: 'blocks',
                             blocks: [
                                 RichText,
-                                AdmissionRequirements
+                                AdmissionRequirements,
+                                Formula
                             ]
                         }
                     ]
