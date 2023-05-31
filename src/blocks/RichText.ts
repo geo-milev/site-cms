@@ -9,9 +9,6 @@ const RichText: Block = {
         singular: {en: 'Rich Text', bg: 'Форматиран текст'},
         plural: {en: 'Rich text fields', bg: 'Полета форматиран текст'}
     },
-    graphQL: {
-        singularName: 'richText'
-    },
     fields: [
         {
             name: 'importantInfo',

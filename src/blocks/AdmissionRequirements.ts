@@ -7,7 +7,7 @@ const AdmissionRequirements: Block = {
         plural: {en: 'Admission requirements', bg: 'Изисквания за прием'}
     },
     graphQL: {
-        singularName: 'admissionRequirements'
+        singularName: 'AdmissionRequirement'
     },
     fields: [
         {
