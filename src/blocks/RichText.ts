@@ -11,6 +11,13 @@ const RichText: Block = {
     },
     fields: [
         {
+          name: 'isCentered',
+          type: 'checkbox',
+          label: {
+              en: 'Centered', bg: 'Центриран'
+          },
+        },
+        {
             name: 'importantInfo',
             type: 'richText',
             label: {
