@@ -1,6 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 import richTextUploadMetadata from "../lib/richTextUploadMetadata";
 import RichText from "../blocks/RichText";
+import AdmissionRequirements from "../blocks/AdmissionRequirements";
 
 // The definitions for the admin field on richText don't properly include the upload field, causing errors
 // @ts-ignore
@@ -16,8 +17,9 @@ export const Admission: GlobalConfig = {
         {
             name: 'grades',
             type: 'array',
-            label: {
-                en: 'Grades', bg: 'Класове'
+            labels: {
+                singular: {en: 'Grade', bg: 'Клас'},
+                plural: {en: 'Grades', bg: 'Класове'}
             },
             fields: [
                 {
@@ -38,8 +40,9 @@ export const Admission: GlobalConfig = {
                 {
                     name: 'steps',
                     type: 'array',
-                    label: {
-                        en: 'Steps', bg: 'Стъпки'
+                    labels: {
+                        singular: {en: 'Step', bg: 'Стъпка'},
+                        plural: {en: 'Steps', bg: 'Стъпки'}
                     },
                     fields: [
                         {
@@ -51,7 +54,8 @@ export const Admission: GlobalConfig = {
                             name: 'info',
                             type: 'blocks',
                             blocks: [
-                                RichText
+                                RichText,
+                                AdmissionRequirements
                             ]
                         }
                     ]
