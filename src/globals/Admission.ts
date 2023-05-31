@@ -61,7 +61,18 @@ export const Admission: GlobalConfig = {
                             ]
                         }
                     ]
-                }
+                },
+                {
+                    name: 'bonusInfo',
+                    type: 'richText',
+                    label: {
+                        en: 'Bonus info (goes at the bottom of the page)',
+                        bg: 'Допълнителна информация (отива най-отдолу в страницата)'
+                    },
+                    admin: {
+                        upload: richTextUploadMetadata
+                    }
+                },
             ]
         }
     ]
