@@ -1,4 +1,5 @@
-const richTextUploadMetadata = {
+// FIXME
+const richTextUploadMetadata: any = {
     collections: {
         media: {
             fields: [
