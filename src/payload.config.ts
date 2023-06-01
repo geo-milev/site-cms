@@ -30,6 +30,7 @@ import Projects from "./collections/Projects";
 import BooksInfo from "./globals/BooksInfo";
 import {Logo} from "./components/Logo";
 import {Icon} from "./components/Icon";
+import Admission from "./globals/Admission";
 
 const adapter = gcsAdapter({
   options: {
@@ -72,7 +73,7 @@ export default buildConfig({
     Projects
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Admission
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
