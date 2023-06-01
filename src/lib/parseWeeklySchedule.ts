@@ -1,6 +1,6 @@
 const getScheduleFile = async (fileObject) => {
-    console.log(`URL to call: http://127.0.0.1:${process.env.PORT}/${fileObject.url}`)
-    const result = await fetch(`http://127.0.0.1:${process.env.PORT}/${fileObject.url}`)
+    console.log(`URL to call: http://127.0.0.1:${process.env.PORT}${fileObject.url}`)
+    const result = await fetch(`http://127.0.0.1:${process.env.PORT}${fileObject.url}`)
     console.log(`Call status code: ${result.status}`)
     console.log(`Call status message: ${result.statusText}`)
     const buffer = await result.arrayBuffer();
