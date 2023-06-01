@@ -1,6 +1,9 @@
 const getScheduleFile = async (fileObject) => {
+    console.log(`URL to call: http://127.0.0.1:${process.env.PORT}/${fileObject.url}`)
     const buffer = await (await fetch(`http://127.0.0.1:${process.env.PORT}/${fileObject.url}`)).arrayBuffer();
+    console.log(`Buffer is not undefined: ${Boolean(buffer).toString()}`)
     const decoder = new TextDecoder()
+    console.log(`Decoded text: ${decoder.decode(buffer)}`)
     return decoder.decode(buffer)
 }
 
