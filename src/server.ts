@@ -1,9 +1,15 @@
 import express from 'express';
 import payload from 'payload';
-import {formData} from "./lib/formData";
+import { config } from 'dotenv';
+import { formData } from "./lib/formData.js";
 import * as path from "path";
+import { fileURLToPath } from 'url';
 
-require('dotenv').config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+config();
+
 const app = express();
 
 // Redirect root to Admin panel

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "ES2020",
+    "module": "ES2020",
     "lib": [
       "dom",
       "dom.iterable",
@@ -16,8 +17,8 @@
     "moduleResolution": "Node",
     "paths": {
       "payload/generated-types": [
-        "./src/payload-types.ts",
-      ],
+        "./src/payload-types.ts"
+      ]
     }
   },
   "include": [
@@ -26,10 +27,11 @@
   "exclude": [
     "node_modules",
     "dist",
-    "build",
+    "build"
   ],
   "ts-node": {
     "transpileOnly": true,
     "swc": true,
+    "esm": true
   }
 }
