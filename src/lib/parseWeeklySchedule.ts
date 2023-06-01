@@ -1,5 +1,5 @@
 const getScheduleFile = async (fileObject) => {
-    const buffer = await (await fetch(process.env.SERVER_URL + fileObject.url)).arrayBuffer()
+    const buffer = await (await fetch(`http://localhost:${process.env.PORT}/${fileObject.url}`)).arrayBuffer();
     const decoder = new TextDecoder()
     return decoder.decode(buffer)
 }
