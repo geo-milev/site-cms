@@ -12,7 +12,10 @@ export const AvailableBudgets: GlobalConfig = {
         {
             name: 'years',
             type: 'array',
-            label: { en: 'Years', bg: 'Години' },
+            labels: {
+                singular: { en: 'Year', bg: 'Година' },
+                plural: { en: 'Years', bg: 'Години' }
+            },
             validate: (data, {siblingData, operation}) => {
                 if (operation == 'update' && siblingData.years) {
                     const years = siblingData.years.map(val => val.year)

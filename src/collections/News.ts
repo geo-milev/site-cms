@@ -42,11 +42,13 @@ const News: CollectionConfig = {
             type: 'text',
             minLength: 1,
             maxLength: 60,
+            label: {en: 'Title', bg: 'Заглавие'},
             required: true,
         },
         {
             name: 'publishDate',
             type: 'date',
+            label: {en: 'Publish date', bg: 'Дата на публикуване'},
             admin: {
                 position: 'sidebar'
             }
@@ -54,6 +56,7 @@ const News: CollectionConfig = {
         {
             name: 'description',
             type: 'textarea',
+            label: {en: 'Description', bg: 'Описание'},
             required: true,
             minLength: 1,
             maxLength: 200
@@ -62,12 +65,14 @@ const News: CollectionConfig = {
             name: 'postImage',
             type: 'upload',
             relationTo: 'media',
+            label: {en: 'News image', bg: 'Картина на новината'},
             required: true,
         },
         {
             name: 'category',
             type: 'relationship',
             relationTo: 'news-category',
+            label: {en: 'News category', bg: 'Категория на новината'},
             required: true,
             admin: {
                 position: 'sidebar'
@@ -105,6 +110,7 @@ const News: CollectionConfig = {
         {
             name: 'content',
             type: 'richText',
+            label: {en: 'Rich text', bg: 'Форматиран текст'},
             required: true
         },
     ],

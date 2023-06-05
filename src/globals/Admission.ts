@@ -25,6 +25,7 @@ export const Admission: GlobalConfig = {
                 {
                     name: 'grade',
                     type: 'number',
+                    label: {en: 'Grade', bg: 'Клас'},
                     required: true
                 },
                 {
@@ -48,11 +49,16 @@ export const Admission: GlobalConfig = {
                         {
                             name: 'stepNumber',
                             type: 'number',
+                            label: {en: 'Step number', bg: 'Номер на стъпката'},
                             required: true
                         },
                         {
                             name: 'info',
                             type: 'blocks',
+                            labels: {
+                                singular: {en: 'Block', bg: 'Блок'},
+                                plural: {en: 'Blocks', bg: 'Блокове'}
+                            },
                             blocks: [
                                 RichText,
                                 AdmissionRequirements,

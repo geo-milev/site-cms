@@ -3,7 +3,7 @@ import {Block} from "payload/types";
 const Formula: Block = {
     slug: 'formula',
     labels: {
-        singular: {en: 'Formula', bg: 'Формука'},
+        singular: {en: 'Formula', bg: 'Формула'},
         plural: {en: 'Formulas', bg: 'Формули'}
     },
     fields: [
