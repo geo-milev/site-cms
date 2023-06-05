@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import RichText from "../blocks/RichText";
 
 const updatePublishDate = ({ data, req, operation }) => {
     if (operation === 'create' || operation === 'update') {
@@ -104,9 +105,16 @@ const News: CollectionConfig = {
         },
         {
             name: 'content',
-            type: 'richText',
+            type: 'blocks',
+            labels: {
+                singular: {en: 'Block', bg: 'Блок'},
+                plural: {en: 'Blocks', bg: 'Блокове'}
+            },
+            blocks: [
+                RichText
+            ],
             required: true
-        },
+        }
     ],
 }
 
