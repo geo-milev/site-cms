@@ -28,8 +28,8 @@ import Budgets from "./collections/Budgets";
 import AvailableBudgets from "./globals/AvailableBudgets";
 import Projects from "./collections/Projects";
 import BooksInfo from "./globals/BooksInfo";
-import {Logo} from "./components/Logo";
-import {Icon} from "./components/Icon";
+import {Logo} from "./components/logo/Logo";
+import {Icon} from "./components/icon/Icon";
 import Admission from "./globals/Admission";
 
 const adapter = gcsAdapter({
