@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 import RichText from "../blocks/RichText";
+import FloatedRichText from "../blocks/FloatedRichText";
 
 const updatePublishDate = ({ data, req, operation }) => {
     if (operation === 'create' || operation === 'update') {
@@ -111,7 +112,8 @@ const News: CollectionConfig = {
                 plural: {en: 'Blocks', bg: 'Блокове'}
             },
             blocks: [
-                RichText
+                RichText,
+                FloatedRichText
             ],
             required: true
         }
