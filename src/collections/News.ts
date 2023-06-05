@@ -87,6 +87,7 @@ const News: CollectionConfig = {
         {
             name: 'successCategory',
             type: 'select',
+            label: {en: 'Success category', bg: 'Категория успех'},
             options: [
                 {
                     label: { en: 'Olympiad', bg: 'Олимпиада' },
