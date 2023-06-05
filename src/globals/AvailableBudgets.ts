@@ -12,6 +12,7 @@ export const AvailableBudgets: GlobalConfig = {
         {
             name: 'years',
             type: 'array',
+            label: { en: 'Years', bg: 'Години' },
             labels: {
                 singular: { en: 'Year', bg: 'Година' },
                 plural: { en: 'Years', bg: 'Години' }
@@ -37,6 +38,10 @@ export const AvailableBudgets: GlobalConfig = {
                     name: 'budgets',
                     type: 'array',
                     label: { en: 'Budgets', bg: 'Бюджети' },
+                    labels: {
+                        singular: { en: 'Budget', bg: 'Бюджет' },
+                        plural: { en: 'Budgets', bg: 'Бюджети' }
+                    },
                     fields: [
                         {
                             name: 'budget',
