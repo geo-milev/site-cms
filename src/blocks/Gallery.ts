@@ -13,6 +13,7 @@ const Gallery: Block = {
         {
             name: 'images',
             type: 'array',
+            label: {en: 'Images', bg: 'Картини'},
             labels: {
                 singular: {en: 'Image', bg: 'Картина'},
                 plural: {en: 'Images', bg: 'Картина'}
