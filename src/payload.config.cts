@@ -72,7 +72,15 @@ export default buildConfig({
     Projects
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo
+    MainInfo,
+    Slideshow,
+    VideoSection,
+    WhatIsStudied,
+    Contact,
+    Schedules,
+    AboutUs,
+    AvailableBudgets,
+    BooksInfo
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
