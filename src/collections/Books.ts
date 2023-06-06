@@ -34,6 +34,10 @@ const Books: CollectionConfig = {
             type: 'array',
             minRows: 1,
             label: { en: 'Authors', bg: 'Автори' },
+            labels: {
+                singular: { en: 'Author', bg: 'Автор' },
+                plural: { en: 'Authors', bg: 'Автори' }
+            },
             fields: [
                 {
                     name: 'author',
