@@ -3,6 +3,8 @@ import RichText from "../blocks/RichText";
 import FloatedRichText from "../blocks/FloatedRichText";
 import Gallery from "../blocks/Gallery";
 import Table from "../blocks/Table";
+import Formula from "../blocks/Formula";
+import AdmissionRequirements from "../blocks/AdmissionRequirements";
 
 const updatePublishDate = ({ data, req, operation }) => {
     if (operation === 'create' || operation === 'update') {
@@ -117,7 +119,9 @@ const News: CollectionConfig = {
                 RichText,
                 FloatedRichText,
                 Gallery,
-                Table
+                Table,
+                Formula,
+                AdmissionRequirements
             ],
             required: true
         }
