@@ -2,6 +2,7 @@ import {Editor, Transforms} from "slate";
 import {areElementsActive, isElementActive} from "./isElementActive";
 
 const elementTypes = ['left', 'right', 'center', 'justify']
+const alignableElements = ['h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'link']
 
 const handleAlignCallback = (editor, align) => {
     return (e) => {
@@ -31,7 +32,7 @@ const handleAlignCallback = (editor, align) => {
                 editor,
                 element
             )
-        } else {
+        } else if (areElementsActive(editor, alignableElements)) {
             Transforms.wrapNodes(
                 editor,
                 element
