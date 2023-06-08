@@ -7,7 +7,7 @@ const alignableElements = ['h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'link']
 const handleAlignCallback = (editor, align) => {
     return (e) => {
         e.preventDefault();
-        const element: any = { type: align, children: [] }
+        const element = { type: align, children: [] }
 
         if (isElementActive(editor, align)) {
             Transforms.unwrapNodes(

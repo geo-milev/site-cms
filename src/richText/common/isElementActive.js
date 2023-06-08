@@ -1,6 +1,6 @@
 import { Editor, Element } from 'slate';
 
-const isElementActive = (editor, format: string): boolean => {
+const isElementActive = (editor, format) => {
     if (!editor.selection) return false;
 
     const [match] = Array.from(Editor.nodes(editor, {
@@ -11,7 +11,7 @@ const isElementActive = (editor, format: string): boolean => {
     return !!match;
 };
 
-const areElementsActive = (editor, format: string[]): boolean => {
+const areElementsActive = (editor, format) => {
     if (!editor.selection) return false;
 
     const [match] = Array.from(Editor.nodes(editor, {
