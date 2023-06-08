@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 import RichText from "../blocks/RichText";
-import FloatedRichText from "../blocks/FloatedRichText";
+import FloatedContent from "../blocks/FloatedContent";
 import Gallery from "../blocks/Gallery";
 import Table from "../blocks/Table";
 import Formula from "../blocks/Formula";
@@ -117,7 +117,7 @@ const News: CollectionConfig = {
             },
             blocks: [
                 RichText,
-                FloatedRichText,
+                FloatedContent,
                 Gallery,
                 Table,
                 Formula,
