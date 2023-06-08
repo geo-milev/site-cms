@@ -20,6 +20,7 @@ const Publishers: CollectionConfig = {
         {
             name: 'name',
             type: 'text',
+            label: {en: 'Name', bg: 'Име'},
             required: true,
         }
     ],
