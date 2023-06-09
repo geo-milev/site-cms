@@ -16,13 +16,14 @@ const parseBooks = async (csvText: string,
         let book = new Book()
         for (const [key, value] of Object.entries(records[i])) {
             const column = columnNames.get(key.trim());
+            if (typeof value != 'string') return
             let val = value.trim()
             switch (column) {
-                case "name":
-                case "year":
-                case "publisher":
-                case "class":
-                case "note":
+                case 'name':
+                case 'year':
+                case 'publisher':
+                case 'class':
+                case 'note':
                     if (val === '')
                         book[column] = undefined
                     else
@@ -32,7 +33,7 @@ const parseBooks = async (csvText: string,
                     if (val === '')
                         book[column] = undefined
                     else
-                        book[column] = val.split().map((e) => e.trim())
+                        book[column] = val.split(authorDelimiter).map((e) => e.trim())
                     break;
             }
         }
