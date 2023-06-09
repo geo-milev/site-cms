@@ -19,6 +19,14 @@ export const MainInfo: GlobalConfig = {
             }
         },
         {
+            name: 'metaDescription',
+            type: 'textarea',
+            required: true,
+            label: {
+                en: 'Meta description', bg: 'Meta описание'
+            }
+        },
+        {
             name: 'logo',
             type: 'upload',
             relationTo: 'media',
