@@ -25,8 +25,6 @@ export const BooksInfo: GlobalConfig = {
 
                 const columnNames = new Map<string, string>()
 
-                console.log(config.columnNames)
-
                 for (const [key, value] of Object.entries(config.columnNames)) {
                     if (typeof value === "string") {
                         columnNames.set(value.trim(), key)
