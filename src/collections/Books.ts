@@ -48,13 +48,12 @@ const Books: CollectionConfig = {
         },
         {
             name: 'year',
-            type: 'number',
+            type: 'text',
             label: { en: 'Year', bg: 'Години'}
         },
         {
             name: 'publisher',
-            type: 'relationship',
-            relationTo: 'publishers',
+            type: 'text',
             label: { en: 'Publisher', bg: 'Издател' }
         },
         {

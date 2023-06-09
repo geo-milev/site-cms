@@ -366,8 +366,8 @@ export const Schedules: GlobalConfig = {
                                 }
                             ],
                             label: {
-                                en: 'Subjects without a lesson number',
-                                bg: 'Предмети, които се появяват в програмата без номер на часа (напр. \'спорт\')'
+                                en: 'Day aliases',
+                                bg: 'Заместители на имената на дните'
                             },
                             fields: [
                                 {
