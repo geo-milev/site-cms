@@ -1,6 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 import {validateDates} from '../lib/validateHourRange';
-import {getScheduleFile, parseWeeklySchedule} from '../lib/parseWeeklySchedule';
+import {parseWeeklySchedule} from '../lib/parseWeeklySchedule';
+import {getFile} from "../lib/getFile";
 
 const dateError = 'Не може началото на час да е след края.'
 
@@ -25,7 +26,7 @@ export const Schedules: GlobalConfig = {
                     id: config.fileCsv
                 })
 
-                const csvText = await getScheduleFile(fileObject)
+                const csvText = await getFile(fileObject)
 
                 const schedule = await parseWeeklySchedule(csvText,
                     config.startingLine,

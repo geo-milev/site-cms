@@ -1,9 +1,3 @@
-const getScheduleFile = async (fileObject) => {
-    const buffer = await (await fetch(`http://127.0.0.1:${process.env.PORT}${fileObject.url}`)).arrayBuffer();
-    const decoder = new TextDecoder()
-    return decoder.decode(buffer)
-}
-
 const parseWeeklySchedule = async (csvText: string,
                                    startingLine: number,
                                    classRegex: string,
@@ -157,4 +151,4 @@ const removeStart = (text, startingLine) => {
     return text.split('\n').slice(startingLine).join('\n')
 }
 
-export { getScheduleFile, parseWeeklySchedule };
+export { parseWeeklySchedule };
