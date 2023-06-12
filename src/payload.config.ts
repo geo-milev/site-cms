@@ -31,6 +31,7 @@ import BooksInfo from "./globals/BooksInfo";
 import {Logo} from "./components/logo/Logo";
 import {Icon} from "./components/icon/Icon";
 import Admission from "./globals/Admission";
+import PagesSeoData from "./collections/PagesSeoData";
 
 const adapter = gcsAdapter({
   options: {
