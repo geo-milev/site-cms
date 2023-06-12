@@ -70,7 +70,8 @@ export default buildConfig({
     FormFiles,
     Newspapers,
     Budgets,
-    Projects
+    Projects,
+    PagesSeoData
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Admission
