@@ -33,6 +33,7 @@ const PagesSeoData: CollectionConfig = {
         {
             name: 'description',
             type: 'text',
+            required: true,
             label: { en: 'Description', bg: 'Описание' }
         },
         {
