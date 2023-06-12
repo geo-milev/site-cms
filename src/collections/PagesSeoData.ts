@@ -21,6 +21,7 @@ const PagesSeoData: CollectionConfig = {
             name: 'relativeUrl',
             type: 'text',
             required: true,
+            unique: true,
             label: { en: 'Relative url', bg: 'Относителен адрес'}
         },
         {
