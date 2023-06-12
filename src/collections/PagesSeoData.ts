@@ -38,6 +38,7 @@ const PagesSeoData: CollectionConfig = {
         {
             name: 'image',
             type: 'upload',
+            required: true,
             relationTo: 'media',
             label: { en: 'Image', bg: 'Снимка' },
         },
