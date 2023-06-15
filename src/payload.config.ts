@@ -32,6 +32,7 @@ import {Logo} from "./components/logo/Logo";
 import {Icon} from "./components/icon/Icon";
 import Admission from "./globals/Admission";
 import PagesSeoData from "./collections/PagesSeoData";
+import {Payload} from "payload";
 
 const adapter = gcsAdapter({
   options: {
@@ -47,6 +48,38 @@ const toLastModString = (date) => {
   const year = date.getUTCFullYear();
 
   return year + "-" + month + "-" + day;
+}
+
+const collectionToPartialSitemap = async (collection: string,
+                                          payload: Payload,
+                                          extractDocumentData: (doc: any) => {relativeUrl: string, lastMod: Date}) => {
+  let partialSitemap = ``
+
+  let entries = await payload.find({
+    collection: collection,
+    page: 1,
+    limit: 50
+  });
+
+  do {
+    entries.docs.forEach((doc) => {
+      const documentData = extractDocumentData(doc)
+      partialSitemap += `
+<url>
+    <loc>${process.env.FRONTEND_URL}${documentData.relativeUrl}</loc>
+    <lastmod>${toLastModString(documentData.lastMod)}</lastmod>
+</url>
+`
+    })
+
+    entries = await payload.find({
+      collection: collection,
+      page: entries.page + 1,
+      limit: 50
+    });
+  } while (entries.hasNextPage)
+
+  return partialSitemap
 }
 
 export default buildConfig({
@@ -131,36 +164,31 @@ export default buildConfig({
   ].filter(value => value !== null),
   endpoints: [
     {
-      path: "/partial-sitemap",
+      path: "/sitemap.xml",
       method: "get",
       handler: async (req, res) => {
-        let partialSitemap = ``
+        const news = await collectionToPartialSitemap("news", req.payload, (doc) => {
+          return {
+            relativeUrl: `/news/${doc.id}`,
+            lastMod: new Date(doc.updatedAt)
+          }
+        })
 
-        let news = await req.payload.find({
-          collection: "news",
-          page: 1,
-          limit: 20
-        });
+        const pages = await collectionToPartialSitemap("pages-seo-data", req.payload, (doc) => {
+          return {
+            relativeUrl: doc.relativeUrl,
+            lastMod: new Date(doc.lastUpdate)
+          }
+        })
 
-        do {
-          news.docs.forEach((doc) => {
-            partialSitemap += `
-<url>
-    <loc>${process.env.FRONTEND_URL}/news/${doc.id}</loc>
-    <lastmod>${toLastModString(new Date(doc.updatedAt))}</lastmod>
-</url>
-`
-          })
+        const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${pages}
+  ${news}
+</urlset>`
 
-          news = await req.payload.find({
-            collection: "news",
-            page: news.page + 1,
-            limit: 100
-          });
-        } while (news.hasNextPage)
 
-        res.header('Content-Type', 'text/plain');
-        res.status(200).send(partialSitemap);
+        res.header('Content-Type', 'application/xml');
+        res.status(200).send(sitemap);
       },
     },
   ],

@@ -43,6 +43,12 @@ const PagesSeoData: CollectionConfig = {
             relationTo: 'media',
             label: { en: 'Image', bg: 'Снимка' },
         },
+        {
+            name: 'lastUpdate',
+            type: 'date',
+            required: true,
+            label: { en: 'Last update', bg: 'Последна промяна' },
+        },
     ],
 }
 
