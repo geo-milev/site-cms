@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 const Projects: CollectionConfig = {
     slug: 'projects',
@@ -12,6 +13,9 @@ const Projects: CollectionConfig = {
     },
     admin: {
         useAsTitle: 'name'
+    },
+    hooks: {
+        afterChange: [updateLastMod("/projects")]
     },
     access: {
         read: () => true

@@ -1,4 +1,5 @@
 import {GlobalConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 // @ts-ignore is needed because the admin.placeholder does not exist in the generic Field typescript definition
 // This means that the button link text field placeholder is flagged as an error
@@ -10,6 +11,9 @@ export const Slideshow: GlobalConfig = {
     },
     access: {
         read: () => true,
+    },
+    hooks: {
+        afterChange: [updateLastMod("/")]
     },
     fields: [
         {

@@ -1,6 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 import {validateDates} from '../lib/validateHourRange';
 import {getScheduleFile, parseWeeklySchedule} from '../lib/parseWeeklySchedule';
+import updateLastMod from "../lib/updateLastMod";
 
 const dateError = 'Не може началото на час да е след края.'
 
@@ -100,7 +101,8 @@ export const Schedules: GlobalConfig = {
                     })
                 }
             }
-        }]
+        }],
+        afterChange: [updateLastMod("/organisation/weekly-schedule")]
     },
     fields: [
         {

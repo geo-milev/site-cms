@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 const ScheduleEntries: CollectionConfig = {
     slug: 'schedule-entries',
@@ -15,6 +16,9 @@ const ScheduleEntries: CollectionConfig = {
     },
     access: {
         read: () => true
+    },
+    hooks: {
+        afterChange: [updateLastMod("/organisation/schedules")]
     },
     fields: [
         {

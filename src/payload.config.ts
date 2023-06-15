@@ -41,13 +41,12 @@ const adapter = gcsAdapter({
   bucket: process.env.GCS_BUCKET,
 })
 
-
 const toLastModString = (date) => {
   const month = date.getUTCMonth() + 1;
   const day = date.getUTCDate();
   const year = date.getUTCFullYear();
 
-  return year + "-" + month + "-" + day;
+  return year + '-' + month + '-' + day;
 }
 
 const collectionToPartialSitemap = async (collection: string,
@@ -167,14 +166,14 @@ export default buildConfig({
       path: "/sitemap.xml",
       method: "get",
       handler: async (req, res) => {
-        const news = await collectionToPartialSitemap("news", req.payload, (doc) => {
+        const news = await collectionToPartialSitemap('news', req.payload, (doc) => {
           return {
             relativeUrl: `/news/${doc.id}`,
             lastMod: new Date(doc.updatedAt)
           }
         })
 
-        const pages = await collectionToPartialSitemap("pages-seo-data", req.payload, (doc) => {
+        const pages = await collectionToPartialSitemap('pages-seo-data', req.payload, (doc) => {
           return {
             relativeUrl: doc.relativeUrl,
             lastMod: new Date(doc.lastUpdate)

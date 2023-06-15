@@ -3,6 +3,7 @@ import richTextUploadMetadata from "../lib/richTextUploadMetadata";
 import RichText from "../blocks/RichText";
 import AdmissionRequirements from "../blocks/AdmissionRequirements";
 import Formula from "../blocks/Formula";
+import updateLastMod from "../lib/updateLastMod";
 
 // The definitions for the admin field on richText don't properly include the upload field, causing errors
 export const Admission: GlobalConfig = {
@@ -12,6 +13,9 @@ export const Admission: GlobalConfig = {
     },
     access: {
         read: () => true,
+    },
+    hooks: {
+        afterChange: [updateLastMod("/admission")]
     },
     fields: [
         {

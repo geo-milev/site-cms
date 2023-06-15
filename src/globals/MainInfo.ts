@@ -1,4 +1,5 @@
 import {GlobalConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 export const MainInfo: GlobalConfig = {
     slug: 'main-info',
@@ -7,6 +8,9 @@ export const MainInfo: GlobalConfig = {
     },
     access: {
         read: () => true,
+    },
+    hooks: {
+        afterChange: [updateLastMod("/")]
     },
     fields: [
         {
