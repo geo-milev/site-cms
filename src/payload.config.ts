@@ -40,6 +40,15 @@ const adapter = gcsAdapter({
   bucket: process.env.GCS_BUCKET,
 })
 
+
+const toLastModString = (date) => {
+  const month = date.getUTCMonth() + 1;
+  const day = date.getUTCDate();
+  const year = date.getUTCFullYear();
+
+  return year + "-" + month + "-" + day;
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -120,4 +129,39 @@ export default buildConfig({
       }
     })
   ].filter(value => value !== null),
+  endpoints: [
+    {
+      path: "/partial-sitemap",
+      method: "get",
+      handler: async (req, res) => {
+        let partialSitemap = ``
+
+        let news = await req.payload.find({
+          collection: "news",
+          page: 1,
+          limit: 20
+        });
+
+        do {
+          news.docs.forEach((doc) => {
+            partialSitemap += `
+<url>
+    <loc>${process.env.FRONTEND_URL}/news/${doc.id}</loc>
+    <lastmod>${toLastModString(new Date(doc.updatedAt))}</lastmod>
+</url>
+`
+          })
+
+          news = await req.payload.find({
+            collection: "news",
+            page: news.page + 1,
+            limit: 100
+          });
+        } while (news.hasNextPage)
+
+        res.header('Content-Type', 'text/plain');
+        res.status(200).send(partialSitemap);
+      },
+    },
+  ],
 });
