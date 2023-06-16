@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 const FormFiles: CollectionConfig = {
     slug: 'form-files',
@@ -15,6 +16,9 @@ const FormFiles: CollectionConfig = {
     },
     access: {
         read: () => true
+    },
+    hooks: {
+        afterChange: [updateLastMod("/organisation/forms")]
     },
     fields: [
         {

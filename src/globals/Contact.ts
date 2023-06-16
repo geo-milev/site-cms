@@ -1,5 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 import {validateDates} from "../lib/validateHourRange";
+import updateLastMod from "../lib/updateLastMod";
 
 const dateError = 'Не може началото на работните часове да е след края.'
 
@@ -12,6 +13,9 @@ export const Contact: GlobalConfig = {
     },
     access: {
         read: () => true,
+    },
+    hooks: {
+        afterChange: [updateLastMod("/contacts")]
     },
     fields: [
         {

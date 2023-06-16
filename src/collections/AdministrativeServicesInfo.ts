@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 const AdministrativeServicesInfo: CollectionConfig = {
     slug: 'administrative-services-info',
@@ -15,6 +16,9 @@ const AdministrativeServicesInfo: CollectionConfig = {
     },
     access: {
         read: () => true
+    },
+    hooks: {
+        afterChange: [updateLastMod("/organisation/administrative-services")]
     },
     fields: [
         {

@@ -31,6 +31,8 @@ import BooksInfo from "./globals/BooksInfo";
 import {Logo} from "./components/logo/Logo";
 import {Icon} from "./components/icon/Icon";
 import Admission from "./globals/Admission";
+import PagesSeoData from "./collections/PagesSeoData";
+import {Payload} from "payload";
 
 const adapter = gcsAdapter({
   options: {
@@ -38,6 +40,46 @@ const adapter = gcsAdapter({
   },
   bucket: process.env.GCS_BUCKET,
 })
+
+const toLastModString = (date) => {
+  const month = date.getUTCMonth() + 1;
+  const day = date.getUTCDate();
+  const year = date.getUTCFullYear();
+
+  return year + '-' + month + '-' + day;
+}
+
+const collectionToPartialSitemap = async (collection: string,
+                                          payload: Payload,
+                                          extractDocumentData: (doc: any) => {relativeUrl: string, lastMod: Date}) => {
+  let partialSitemap = ``
+
+  let entries = await payload.find({
+    collection: collection,
+    page: 1,
+    limit: 50
+  });
+
+  do {
+    entries.docs.forEach((doc) => {
+      const documentData = extractDocumentData(doc)
+      partialSitemap += `
+<url>
+    <loc>${process.env.FRONTEND_URL}${documentData.relativeUrl}</loc>
+    <lastmod>${toLastModString(documentData.lastMod)}</lastmod>
+</url>
+`
+    })
+
+    entries = await payload.find({
+      collection: collection,
+      page: entries.page + 1,
+      limit: 50
+    });
+  } while (entries.hasNextPage)
+
+  return partialSitemap
+}
 
 export default buildConfig({
   admin: {
@@ -70,7 +112,8 @@ export default buildConfig({
     FormFiles,
     Newspapers,
     Budgets,
-    Projects
+    Projects,
+    PagesSeoData
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Admission
@@ -118,4 +161,34 @@ export default buildConfig({
       }
     })
   ].filter(value => value !== null),
+  endpoints: [
+    {
+      path: "/sitemap.xml",
+      method: "get",
+      handler: async (req, res) => {
+        const news = await collectionToPartialSitemap('news', req.payload, (doc) => {
+          return {
+            relativeUrl: `/news/${doc.id}`,
+            lastMod: new Date(doc.updatedAt)
+          }
+        })
+
+        const pages = await collectionToPartialSitemap('pages-seo-data', req.payload, (doc) => {
+          return {
+            relativeUrl: doc.relativeUrl,
+            lastMod: new Date(doc.lastUpdate)
+          }
+        })
+
+        const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${pages}
+  ${news}
+</urlset>`
+
+
+        res.header('Content-Type', 'application/xml');
+        res.status(200).send(sitemap);
+      },
+    },
+  ],
 });

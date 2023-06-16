@@ -5,6 +5,7 @@ import Gallery from "../blocks/Gallery";
 import Table from "../blocks/Table";
 import Formula from "../blocks/Formula";
 import AdmissionRequirements from "../blocks/AdmissionRequirements";
+import updateLastMod from "../lib/updateLastMod";
 
 const updatePublishDate = ({ data, req, operation }) => {
     if (operation === 'create' || operation === 'update') {
@@ -34,7 +35,8 @@ const News: CollectionConfig = {
         useAsTitle: 'title'
     },
     hooks: {
-        beforeChange: [updatePublishDate]
+        beforeChange: [updatePublishDate],
+        afterChange: [updateLastMod("/news")]
     },
     versions: {
         drafts: true,

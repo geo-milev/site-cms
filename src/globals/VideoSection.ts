@@ -1,4 +1,5 @@
 import {GlobalConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 export const VideoSection: GlobalConfig = {
     slug: 'video-section',
@@ -7,6 +8,9 @@ export const VideoSection: GlobalConfig = {
     },
     access: {
         read: () => true,
+    },
+    hooks: {
+        afterChange: [updateLastMod("/")]
     },
     fields: [
         {

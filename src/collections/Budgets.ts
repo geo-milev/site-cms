@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 const Budgets: CollectionConfig = {
     slug: 'budget',
@@ -15,6 +16,9 @@ const Budgets: CollectionConfig = {
     },
     access: {
         read: () => true
+    },
+    hooks: {
+        afterChange: [updateLastMod("/organisation/budget")]
     },
     fields: [
         {

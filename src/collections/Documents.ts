@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 const Documents: CollectionConfig = {
     slug: 'documents',
@@ -15,6 +16,9 @@ const Documents: CollectionConfig = {
     },
     access: {
         read: () => true
+    },
+    hooks: {
+        afterChange: [updateLastMod("/organisation/documents")]
     },
     fields: [
         {

@@ -1,4 +1,5 @@
 import {GlobalConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 import {getFile} from "../lib/getFile";
 import {parseBooks} from "../lib/parseBooks";
 
@@ -11,6 +12,7 @@ export const BooksInfo: GlobalConfig = {
         read: () => true,
     },
     hooks: {
+        afterChange: [updateLastMod("/student/books")],
         beforeValidate: [async ({req, data}) => {
             const payload = req.payload
             if (!payload.local) {

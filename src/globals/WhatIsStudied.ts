@@ -1,4 +1,5 @@
 import {GlobalConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 export const WhatIsStudied: GlobalConfig = {
     slug: 'what-is-studied',
@@ -7,6 +8,9 @@ export const WhatIsStudied: GlobalConfig = {
     },
     access: {
         read: () => true,
+    },
+    hooks: {
+        afterChange: [updateLastMod("/")]
     },
     fields: [
         {

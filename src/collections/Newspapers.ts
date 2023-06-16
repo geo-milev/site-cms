@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import updateLastMod from "../lib/updateLastMod";
 
 const Newspapers: CollectionConfig = {
     slug: 'newspaper',
@@ -12,6 +13,9 @@ const Newspapers: CollectionConfig = {
     },
     admin: {
         useAsTitle: 'name'
+    },
+    hooks: {
+        afterChange: [updateLastMod("/student/newspaper")]
     },
     access: {
         read: () => true
