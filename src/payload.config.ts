@@ -3,7 +3,6 @@ import path from 'path';
 import Users from './collections/Users';
 import News from "./collections/News";
 import Media from "./collections/Media";
-import Publishers from "./collections/Publishers";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
 import formBuilder from "@payloadcms/plugin-form-builder";
@@ -104,7 +103,6 @@ export default buildConfig({
     Subjects,
     Teachers,
     WeeklySchedules,
-    Publishers,
     Books,
     ScheduleEntries,
     Documents,

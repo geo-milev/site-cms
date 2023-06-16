@@ -103,7 +103,7 @@ export const Schedules: GlobalConfig = {
                 }
             }
         }],
-        afterChange: [updateLastMod("/organisation/weekly-schedule")]
+        afterChange: [updateLastMod("/student/weekly-schedule")]
     },
     fields: [
         {
