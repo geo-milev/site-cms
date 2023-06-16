@@ -1,6 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 import {validateDates} from '../lib/validateHourRange';
-import {getScheduleFile, parseWeeklySchedule} from '../lib/parseWeeklySchedule';
+import {parseWeeklySchedule} from '../lib/parseWeeklySchedule';
 import updateLastMod from "../lib/updateLastMod";
 import {getFile} from "../lib/getFile";
 
