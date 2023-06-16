@@ -36,7 +36,6 @@ const Books: CollectionConfig = {
         {
             name: 'authors',
             type: 'array',
-            minRows: 1,
             label: { en: 'Authors', bg: 'Автори' },
             labels: {
                 singular: { en: 'Author', bg: 'Автор' },
@@ -53,23 +52,13 @@ const Books: CollectionConfig = {
         },
         {
             name: 'year',
-            type: 'number',
-            required: true,
+            type: 'text',
             label: { en: 'Year', bg: 'Години'}
         },
         {
             name: 'publisher',
-            type: 'relationship',
-            relationTo: 'publishers',
-            required: true,
+            type: 'text',
             label: { en: 'Publisher', bg: 'Издател' }
-        },
-        {
-            name: 'subject',
-            type: 'relationship',
-            relationTo: 'subjects',
-            required: true,
-            label: { en: 'Subject', bg: 'Предмет' }
         },
         {
             name: 'note',
