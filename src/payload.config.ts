@@ -231,6 +231,10 @@ export default buildConfig({
       <copyright>
         © 2023-${new Date().getFullYear()} ${mainInfo.name}. Всички права запазени.
       </copyright>
+      <sy:updatePeriod>hourly</sy:updatePeriod>
+      <sy:updateFrequency>1</sy:updateFrequency>
+      <atom:link href="${process.env.FRONTEND_URL}/news/feed" rel="self" type="application/rss+xml" />
+      <language>bg-BG</language>
       ${news}
   </channel>
 </rss>`
