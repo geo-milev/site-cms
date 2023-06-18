@@ -161,8 +161,8 @@ export default buildConfig({
   ].filter(value => value !== null),
   endpoints: [
     {
-      path: "/sitemap.xml",
-      method: "get",
+      path: '/sitemap.xml',
+      method: 'get',
       handler: async (req, res) => {
         const news = await collectionToPartialSitemap('news', req.payload, (doc) => {
           return {
@@ -186,6 +186,61 @@ export default buildConfig({
 
         res.header('Content-Type', 'application/xml');
         res.status(200).send(sitemap);
+      },
+    },
+    {
+      path: '/rss',
+      method: 'get',
+      handler: async (req, res) => {
+        const mainInfo = await req.payload.findGlobal({
+          slug: 'main-info'
+        })
+
+        let news = ``
+
+        let entries = await req.payload.find({
+          collection: 'news',
+          page: 1,
+          limit: 15
+        });
+
+        entries.docs.forEach((doc) => {
+          news += `
+        <item>
+            <title>${doc.title}</title>
+            <link>${process.env.FRONTEND_URL}/news/${doc.id}</link>
+            <description>${doc.description}</description>
+            <pubDate>${new Date(doc.publishDate).toUTCString()}</pubDate>
+            <category>${doc.category.name}</category>
+            <image>
+              <title>${doc.postImage.alt}</title>  
+              <url>${process.env.FRONTEND_URL}${doc.postImage.url}</url>
+              <link>${process.env.FRONTEND_URL}/news/${doc.id}</link>
+            </image>
+        </item> 
+`
+        })
+
+        const rssFeed = `
+<?xml version="1.0" ?>
+<rss version="2.0">
+  <channel>
+      <title>${mainInfo.name}</title>
+      <link>${process.env.FRONTEND_URL}</link>
+      <description>Получавайте най-новите новини за ${mainInfo.name}</description>
+      <copyright>
+        © 2023-${new Date().getFullYear()} ${mainInfo.name}. Всички права запазени.
+      </copyright>
+      <sy:updatePeriod>hourly</sy:updatePeriod>
+      <sy:updateFrequency>1</sy:updateFrequency>
+      <atom:link href="${process.env.FRONTEND_URL}/news/feed" rel="self" type="application/rss+xml" />
+      <language>bg-BG</language>
+      ${news}
+  </channel>
+</rss>`
+
+        res.header('Content-Type', 'application/rss+xml');
+        res.status(200).send(rssFeed);
       },
     },
   ],
