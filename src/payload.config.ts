@@ -207,16 +207,12 @@ export default buildConfig({
         entries.docs.forEach((doc) => {
           news += `
         <item>
-            <title>${doc.title}</title>
+            <title><![CDATA[${doc.title}]]></title>
             <link>${process.env.FRONTEND_URL}/news/${doc.id}</link>
-            <description>${doc.description}</description>
+            <description><![CDATA[${doc.description}]]></description>
             <pubDate>${new Date(doc.publishDate).toUTCString()}</pubDate>
-            <category>${doc.category.name}</category>
-            <image>
-              <title>${doc.postImage.alt}</title>  
-              <url>${process.env.FRONTEND_URL}${doc.postImage.url}</url>
-              <link>${process.env.FRONTEND_URL}/news/${doc.id}</link>
-            </image>
+            <category><![CDATA[${doc.category.name}]]></category>
+            <guid>${process.env.FRONTEND_URL}/news/${doc.id}</guid>
         </item> 
 `
         })
