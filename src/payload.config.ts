@@ -108,10 +108,11 @@ export default buildConfig({
     Documents,
     AdministrativeServicesInfo,
     FormFiles,
+    Exercises,
     Newspapers,
     Budgets,
     Projects,
-    PagesSeoData
+    PagesSeoData,
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Admission
