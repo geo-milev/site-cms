@@ -143,6 +143,48 @@ export const Contact: GlobalConfig = {
                     },
                 }
             ]
+        },
+        {
+            name: 'socialMedia',
+            type: 'array',
+            label: {
+                en: 'Social media', bg: 'Социални мрежи'
+            },
+            labels: {
+                singular: {
+                    en: 'Social media', bg: 'Социална мрежа'
+                },
+                plural: {
+                    en: 'Social media', bg: 'Социални мрежи'
+                }
+            },
+            fields: [
+                {
+                    name: 'socialMediaTitle',
+                    type: 'text',
+                    required: true,
+                    label: {
+                        en: 'Button title', bg: 'Заглавие на бутона'
+                    },
+                },
+                {
+                    name: 'icon',
+                    required: true,
+                    type: 'upload',
+                    relationTo: 'media',
+                    label: {
+                        en: 'Social media icon (.svg or small .png)', bg: 'Икона на социална медия (.svg или малко .png)'
+                    },
+                },
+                {
+                    name: 'link',
+                    type: 'text',
+                    required: true,
+                    label: {
+                        en: 'Social media link', bg: 'Връзка към социалната мрежа'
+                    },
+                },
+            ]
         }
     ]
 }
