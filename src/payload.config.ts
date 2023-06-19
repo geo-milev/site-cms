@@ -32,6 +32,7 @@ import {Icon} from "./components/icon/Icon";
 import Admission from "./globals/Admission";
 import PagesSeoData from "./collections/PagesSeoData";
 import {Payload} from "payload";
+import Exercises from "./collections/Exercises";
 
 const adapter = gcsAdapter({
   options: {
