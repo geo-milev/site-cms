@@ -222,7 +222,6 @@ export default buildConfig({
         })
 
         const rssFeed = `
-<?xml version="1.0" ?>
 <rss version="2.0">
   <channel>
       <title>${mainInfo.name}</title>
