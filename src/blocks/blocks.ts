@@ -6,6 +6,7 @@ import Formula from "./Formula";
 import AdmissionRequirements from "./AdmissionRequirements";
 import Video from "./Video";
 import FloatedVideoContent from "./FloatedVideoContent";
+import FileViewer from "./FileViewer";
 
 const blocks = [
     RichText,
@@ -15,7 +16,8 @@ const blocks = [
     Formula,
     AdmissionRequirements,
     Video,
-    FloatedVideoContent
+    FloatedVideoContent,
+    FileViewer
 ]
 
 export default blocks

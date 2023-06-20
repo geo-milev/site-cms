@@ -5,8 +5,8 @@ import Table from "./Table";
 import Formula from "./Formula";
 import AdmissionRequirements from "./AdmissionRequirements";
 import Video from "./Video";
+import FileViewer from "./FileViewer";
 
-// The definitions for the admin field on richText don't properly include the upload field, causing errors
 const FloatedVideoContent: Block = {
     slug: 'floated-video-content',
     labels: {
@@ -50,7 +50,8 @@ const FloatedVideoContent: Block = {
                 Table,
                 Formula,
                 AdmissionRequirements,
-                Video
+                Video,
+                FileViewer
             ],
             required: true
         }
