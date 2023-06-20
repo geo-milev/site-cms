@@ -1,9 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 import richTextUploadMetadata from "../lib/richTextUploadMetadata";
-import RichText from "../blocks/RichText";
-import AdmissionRequirements from "../blocks/AdmissionRequirements";
-import Formula from "../blocks/Formula";
 import updateLastMod from "../lib/updateLastMod";
+import blocks from "../blocks/blocks";
 
 // The definitions for the admin field on richText don't properly include the upload field, causing errors
 export const Admission: GlobalConfig = {
@@ -66,11 +64,7 @@ export const Admission: GlobalConfig = {
                                 singular: {en: 'Block', bg: 'Блок'},
                                 plural: {en: 'Blocks', bg: 'Блокове'}
                             },
-                            blocks: [
-                                RichText,
-                                AdmissionRequirements,
-                                Formula
-                            ]
+                            blocks: blocks
                         }
                     ]
                 },
