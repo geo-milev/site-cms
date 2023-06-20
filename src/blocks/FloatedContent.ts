@@ -5,7 +5,6 @@ import Table from "./Table";
 import Formula from "./Formula";
 import AdmissionRequirements from "./AdmissionRequirements";
 import Video from "./Video";
-import FileViewer from "./FileViewer";
 
 const FloatedContent: Block = {
     slug: 'floated-content',
@@ -49,8 +48,7 @@ const FloatedContent: Block = {
                 Table,
                 Formula,
                 AdmissionRequirements,
-                Video,
-                FileViewer
+                Video
             ],
             required: true
         }
