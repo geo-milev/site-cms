@@ -5,6 +5,7 @@ import Table from "./Table";
 import Formula from "./Formula";
 import AdmissionRequirements from "./AdmissionRequirements";
 import Video from "./Video";
+import FloatedVideoContent from "./FloatedVideoContent";
 
 const blocks = [
     RichText,
@@ -13,7 +14,8 @@ const blocks = [
     Table,
     Formula,
     AdmissionRequirements,
-    Video
+    Video,
+    FloatedVideoContent
 ]
 
 export default blocks
