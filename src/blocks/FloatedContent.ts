@@ -4,6 +4,7 @@ import Gallery from "./Gallery";
 import Table from "./Table";
 import Formula from "./Formula";
 import AdmissionRequirements from "./AdmissionRequirements";
+import Video from "./Video";
 
 // The definitions for the admin field on richText don't properly include the upload field, causing errors
 const FloatedContent: Block = {
@@ -47,7 +48,8 @@ const FloatedContent: Block = {
                 Gallery,
                 Table,
                 Formula,
-                AdmissionRequirements
+                AdmissionRequirements,
+                Video
             ],
             required: true
         }
