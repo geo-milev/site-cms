@@ -38,6 +38,10 @@ const FileViewer: Block = {
             label: {en: 'Sort', bg: 'Ред на сортиране'},
             options: [
                 {
+                    label: { en: 'Default', bg: 'По подразбиране' },
+                    value: 'default',
+                },
+                {
                     label: { en: 'Alphabetical', bg: 'Азбучен А-Я' },
                     value: 'alphabetical',
                 },
@@ -46,14 +50,11 @@ const FileViewer: Block = {
                     value: 'reverseAlphabetical',
                 },
                 {
-                    label: { en: 'Default', bg: 'По подразбиране' },
-                    value: 'default',
-                },
-                {
                     label: { en: 'Random', bg: 'Случаен' },
                     value: 'random',
                 }
             ],
+            defaultValue: 'default',
             required: true
         },
         {
