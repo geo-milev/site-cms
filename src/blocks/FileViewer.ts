@@ -25,6 +25,14 @@ const FileViewer: Block = {
             defaultValue: true,
         },
         {
+            name: 'autoSelect',
+            type: 'checkbox',
+            label: {
+                en: 'Auto select first element', bg: 'Автоматично избиране на първия елемент'
+            },
+            defaultValue: false,
+        },
+        {
             name: 'sort',
             type: 'select',
             label: {en: 'Sort', bg: 'Ред на сортиране'},
