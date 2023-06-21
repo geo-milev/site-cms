@@ -16,7 +16,7 @@ const areElementsActive = (editor, format) => {
 
     const [match] = Array.from(Editor.nodes(editor, {
         at: Editor.unhangRange(editor, editor.selection),
-        match: (n) => !Editor.isEditor(n) && Element.isElement(n) && format.includes(n.type),
+        match: (n) => !Editor.isEditor(n) && Element.isElement(n) &&  (!n.type || format.includes(n.type)),
     }));
 
     return !!match;

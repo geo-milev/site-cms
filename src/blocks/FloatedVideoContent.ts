@@ -6,19 +6,20 @@ import Formula from "./Formula";
 import AdmissionRequirements from "./AdmissionRequirements";
 import Video from "./Video";
 
-const FloatedContent: Block = {
-    slug: 'floated-content',
+const FloatedVideoContent: Block = {
+    slug: 'floated-video-content',
     labels: {
-        singular: {en: 'Floated image with content', bg: 'Плаваща картина със съдържание'},
-        plural: {en: 'Floated images with content', bg: 'Полета плаваща картини със съдържание'}
+        singular: {en: 'Floated video with content', bg: 'Плаващо видео със съдържание'},
+        plural: {en: 'Floated videos with content', bg: 'Полета плаващи видеа със съдържание'}
     },
     fields: [
         {
-            name: 'image',
-            type: 'upload',
-            relationTo: 'media',
-            label: {en: 'Image', bg: 'Картина'},
+            name: 'video',
+            type: 'text',
             required: true,
+            label: {
+                en: 'Video Link (YouTube embed)', bg: 'Видео връзка (YouTube embed)'
+            },
         },
         {
             name: 'float',
@@ -55,4 +56,4 @@ const FloatedContent: Block = {
     ]
 };
 
-export default FloatedContent;
+export default FloatedVideoContent;

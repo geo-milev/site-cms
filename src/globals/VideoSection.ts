@@ -35,7 +35,7 @@ export const VideoSection: GlobalConfig = {
             type: 'text',
             required: true,
             label: {
-                en: 'Video Link (YouTube)', bg: 'Видео връзка (YouTube)'
+                en: 'Video Link (YouTube embed)', bg: 'Видео връзка (YouTube embed)'
             },
         },
     ]

@@ -1,11 +1,6 @@
 import { CollectionConfig } from 'payload/types';
-import RichText from "../blocks/RichText";
-import FloatedContent from "../blocks/FloatedContent";
-import Gallery from "../blocks/Gallery";
-import Table from "../blocks/Table";
-import Formula from "../blocks/Formula";
-import AdmissionRequirements from "../blocks/AdmissionRequirements";
 import updateLastMod from "../lib/updateLastMod";
+import blocks from "../blocks/blocks";
 
 const updatePublishDate = ({ data, req, operation }) => {
     if (operation === 'create' || operation === 'update') {
@@ -123,14 +118,7 @@ const News: CollectionConfig = {
                 singular: {en: 'Block', bg: 'Блок'},
                 plural: {en: 'Blocks', bg: 'Блокове'}
             },
-            blocks: [
-                RichText,
-                FloatedContent,
-                Gallery,
-                Table,
-                Formula,
-                AdmissionRequirements
-            ],
+            blocks: blocks,
             required: true
         }
     ],
