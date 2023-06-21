@@ -32,6 +32,7 @@ import {Icon} from "./components/icon/Icon";
 import Admission from "./globals/Admission";
 import PagesSeoData from "./collections/PagesSeoData";
 import {Payload} from "payload";
+import Exercises from "./collections/Exercises";
 
 const adapter = gcsAdapter({
   options: {
@@ -108,10 +109,11 @@ export default buildConfig({
     Documents,
     AdministrativeServicesInfo,
     FormFiles,
+    Exercises,
     Newspapers,
     Budgets,
     Projects,
-    PagesSeoData
+    PagesSeoData,
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Admission
