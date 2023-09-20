@@ -31,14 +31,12 @@ const Projects: CollectionConfig = {
             name: 'description',
             type: 'textarea',
             label: {en: 'Description', bg: 'Описание'},
-            required: true,
         },
         {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
-            label: {en: 'Image', bg: 'Картина'},
-            required: true,
+            label: {en: 'Image', bg: 'Картина'}
         },
         {
             name: 'article',
