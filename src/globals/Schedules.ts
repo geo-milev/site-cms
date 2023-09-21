@@ -3,8 +3,13 @@ import {validateDates} from '../lib/validateHourRange';
 import {parseWeeklySchedule} from '../lib/parseWeeklySchedule';
 import updateLastMod from "../lib/updateLastMod";
 import {getFile} from "../lib/getFile";
+import * as crypto from "crypto";
 
 const dateError = 'Не може началото на час да е след края.'
+
+const checksum = (text) => {
+    return crypto.createHash('md5').update(text).digest("hex");
+}
 
 // @ts-ignore is needed because the generic Field type doesn't recognise the custom date admin properties like 'pickerAppearance'
 //@ts-ignore
@@ -17,7 +22,7 @@ export const Schedules: GlobalConfig = {
         read: () => true,
     },
     hooks: {
-        beforeValidate: [ async ({req , data}) => {
+        beforeValidate: [async ({req , data}) => {
             const payload = req.payload
             if (!payload.local) {
                 const config = data.weeklySchedule.weeklySchedulesAutofill
@@ -28,6 +33,18 @@ export const Schedules: GlobalConfig = {
                 })
 
                 const csvText = await getFile(fileObject)
+
+                let newChecksum = checksum(csvText)
+
+                if (!config.checksum) {
+                    data.weeklySchedule.weeklySchedulesAutofill.checksum = newChecksum
+                } else {
+                    if (config.checksum === newChecksum) {
+                        return data;
+                    } else {
+                        data.weeklySchedule.weeklySchedulesAutofill.checksum = newChecksum;
+                    }
+                }
 
                 const schedule = await parseWeeklySchedule(csvText,
                     config.startingLine,
@@ -101,6 +118,8 @@ export const Schedules: GlobalConfig = {
                         }
                     })
                 }
+
+                return data;
             }
         }],
         afterChange: [updateLastMod("/student/weekly-schedule")]
@@ -249,6 +268,15 @@ export const Schedules: GlobalConfig = {
                                 en: 'File .csv (autofill the weekly schedule)',
                                 bg: 'Файл във формат .csv (за автоматично попълване на програмата)'
                             }
+                        },
+                        {
+                          name: 'checksum',
+                          type: 'text',
+                          admin: {
+                              condition: () => {
+                                    return false;
+                              }
+                          }
                         },
                         {
                             name: 'startingLine',
