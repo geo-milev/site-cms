@@ -18,7 +18,29 @@ const richTextUploadMetadata: any = {
                             return !!data.isNonImage;
                         }
                     }
-                }
+                },
+                {
+                    name: 'maxImageSize',
+                    type: 'group',
+                    label: {en: 'Max image size', bg: 'Максимална големина на картината'},
+                    admin: {
+                        condition: (data) => {
+                            return !data.isNonImage;
+                        }
+                    },
+                    fields: [
+                        {
+                            name: 'maxWidth',
+                            type: 'number',
+                            label: {en: 'Max image width', bg: 'Максимална широчина на картината'}
+                        },
+                        {
+                            name: 'maxHeight',
+                            type: 'number',
+                            label: {en: 'Max image height', bg: 'Максимална височина на картината'}
+                        }
+                    ]
+                },
             ]
         }
     }
