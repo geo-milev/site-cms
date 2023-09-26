@@ -60,7 +60,6 @@ const News: CollectionConfig = {
             name: 'description',
             type: 'textarea',
             label: {en: 'Description', bg: 'Описание'},
-            required: true,
             minLength: 1,
             maxLength: 200
         },
@@ -68,8 +67,7 @@ const News: CollectionConfig = {
             name: 'postImage',
             type: 'upload',
             relationTo: 'media',
-            label: {en: 'News image', bg: 'Картина на новината'},
-            required: true,
+            label: {en: 'News image', bg: 'Картина на новината'}
         },
         {
             name: 'category',
