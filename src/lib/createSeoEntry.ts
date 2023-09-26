@@ -21,14 +21,6 @@ export default function createSeoEntry(relativeUrl: string, filler: (doc) => Seo
 
         const filledData = filler(doc)
 
-        if (filledData.image == null) {
-            const mainInfo = await req.payload.findGlobal({
-                slug: 'main-info'
-            })
-
-            filledData.image = mainInfo.seoAutofillImage.id
-        }
-
         const data = {
             ...filledData,
             relativeUrl: url,

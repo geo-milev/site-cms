@@ -33,13 +33,11 @@ const PagesSeoData: CollectionConfig = {
         {
             name: 'description',
             type: 'text',
-            required: true,
             label: { en: 'Description', bg: 'Описание' }
         },
         {
             name: 'image',
             type: 'upload',
-            required: true,
             relationTo: 'media',
             label: { en: 'Image', bg: 'Снимка' },
         },
