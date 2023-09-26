@@ -94,7 +94,7 @@ export const MainInfo: GlobalConfig = {
             }
         },
         {
-            name: 'icoFavicon',
+            name: 'favicon',
             type: 'upload',
             relationTo: 'media',
             required: true,
