@@ -29,7 +29,8 @@ const News: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'title'
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'publishDate']
     },
     hooks: {
         beforeChange: [updatePublishDate],
