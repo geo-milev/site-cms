@@ -26,7 +26,7 @@ export default function createSeoEntry(relativeUrl: string, filler: (doc) => Seo
                 slug: 'main-info'
             })
 
-            filledData.image = mainInfo.logo.id
+            filledData.image = mainInfo.seoAutofillImage.id
         }
 
         const data = {
