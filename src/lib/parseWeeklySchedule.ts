@@ -104,15 +104,6 @@ const extractSchedule = (text,
                     let [lessonNumber, ...subjectValues] = String(value).split('.')
                     let subject = subjectValues.join('.').trim()
 
-                    if (className == "10Д" && day == "Сряда") {
-                        console.log(className,
-                            day,
-                            subject,
-                            !lessonNumber.match(lessonNumberRegex) &&
-                            value !== '' &&
-                            !noLessonNumberSubjects.includes(value.toString()))
-                    }
-
                     // Ignore any record where the lesson number doesn't satisfy the lesson regex, which isn't empty or
                     // which isn't included in the list of no lesson number subjects
                     if (!lessonNumber.match(lessonNumberRegex) &&
