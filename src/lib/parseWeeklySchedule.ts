@@ -45,9 +45,11 @@ const extractSchedule = (text,
         classes: new Map()
     }
 
-    // Split lines and remove empty lines immediately after days lines
-    const lines = text.split('\n').filter((value, index) => {
-            return (index - 2) % rowsPerClass != 0
+    // Remove carriage returns, split lines and remove empty lines immediately after days lines
+    const lines = text.replaceAll('\r', '').split('\n').map((line) => {
+        return line + ';';
+    }).filter((value, index) => {
+        return (index - 2) % rowsPerClass != 0
     })
 
     const parse = require('csv-parse/sync').parse
@@ -101,6 +103,15 @@ const extractSchedule = (text,
                     // This code captures the rest of the elements as ...subjectValues and then joins them into a string
                     let [lessonNumber, ...subjectValues] = String(value).split('.')
                     let subject = subjectValues.join('.').trim()
+
+                    if (className == "10Д" && day == "Сряда") {
+                        console.log(className,
+                            day,
+                            subject,
+                            !lessonNumber.match(lessonNumberRegex) &&
+                            value !== '' &&
+                            !noLessonNumberSubjects.includes(value.toString()))
+                    }
 
                     // Ignore any record where the lesson number doesn't satisfy the lesson regex, which isn't empty or
                     // which isn't included in the list of no lesson number subjects
