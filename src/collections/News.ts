@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import blocks from "../blocks/blocks";
+import imageOnly from "../lib/filters/imageOnly";
 
 const updatePublishDate = ({ data, req, operation }) => {
     if (operation === 'create' || operation === 'update') {
@@ -67,6 +68,7 @@ const News: CollectionConfig = {
             name: 'postImage',
             type: 'upload',
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: {en: 'News image', bg: 'Картина на новината'}
         },
         {

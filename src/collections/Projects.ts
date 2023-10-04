@@ -1,5 +1,6 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import imageOnly from "../lib/filters/imageOnly";
 
 const Projects: CollectionConfig = {
     slug: 'projects',
@@ -36,6 +37,7 @@ const Projects: CollectionConfig = {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: {en: 'Image', bg: 'Картина'}
         },
         {

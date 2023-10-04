@@ -1,5 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import imageOnly from "../lib/filters/imageOnly";
 
 export const WhatIsStudied: GlobalConfig = {
     slug: 'what-is-studied',
@@ -46,6 +47,7 @@ export const WhatIsStudied: GlobalConfig = {
                     type: 'upload',
                     relationTo: 'media',
                     required: true,
+                    filterOptions: imageOnly,
                     label: { en: 'Image', bg: 'Картина' },
                 },
                 {

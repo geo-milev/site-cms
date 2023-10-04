@@ -1,5 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import imageOnly from "../lib/filters/imageOnly";
 
 export const AboutUs: GlobalConfig = {
     slug: 'about-us',
@@ -102,6 +103,7 @@ export const AboutUs: GlobalConfig = {
                             type: 'upload',
                             relationTo: 'media',
                             required: true,
+                            filterOptions: imageOnly,
                             label: { en: 'Image', bg: 'Снимка' },
                         },
                     ]

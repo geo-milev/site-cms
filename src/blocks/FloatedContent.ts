@@ -5,6 +5,7 @@ import Table from "./Table";
 import Formula from "./Formula";
 import AdmissionRequirements from "./AdmissionRequirements";
 import Video from "./Video";
+import imageOnly from "../lib/filters/imageOnly";
 
 const FloatedContent: Block = {
     slug: 'floated-content',
@@ -17,6 +18,7 @@ const FloatedContent: Block = {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: {en: 'Image', bg: 'Картина'},
             required: true,
         },

@@ -1,5 +1,6 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import imageOnly from "../lib/filters/imageOnly";
 
 const Books: CollectionConfig = {
     slug: 'books',
@@ -69,6 +70,7 @@ const Books: CollectionConfig = {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: { en: 'Image', bg: 'Снимка' },
         },
     ],

@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import imageOnly from "../lib/filters/imageOnly";
 
 const PagesSeoData: CollectionConfig = {
     slug: 'pages-seo-data',
@@ -41,6 +42,7 @@ const PagesSeoData: CollectionConfig = {
             type: 'upload',
             required: true,
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: { en: 'Image', bg: 'Снимка' },
         },
         {
