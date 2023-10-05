@@ -1,5 +1,5 @@
 import {CollectionConfig} from 'payload/types';
-import imageOnly from "../lib/filters/imageOnly";
+import imageOnly from "../lib/filters/onlyImage";
 
 const PagesSeoData: CollectionConfig = {
     slug: 'pages-seo-data',

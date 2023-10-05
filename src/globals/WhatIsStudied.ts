@@ -1,6 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
-import imageOnly from "../lib/filters/imageOnly";
+import imageOnly from "../lib/filters/onlyImage";
 
 export const WhatIsStudied: GlobalConfig = {
     slug: 'what-is-studied',

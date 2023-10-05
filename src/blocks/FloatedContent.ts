@@ -5,7 +5,7 @@ import Table from "./Table";
 import Formula from "./Formula";
 import AdmissionRequirements from "./AdmissionRequirements";
 import Video from "./Video";
-import imageOnly from "../lib/filters/imageOnly";
+import imageOnly from "../lib/filters/onlyImage";
 
 const FloatedContent: Block = {
     slug: 'floated-content',

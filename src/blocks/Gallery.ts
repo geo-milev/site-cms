@@ -1,5 +1,5 @@
 import {Block} from "payload/types";
-import imageOnly from "../lib/filters/imageOnly";
+import imageOnly from "../lib/filters/onlyImage";
 
 const Gallery: Block = {
     slug: 'gallery',

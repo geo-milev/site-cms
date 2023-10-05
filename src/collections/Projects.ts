@@ -1,6 +1,6 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
-import imageOnly from "../lib/filters/imageOnly";
+import imageOnly from "../lib/filters/onlyImage";
 
 const Projects: CollectionConfig = {
     slug: 'projects',
