@@ -147,7 +147,7 @@ export const Schedules: GlobalConfig = {
                     type: 'upload',
                     relationTo: 'media',
                     required: true,
-                    label: { en: 'File', bg: 'Файл' },
+                    label: { en: 'File', bg: 'Файл за изтегляне от сайта' },
                 },
                 {
                     name: 'bigBreak',
@@ -250,7 +250,7 @@ export const Schedules: GlobalConfig = {
                     type: 'upload',
                     relationTo: 'media',
                     required: true,
-                    label: { en: 'File', bg: 'Файл' },
+                    label: { en: 'File', bg: 'Файл за изтегляне от сайта' },
                 },
                 {
                     name: 'weeklySchedulesAutofill',

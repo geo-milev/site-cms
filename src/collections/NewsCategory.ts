@@ -11,7 +11,8 @@ const NewsCategory: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
+        defaultColumns: ['createdAt', 'updatedAt']
     },
     access: {
         read: () => true

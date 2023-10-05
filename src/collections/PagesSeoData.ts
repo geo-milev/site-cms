@@ -12,7 +12,9 @@ const PagesSeoData: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'relativeUrl'
+        useAsTitle: 'relativeUrl',
+        defaultColumns: ['relativeUrl', 'title', 'lastUpdate'],
+        listSearchableFields: ['title', 'description']
     },
     access: {
         read: () => true

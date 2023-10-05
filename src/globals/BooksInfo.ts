@@ -85,7 +85,7 @@ export const BooksInfo: GlobalConfig = {
             type: 'upload',
             relationTo: 'media',
             label: {
-                en: 'File', bg: 'Файл с учебниците'
+                en: 'File', bg: 'Файл с учебниците за изтегляне от сайта'
             }
         },
         {

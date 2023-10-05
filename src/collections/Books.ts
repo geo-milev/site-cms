@@ -13,7 +13,9 @@ const Books: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'class', 'publisher', 'note'],
+        listSearchableFields: ['class', 'year', 'publisher', 'note']
     },
     access: {
         read: () => true

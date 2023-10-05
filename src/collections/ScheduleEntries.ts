@@ -12,7 +12,9 @@ const ScheduleEntries: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'file', 'updatedAt'],
+        listSearchableFields: ['name', 'file']
     },
     access: {
         read: () => true

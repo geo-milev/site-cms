@@ -28,7 +28,9 @@ const News: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'title'
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'publishDate'],
+        listSearchableFields: ['description']
     },
     hooks: {
         beforeChange: [updatePublishDate],
@@ -114,6 +116,7 @@ const News: CollectionConfig = {
         {
             name: 'content',
             type: 'blocks',
+            label: {en: 'Content', bg: 'Съдържание'},
             labels: {
                 singular: {en: 'Block', bg: 'Блок'},
                 plural: {en: 'Blocks', bg: 'Блокове'}
