@@ -7,6 +7,9 @@ export const WhatIsStudied: GlobalConfig = {
     label: {
         en: 'What is studied', bg: 'Какво се учи'
     },
+    admin: {
+        group: 'Главна страница'
+    },
     access: {
         read: () => true,
     },

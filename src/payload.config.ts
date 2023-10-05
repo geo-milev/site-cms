@@ -147,13 +147,29 @@ export default buildConfig({
         payment: false
       },
       formOverrides: {
-        slug: 'forms',
+        admin: {
+          group: 'Администрация'
+        },
         labels: {
           singular: {
             en: 'Form', bg: 'Формуляр'
           },
           plural: {
             en: 'Forms', bg: 'Формуляри'
+          }
+        }
+      },
+      formSubmissionOverrides: {
+        admin: {
+          group: 'Администрация',
+          defaultColumns: ['id', 'form', 'createdAt'],
+        },
+        labels: {
+          singular: {
+            en: 'Form submission', bg: 'Подаден формуляр'
+          },
+          plural: {
+            en: 'Form  submissions', bg: 'Подадени формуляри'
           }
         }
       }

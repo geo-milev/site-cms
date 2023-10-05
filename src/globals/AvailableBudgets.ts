@@ -6,6 +6,9 @@ export const AvailableBudgets: GlobalConfig = {
     label: {
         en: 'Available budgets', bg: 'Налични бюджети'
     },
+    admin: {
+        group: 'Бюджети'
+    },
     access: {
         read: () => true,
     },

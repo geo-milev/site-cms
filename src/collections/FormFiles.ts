@@ -14,7 +14,8 @@ const FormFiles: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
-        listSearchableFields: ['file']
+        listSearchableFields: ['file'],
+        group: 'Организация'
     },
     access: {
         read: () => true

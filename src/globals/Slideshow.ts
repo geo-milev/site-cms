@@ -9,6 +9,9 @@ export const Slideshow: GlobalConfig = {
     label: {
         en: 'Slideshow', bg: 'Слайдшоу'
     },
+    admin: {
+        group: 'Главна страница'
+    },
     access: {
         read: () => true,
     },

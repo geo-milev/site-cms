@@ -4,10 +4,14 @@ import updateLastMod from "../lib/updateLastMod";
 import blocks from "../blocks/blocks";
 
 // The definitions for the admin field on richText don't properly include the upload field, causing errors
+//@ts-ignore
 export const Admission: GlobalConfig = {
     slug: 'admission',
     label: {
         en: 'Admission', bg: 'Прием'
+    },
+    admin: {
+        group: 'Прием'
     },
     access: {
         read: () => true,

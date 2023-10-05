@@ -14,7 +14,8 @@ const PagesSeoData: CollectionConfig = {
     admin: {
         useAsTitle: 'relativeUrl',
         defaultColumns: ['relativeUrl', 'title', 'lastUpdate'],
-        listSearchableFields: ['title', 'description']
+        listSearchableFields: ['title', 'description'],
+        group: 'Администрация'
     },
     access: {
         read: () => true

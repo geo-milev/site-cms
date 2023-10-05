@@ -13,7 +13,8 @@ const Subjects: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'shortName'],
-        listSearchableFields: ['shortName', 'description']
+        listSearchableFields: ['shortName', 'description'],
+        group: 'Програма'
     },
     access: {
         read: () => true

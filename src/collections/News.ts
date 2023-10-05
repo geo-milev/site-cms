@@ -30,7 +30,8 @@ const News: CollectionConfig = {
     admin: {
         useAsTitle: 'title',
         defaultColumns: ['title', 'publishDate'],
-        listSearchableFields: ['description']
+        listSearchableFields: ['description'],
+        group: 'Новини'
     },
     hooks: {
         beforeChange: [updatePublishDate],

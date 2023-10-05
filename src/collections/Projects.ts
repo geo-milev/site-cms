@@ -15,7 +15,8 @@ const Projects: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'description', 'article'],
-        listSearchableFields: ['description', 'article']
+        listSearchableFields: ['description', 'article'],
+        group: 'Организация'
     },
     hooks: {
         afterChange: [updateLastMod("/projects")]

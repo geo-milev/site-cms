@@ -19,6 +19,9 @@ export const Schedules: GlobalConfig = {
     label: {
         en: 'Schedules', bg: 'Графици'
     },
+    admin: {
+        group: 'Програма'
+    },
     access: {
         read: () => true,
     },

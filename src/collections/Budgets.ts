@@ -14,7 +14,8 @@ const Budgets: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'year', 'isYearly'],
-        listSearchableFields: ['year']
+        listSearchableFields: ['year'],
+        group: 'Бюджети'
     },
     access: {
         read: () => true

@@ -6,6 +6,9 @@ export const MainInfo: GlobalConfig = {
     label: {
         en: 'Main info', bg: 'Главна информация'
     },
+    admin: {
+        group: 'Главна информация'
+    },
     access: {
         read: () => true,
     },

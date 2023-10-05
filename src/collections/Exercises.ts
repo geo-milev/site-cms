@@ -14,7 +14,8 @@ const Exercises: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
-        listSearchableFields: ['file']
+        listSearchableFields: ['file'],
+        group: 'Прием'
     },
     access: {
         read: () => true

@@ -14,7 +14,8 @@ const ScheduleEntries: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
-        listSearchableFields: ['name', 'file']
+        listSearchableFields: ['name', 'file'],
+        group: 'Организация'
     },
     access: {
         read: () => true

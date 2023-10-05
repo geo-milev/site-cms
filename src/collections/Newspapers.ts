@@ -14,7 +14,8 @@ const Newspapers: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
-        listSearchableFields: ['name', 'file']
+        listSearchableFields: ['name', 'file'],
+        group: 'Организация'
     },
     hooks: {
         afterChange: [updateLastMod("/student/newspaper")]

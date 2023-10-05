@@ -11,6 +11,9 @@ export const Contact: GlobalConfig = {
     label: {
         en: 'Contacts', bg: 'Контакти'
     },
+    admin: {
+        group: 'Главна информация'
+    },
     access: {
         read: () => true,
     },

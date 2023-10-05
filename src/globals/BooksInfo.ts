@@ -9,6 +9,9 @@ export const BooksInfo: GlobalConfig = {
     label: {
         en: 'Books info', bg: 'Информация за учебниците'
     },
+    admin: {
+        group: 'Учебници'
+    },
     access: {
         read: () => true,
     },

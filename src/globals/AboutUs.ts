@@ -7,6 +7,9 @@ export const AboutUs: GlobalConfig = {
     label: {
         en: 'About Us', bg: 'За нас'
     },
+    admin: {
+        group: 'Главна информация'
+    },
     access: {
         read: () => true,
     },

@@ -12,7 +12,8 @@ const NewsCategory: CollectionConfig = {
     },
     admin: {
         useAsTitle: 'name',
-        defaultColumns: ['createdAt', 'updatedAt']
+        defaultColumns: ['createdAt', 'updatedAt'],
+        group: 'Новини'
     },
     access: {
         read: () => true
