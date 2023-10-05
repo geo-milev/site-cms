@@ -4,6 +4,7 @@ import {parseWeeklySchedule} from '../lib/parseWeeklySchedule';
 import updateLastMod from "../lib/updateLastMod";
 import {getFile} from "../lib/getFile";
 import * as crypto from "crypto";
+import onlyCsv from "../lib/filters/onlyCsv";
 
 const dateError = 'Не може началото на час да е след края.'
 
@@ -264,6 +265,7 @@ export const Schedules: GlobalConfig = {
                             type: 'upload',
                             relationTo: 'media',
                             required: true,
+                            filterOptions: onlyCsv,
                             label: {
                                 en: 'File .csv (autofill the weekly schedule)',
                                 bg: 'Файл във формат .csv (за автоматично попълване на програмата)'

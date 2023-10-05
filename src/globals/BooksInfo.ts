@@ -2,6 +2,7 @@ import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import {getFile} from "../lib/getFile";
 import {parseBooks} from "../lib/parseBooks";
+import onlyCsv from "../lib/filters/onlyCsv";
 
 export const BooksInfo: GlobalConfig = {
     slug: 'books-info',
@@ -117,6 +118,7 @@ export const BooksInfo: GlobalConfig = {
                     type: 'upload',
                     relationTo: 'media',
                     required: true,
+                    filterOptions: onlyCsv,
                     label: {
                         en: 'File .csv (autofill books)',
                         bg: 'Файл във формат .csv (за автоматично попълване на учебниците)'
