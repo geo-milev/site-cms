@@ -1,18 +1,8 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
-
-const icoMimeTypes: any = [
-    {
-        mimeType: {
-            equals: 'image/x-icon'
-        }
-    },
-    {
-        mimeType: {
-            equals: 'image/vnd.microsoft.icon'
-        }
-    },
-]
+import onlyIco from "../lib/filters/onlyIco";
+import onlyPng from "../lib/filters/onlyPng";
+import nonSvgImage from "../lib/filters/nonSvgImage";
 
 export const MainInfo: GlobalConfig = {
     slug: 'main-info',
@@ -52,9 +42,7 @@ export const MainInfo: GlobalConfig = {
             type: 'upload',
             relationTo: 'media',
             required: true,
-            filterOptions: {
-                mimeType: { not_equals: 'image/svg+xml' }
-            },
+            filterOptions: nonSvgImage,
             label: {
                 en: 'SEO (raster type - no .svg) autofill image (for example, news articles without an image)',
                 bg: 'Снимка (растерен формат - без .svg) за автоматично попълване на празни места (напр. при статии без снимка)'
@@ -65,9 +53,7 @@ export const MainInfo: GlobalConfig = {
             type: 'upload',
             relationTo: 'media',
             required: true,
-            filterOptions: {
-                or: icoMimeTypes
-            },
+            filterOptions: onlyIco,
             label: {
                 en: 'Favicon (.ico file)', bg: 'Икона (.ico файл)'
             },
@@ -104,9 +90,7 @@ export const MainInfo: GlobalConfig = {
                   type: 'upload',
                   relationTo: 'media',
                   required: true,
-                  filterOptions: {
-                      mimeType: { equals: 'image/png'  }
-                  },
+                  filterOptions: onlyPng,
                   label: {
                       en: 'Favicon (.png file)', bg: 'Икона (.png файл)'
                   },
