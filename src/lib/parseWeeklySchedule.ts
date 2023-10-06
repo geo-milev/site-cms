@@ -45,9 +45,11 @@ const extractSchedule = (text,
         classes: new Map()
     }
 
-    // Split lines and remove empty lines immediately after days lines
-    const lines = text.split('\n').filter((value, index) => {
-            return (index - 2) % rowsPerClass != 0
+    // Remove carriage returns, split lines and remove empty lines immediately after days lines
+    const lines = text.replaceAll('\r', '').split('\n').map((line) => {
+        return line + ';';
+    }).filter((value, index) => {
+        return (index - 2) % rowsPerClass != 0
     })
 
     const parse = require('csv-parse/sync').parse
