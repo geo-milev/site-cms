@@ -12,7 +12,8 @@ const Budgets: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'year', 'isYearly']
     },
     access: {
         read: () => true

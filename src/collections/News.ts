@@ -1,6 +1,8 @@
 import { CollectionConfig } from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import blocks from "../blocks/blocks";
+import createSeoEntry from "../lib/createSeoEntry";
+import deleteSeoEntry from "../lib/deleteSeoEntry";
 
 const updatePublishDate = ({ data, req, operation }) => {
     if (operation === 'create' || operation === 'update') {
@@ -27,11 +29,20 @@ const News: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'title'
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'publishDate']
     },
     hooks: {
         beforeChange: [updatePublishDate],
-        afterChange: [updateLastMod("/news")]
+        afterChange: [updateLastMod("/news"),
+            createSeoEntry("/news", (doc) => {
+            return {
+                title: doc.title,
+                description: doc.description? doc.description: doc.title,
+                image: doc.postImage? doc.postImage.id: null
+            }
+        })],
+        afterDelete: [deleteSeoEntry("/news")]
     },
     versions: {
         drafts: true,
