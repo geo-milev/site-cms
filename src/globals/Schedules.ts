@@ -245,6 +245,15 @@ export const Schedules: GlobalConfig = {
             },
             fields: [
                 {
+                    name: 'year',
+                    type: 'text',
+                    required: true,
+                    defaultValue: "2023/2024, срок I",
+                    label: {
+                        en: 'Year and term of the schedule', bg: 'Учебна година и срок на програмата'
+                    }
+                },
+                {
                     name: 'file',
                     type: 'upload',
                     relationTo: 'media',
