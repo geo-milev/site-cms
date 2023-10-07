@@ -87,6 +87,7 @@ export default buildConfig({
       favicon: '/assets/favicon.png',
       ogImage: '/assets/logo.svg',
     },
+    dateFormat: 'dd.MM.yyyy г. HH:mm',
     components: {
       graphics: {
         Logo,
