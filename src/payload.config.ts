@@ -30,8 +30,9 @@ import {Icon} from "./components/icon/Icon";
 import Admission from "./globals/Admission";
 import PagesSeoData from "./collections/PagesSeoData";
 import Exercises from "./collections/Exercises";
-import generateSitemap from "./lib/generateSitemap";
-import generateRssFeed from "./lib/generateRssFeed";
+import { getSitemap } from "./lib/sitemap";
+import { getRssFeed } from "./lib/rssFeed";
+import GeneratedFiles from "./globals/GeneratedFiles";
 
 const adapter = gcsAdapter({
   options: {
@@ -78,7 +79,7 @@ export default buildConfig({
     PagesSeoData,
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, Budgets, BooksInfo, Admission
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, Budgets, BooksInfo, Admission, GeneratedFiles
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -145,7 +146,7 @@ export default buildConfig({
       method: 'get',
       handler: async (req, res) => {
         res.header('Content-Type', 'application/xml');
-        res.status(200).send((await generateSitemap(req.payload)));
+        res.status(200).send((await getSitemap(req.payload)));
       },
     },
     {
@@ -153,7 +154,7 @@ export default buildConfig({
       method: 'get',
       handler: async (req, res) => {
         res.header('Content-Type', 'application/rss+xml');
-        res.status(200).send((await generateRssFeed(req.payload)));
+        res.status(200).send((await getRssFeed(req.payload)));
       },
     },
   ],

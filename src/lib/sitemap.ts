@@ -53,4 +53,30 @@ const generateSitemap = async (payload: Payload) => {
 </urlset>`
 }
 
-export default generateSitemap;
+const updateSitemap = async (payload: Payload) => {
+    const sitemap = await generateSitemap(payload)
+    await payload.updateGlobal({
+        slug: "generated-files",
+        data: {
+            sitemap: sitemap
+        }
+    });
+    return sitemap;
+}
+
+const getSitemap = async (payload: Payload) => {
+    let sitemap;
+    const generatedFiles = await payload.findGlobal({
+        slug: 'generated-files'
+    })
+
+    if (generatedFiles.sitemap) {
+        sitemap = generatedFiles.sitemap
+    } else {
+        sitemap = updateSitemap(payload)
+    }
+
+    return sitemap
+}
+
+export { generateSitemap, getSitemap, updateSitemap };

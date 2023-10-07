@@ -1,5 +1,7 @@
 import {CollectionConfig} from 'payload/types';
 import imageOnly from "../lib/filters/onlyImage";
+import {updateRssFeed} from "../lib/rssFeed";
+import {updateSitemap} from "../lib/sitemap";
 
 const PagesSeoData: CollectionConfig = {
     slug: 'pages-seo-data',
@@ -19,6 +21,20 @@ const PagesSeoData: CollectionConfig = {
     },
     access: {
         read: () => true
+    },
+    hooks: {
+        afterChange: [
+            async (data) => {
+                await updateRssFeed(data.req.payload)
+                await updateSitemap(data.req.payload)
+            }
+        ],
+        afterDelete: [
+            async (data) => {
+                await updateRssFeed(data.req.payload)
+                await updateSitemap(data.req.payload)
+            }
+        ],
     },
     fields: [
         {

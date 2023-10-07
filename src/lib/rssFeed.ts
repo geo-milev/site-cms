@@ -44,4 +44,31 @@ const generateRssFeed = async (payload: Payload) => {
 </rss>`
 }
 
-export default generateRssFeed;
+
+const updateRssFeed = async (payload: Payload) => {
+    const feed = await generateRssFeed(payload)
+    await payload.updateGlobal({
+        slug: "generated-files",
+        data: {
+            rss: feed
+        }
+    });
+    return feed;
+}
+
+const getRssFeed = async (payload: Payload) => {
+    let feed;
+    const generatedFiles = await payload.findGlobal({
+        slug: 'generated-files'
+    })
+
+    if (generatedFiles.rss) {
+        feed = generatedFiles.rss
+    } else {
+        feed = updateRssFeed(payload)
+    }
+
+    return feed
+}
+
+export { generateRssFeed, getRssFeed, updateRssFeed };
