@@ -22,8 +22,7 @@ import Documents from "./collections/Documents";
 import AdministrativeServicesInfo from "./collections/AdministrativeServicesInfo";
 import FormFiles from "./collections/FormFiles";
 import Newspapers from "./collections/Newspapers";
-import Budgets from "./collections/Budgets";
-import AvailableBudgets from "./globals/AvailableBudgets";
+import Budgets from "./globals/Budgets";
 import Projects from "./collections/Projects";
 import BooksInfo from "./globals/BooksInfo";
 import {Logo} from "./components/logo/Logo";
@@ -109,12 +108,11 @@ export default buildConfig({
     FormFiles,
     Exercises,
     Newspapers,
-    Budgets,
     Projects,
     PagesSeoData,
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Admission
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, Budgets, BooksInfo, Admission
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
