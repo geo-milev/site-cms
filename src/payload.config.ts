@@ -94,6 +94,10 @@ export default buildConfig({
       },
     },
   },
+  upload: {
+    defCharset: 'utf8',
+    defParamCharset: 'utf8',
+  },
   collections: [
     Users,
     News,
