@@ -7,7 +7,7 @@ export const Budgets: GlobalConfig = {
         en: 'Budgets', bg: 'Бюджети'
     },
     admin: {
-        group: 'Бюджети'
+        group: 'Организация'
     },
     access: {
         read: () => true,
