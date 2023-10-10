@@ -1,5 +1,6 @@
 import path from 'path';
 import {CollectionConfig} from 'payload/types';
+import {isAdmin} from "../lib/access/isAdmin";
 
 export const Media: CollectionConfig = {
     slug: 'media',
@@ -22,6 +23,7 @@ export const Media: CollectionConfig = {
     },
     access: {
         read: () => true,
+        delete: isAdmin
     },
     fields: [
         {

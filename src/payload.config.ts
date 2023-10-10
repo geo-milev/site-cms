@@ -113,7 +113,15 @@ export default buildConfig({
       },
       formOverrides: {
         admin: {
-          group: 'Администрация'
+          group: 'Администрация',
+          hidden: ({user}) => {
+            console.log("User", user)
+            return !isAdmin({req: { user }})
+          }
+        },
+        access: {
+          update: isAdmin,
+          create: isAdmin
         },
         labels: {
           singular: {

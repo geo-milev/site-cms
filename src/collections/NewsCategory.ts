@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import {isAdmin} from "../lib/access/isAdmin";
 
 const NewsCategory: CollectionConfig = {
     slug: 'news-category',
@@ -13,10 +14,13 @@ const NewsCategory: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['createdAt', 'updatedAt'],
-        group: 'Новини'
+        group: 'Новини',
+        hidden: ({user}) => !isAdmin({req: { user }})
     },
     access: {
-        read: () => true
+        read: () => true,
+        delete: isAdmin,
+        update: isAdmin
     },
     fields: [
         {

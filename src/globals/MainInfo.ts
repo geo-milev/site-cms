@@ -3,6 +3,7 @@ import updateLastMod from "../lib/updateLastMod";
 import onlyIco from "../lib/filters/onlyIco";
 import onlyPng from "../lib/filters/onlyPng";
 import nonSvgImage from "../lib/filters/nonSvgImage";
+import {isAdmin} from "../lib/access/isAdmin";
 
 export const MainInfo: GlobalConfig = {
     slug: 'main-info',
@@ -10,10 +11,12 @@ export const MainInfo: GlobalConfig = {
         en: 'Main info', bg: 'Главна информация'
     },
     admin: {
-        group: 'Главна информация'
+        group: 'Главна информация',
+        hidden: (user) => !isAdmin({ req: user })
     },
     access: {
         read: () => true,
+        update: isAdmin
     },
     hooks: {
         afterChange: [updateLastMod("/")]

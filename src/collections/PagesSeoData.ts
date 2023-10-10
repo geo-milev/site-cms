@@ -2,6 +2,7 @@ import {CollectionConfig} from 'payload/types';
 import imageOnly from "../lib/filters/onlyImage";
 import {updateRssFeed} from "../lib/rssFeed";
 import {updateSitemap} from "../lib/sitemap";
+import {isAdmin} from "../lib/access/isAdmin";
 
 const PagesSeoData: CollectionConfig = {
     slug: 'pages-seo-data',
@@ -17,10 +18,14 @@ const PagesSeoData: CollectionConfig = {
         useAsTitle: 'relativeUrl',
         defaultColumns: ['relativeUrl', 'title', 'lastUpdate'],
         listSearchableFields: ['title', 'description'],
-        group: 'Администрация'
+        group: 'Администрация',
+        hidden: (user) => !isAdmin({ req: user })
     },
     access: {
-        read: () => true
+        read: () => true,
+        create: isAdmin,
+        delete: isAdmin,
+        update: isAdmin,
     },
     hooks: {
         afterChange: [
@@ -76,6 +81,9 @@ const PagesSeoData: CollectionConfig = {
                 condition: () => {
                     return false;
                 }
+            },
+            access: {
+                update: isAdmin
             }
         },
     ],

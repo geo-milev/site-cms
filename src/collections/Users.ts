@@ -33,6 +33,7 @@ const Users: CollectionConfig = {
         { label: { en: 'Editor', bg: 'Редактор' }, value: 'editor' },
       ],
       required: true,
+      saveToJWT: true,
       defaultValue: 'admin',
       label: { en: 'Role', bg: 'Роля' },
       access: {

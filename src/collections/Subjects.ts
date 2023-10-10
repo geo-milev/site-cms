@@ -1,4 +1,5 @@
 import {CollectionConfig} from 'payload/types';
+import {isAdmin} from "../lib/access/isAdmin";
 
 const Subjects: CollectionConfig = {
     slug: 'subjects',
@@ -14,10 +15,12 @@ const Subjects: CollectionConfig = {
         useAsTitle: 'name',
         defaultColumns: ['name', 'shortName'],
         listSearchableFields: ['shortName', 'description'],
-        group: 'Програма'
+        group: 'Програма',
+        hidden: (user) => !isAdmin({ req: user })
     },
     access: {
-        read: () => true
+        read: () => true,
+        delete: isAdmin
     },
     fields: [
         {
