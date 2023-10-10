@@ -1,4 +1,6 @@
 import { CollectionConfig } from 'payload/types';
+import {isAdmin} from "../lib/access/isAdmin";
+import {isAdminOrSelf} from "../lib/access/isAdminOrSelf";
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -13,14 +15,27 @@ const Users: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'email',
-    group: 'Администрация'
+    group: 'Администрация',
+    hidden: (user) => !isAdmin({ req: user })
   },
   access: {
-    read: () => true,
+    read: isAdminOrSelf,
+    update: isAdmin,
+    create: isAdmin,
+    delete: isAdmin
   },
   fields: [
-    // Email added by default
-    // Add more fields as needed
+    {
+      name: 'role',
+      type: 'select',
+      options: [
+        { label: { en: 'Admin', bg: 'Администратор' }, value: 'admin' },
+        { label: { en: 'Editor', bg: 'Редактор' }, value: 'editor' },
+      ],
+      required: true,
+      defaultValue: 'admin',
+      label: { en: 'Role', bg: 'Роля' }
+    }
   ],
 };
 
