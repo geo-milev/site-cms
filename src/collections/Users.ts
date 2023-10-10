@@ -20,7 +20,7 @@ const Users: CollectionConfig = {
   },
   access: {
     read: isAdminOrSelf,
-    update: isAdmin,
+    update: isAdminOrSelf,
     create: isAdmin,
     delete: isAdmin
   },
@@ -34,7 +34,10 @@ const Users: CollectionConfig = {
       ],
       required: true,
       defaultValue: 'admin',
-      label: { en: 'Role', bg: 'Роля' }
+      label: { en: 'Role', bg: 'Роля' },
+      access: {
+        update: isAdmin
+      }
     }
   ],
 };
