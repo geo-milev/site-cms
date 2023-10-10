@@ -6,6 +6,9 @@ export const VideoSection: GlobalConfig = {
     label: {
         en: 'Video section', bg: 'Видео секция'
     },
+    admin: {
+        group: 'Главна страница'
+    },
     access: {
         read: () => true,
     },

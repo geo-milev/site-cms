@@ -1,5 +1,6 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import imageOnly from "../lib/filters/onlyImage";
 
 const Projects: CollectionConfig = {
     slug: 'projects',
@@ -12,7 +13,10 @@ const Projects: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'description', 'article'],
+        listSearchableFields: ['description', 'article'],
+        group: 'Организация'
     },
     hooks: {
         afterChange: [updateLastMod("/projects")]
@@ -36,6 +40,7 @@ const Projects: CollectionConfig = {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: {en: 'Image', bg: 'Картина'}
         },
         {

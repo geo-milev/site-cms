@@ -22,16 +22,17 @@ import Documents from "./collections/Documents";
 import AdministrativeServicesInfo from "./collections/AdministrativeServicesInfo";
 import FormFiles from "./collections/FormFiles";
 import Newspapers from "./collections/Newspapers";
-import Budgets from "./collections/Budgets";
-import AvailableBudgets from "./globals/AvailableBudgets";
+import Budgets from "./globals/Budgets";
 import Projects from "./collections/Projects";
 import BooksInfo from "./globals/BooksInfo";
 import {Logo} from "./components/logo/Logo";
 import {Icon} from "./components/icon/Icon";
 import Admission from "./globals/Admission";
 import PagesSeoData from "./collections/PagesSeoData";
-import {Payload} from "payload";
 import Exercises from "./collections/Exercises";
+import { getSitemap } from "./lib/sitemap";
+import { getRssFeed } from "./lib/rssFeed";
+import GeneratedFiles from "./globals/GeneratedFiles";
 
 const adapter = gcsAdapter({
   options: {
@@ -39,46 +40,6 @@ const adapter = gcsAdapter({
   },
   bucket: process.env.GCS_BUCKET,
 })
-
-const toLastModString = (date) => {
-  const month = date.getUTCMonth() + 1;
-  const day = date.getUTCDate();
-  const year = date.getUTCFullYear();
-
-  return year + '-' + month + '-' + day;
-}
-
-const collectionToPartialSitemap = async (collection: string,
-                                          payload: Payload,
-                                          extractDocumentData: (doc: any) => {relativeUrl: string, lastMod: Date}) => {
-  let partialSitemap = ``
-
-  let entries = await payload.find({
-    collection: collection,
-    page: 1,
-    limit: 50
-  });
-
-  do {
-    entries.docs.forEach((doc) => {
-      const documentData = extractDocumentData(doc)
-      partialSitemap += `
-<url>
-    <loc>${process.env.FRONTEND_URL}${documentData.relativeUrl}</loc>
-    <lastmod>${toLastModString(documentData.lastMod)}</lastmod>
-</url>
-`
-    })
-
-    entries = await payload.find({
-      collection: collection,
-      page: entries.page + 1,
-      limit: 50
-    });
-  } while (entries.hasNextPage)
-
-  return partialSitemap
-}
 
 export default buildConfig({
   admin: {
@@ -88,12 +49,17 @@ export default buildConfig({
       favicon: '/assets/favicon.png',
       ogImage: '/assets/logo.svg',
     },
+    dateFormat: 'dd.MM.yyyy г. HH:mm',
     components: {
       graphics: {
         Logo,
         Icon,
       },
     },
+  },
+  upload: {
+    defCharset: 'utf8',
+    defParamCharset: 'utf8',
   },
   collections: [
     Users,
@@ -109,12 +75,11 @@ export default buildConfig({
     FormFiles,
     Exercises,
     Newspapers,
-    Budgets,
     Projects,
     PagesSeoData,
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, AvailableBudgets, BooksInfo, Admission
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, Budgets, BooksInfo, Admission, GeneratedFiles
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -147,13 +112,29 @@ export default buildConfig({
         payment: false
       },
       formOverrides: {
-        slug: 'forms',
+        admin: {
+          group: 'Администрация'
+        },
         labels: {
           singular: {
             en: 'Form', bg: 'Формуляр'
           },
           plural: {
             en: 'Forms', bg: 'Формуляри'
+          }
+        }
+      },
+      formSubmissionOverrides: {
+        admin: {
+          group: 'Администрация',
+          defaultColumns: ['id', 'form', 'createdAt'],
+        },
+        labels: {
+          singular: {
+            en: 'Form submission', bg: 'Подаден формуляр'
+          },
+          plural: {
+            en: 'Form  submissions', bg: 'Подадени формуляри'
           }
         }
       }
@@ -164,78 +145,16 @@ export default buildConfig({
       path: '/sitemap.xml',
       method: 'get',
       handler: async (req, res) => {
-        const news = await collectionToPartialSitemap('news', req.payload, (doc) => {
-          return {
-            relativeUrl: `/news/${doc.id}`,
-            lastMod: new Date(doc.updatedAt)
-          }
-        })
-
-        const pages = await collectionToPartialSitemap('pages-seo-data', req.payload, (doc) => {
-          return {
-            relativeUrl: doc.relativeUrl,
-            lastMod: new Date(doc.lastUpdate)
-          }
-        })
-
-        const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${pages}
-  ${news}
-</urlset>`
-
-
         res.header('Content-Type', 'application/xml');
-        res.status(200).send(sitemap);
+        res.status(200).send((await getSitemap(req.payload)));
       },
     },
     {
       path: '/rss',
       method: 'get',
       handler: async (req, res) => {
-        const mainInfo = await req.payload.findGlobal({
-          slug: 'main-info'
-        })
-
-        let news = ``
-
-        let entries = await req.payload.find({
-          collection: 'news',
-          page: 1,
-          limit: 15
-        });
-
-        entries.docs.forEach((doc) => {
-          news += `
-        <item>
-            <title><![CDATA[${doc.title}]]></title>
-            <link>${process.env.FRONTEND_URL}/news/${doc.id}</link>
-            <description><![CDATA[${doc.description}]]></description>
-            <pubDate>${new Date(doc.publishDate).toUTCString()}</pubDate>
-            <category><![CDATA[${doc.category.name}]]></category>
-            <guid>${process.env.FRONTEND_URL}/news/${doc.id}</guid>
-        </item> 
-`
-        })
-
-        const rssFeed = `
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
-  <channel>
-      <title><![CDATA[${mainInfo.name}]]></title>
-      <link>${process.env.FRONTEND_URL}</link>
-      <description><![CDATA[Получавайте най-новите новини за ${mainInfo.name}]]></description>
-      <copyright>
-        <![CDATA[© 2023-${new Date().getFullYear()} ${mainInfo.name}. Всички права запазени.]]>
-      </copyright>
-      <sy:updatePeriod>hourly</sy:updatePeriod>
-      <sy:updateFrequency>1</sy:updateFrequency>
-      <atom:link href="${process.env.FRONTEND_URL}/news/feed" rel="self" type="application/rss+xml" />
-      <language>bg-BG</language>
-      ${news}
-  </channel>
-</rss>`
-
         res.header('Content-Type', 'application/rss+xml');
-        res.status(200).send(rssFeed);
+        res.status(200).send((await getRssFeed(req.payload)));
       },
     },
   ],

@@ -1,4 +1,5 @@
 import {Block} from "payload/types";
+import imageOnly from "../lib/filters/onlyImage";
 
 const Gallery: Block = {
     slug: 'gallery',
@@ -24,6 +25,7 @@ const Gallery: Block = {
                     name: 'image',
                     type: 'upload',
                     relationTo: 'media',
+                    filterOptions: imageOnly,
                     label: {en: 'Image', bg: 'Картина'},
                     required: true,
                 }

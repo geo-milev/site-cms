@@ -5,14 +5,17 @@ const AdministrativeServicesInfo: CollectionConfig = {
     slug: 'administrative-services-info',
     labels: {
         singular: {
-            en: 'Administrative service file', bg: 'Файл за предлагана административна услуга'
+            en: 'Administrative service file', bg: 'Файл за административна услуга'
         },
         plural: {
-            en: 'Administrative services files', bg: 'Файлове за предлаганите административна услуги'
+            en: 'Administrative services files', bg: 'Административни услуги'
         }
     },
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'file', 'updatedAt'],
+        listSearchableFields: ['file'],
+        group: 'Организация'
     },
     access: {
         read: () => true

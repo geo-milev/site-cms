@@ -1,5 +1,6 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import imageOnly from "../lib/filters/onlyImage";
 
 const Books: CollectionConfig = {
     slug: 'books',
@@ -12,7 +13,10 @@ const Books: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'class', 'publisher', 'note'],
+        listSearchableFields: ['class', 'year', 'publisher', 'note'],
+        group: 'Учебници'
     },
     access: {
         read: () => true
@@ -69,6 +73,7 @@ const Books: CollectionConfig = {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: { en: 'Image', bg: 'Снимка' },
         },
     ],

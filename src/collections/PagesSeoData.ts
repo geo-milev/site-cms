@@ -1,4 +1,7 @@
 import {CollectionConfig} from 'payload/types';
+import imageOnly from "../lib/filters/onlyImage";
+import {updateRssFeed} from "../lib/rssFeed";
+import {updateSitemap} from "../lib/sitemap";
 
 const PagesSeoData: CollectionConfig = {
     slug: 'pages-seo-data',
@@ -11,10 +14,27 @@ const PagesSeoData: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'relativeUrl'
+        useAsTitle: 'relativeUrl',
+        defaultColumns: ['relativeUrl', 'title', 'lastUpdate'],
+        listSearchableFields: ['title', 'description'],
+        group: 'Администрация'
     },
     access: {
         read: () => true
+    },
+    hooks: {
+        afterChange: [
+            async (data) => {
+                await updateRssFeed(data.req.payload)
+                await updateSitemap(data.req.payload)
+            }
+        ],
+        afterDelete: [
+            async (data) => {
+                await updateRssFeed(data.req.payload)
+                await updateSitemap(data.req.payload)
+            }
+        ],
     },
     fields: [
         {
@@ -39,6 +59,7 @@ const PagesSeoData: CollectionConfig = {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: { en: 'Image', bg: 'Снимка' },
         },
         {

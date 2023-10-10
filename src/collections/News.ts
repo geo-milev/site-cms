@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import blocks from "../blocks/blocks";
+import imageOnly from "../lib/filters/onlyImage";
 import createSeoEntry from "../lib/createSeoEntry";
 import deleteSeoEntry from "../lib/deleteSeoEntry";
 
@@ -30,7 +31,9 @@ const News: CollectionConfig = {
     },
     admin: {
         useAsTitle: 'title',
-        defaultColumns: ['title', 'publishDate']
+        defaultColumns: ['title', 'publishDate'],
+        listSearchableFields: ['description'],
+        group: 'Новини'
     },
     hooks: {
         beforeChange: [updatePublishDate],
@@ -78,6 +81,7 @@ const News: CollectionConfig = {
             name: 'postImage',
             type: 'upload',
             relationTo: 'media',
+            filterOptions: imageOnly,
             label: {en: 'News image', bg: 'Картина на новината'}
         },
         {
@@ -123,6 +127,7 @@ const News: CollectionConfig = {
         {
             name: 'content',
             type: 'blocks',
+            label: {en: 'Content', bg: 'Съдържание'},
             labels: {
                 singular: {en: 'Block', bg: 'Блок'},
                 plural: {en: 'Blocks', bg: 'Блокове'}

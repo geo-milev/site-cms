@@ -13,7 +13,9 @@ export const Media: CollectionConfig = {
     },
     admin: {
         useAsTitle: 'alt',
-        defaultColumns: ['alt', 'name', 'mimeType', 'size']
+        defaultColumns: ['alt', 'filename', 'filesize'],
+        listSearchableFields: ['filename', 'mimeType'],
+        group: 'Администрация'
     },
     upload: {
         staticDir: path.resolve(__dirname, '../../media'),

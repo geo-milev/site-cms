@@ -11,7 +11,10 @@ const WeeklySchedules: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'class'
+        useAsTitle: 'class',
+        defaultColumns: ['class', 'createdAt', 'updatedAt'],
+        listSearchableFields: [],
+        group: 'Програма'
     },
     access: {
         read: () => true

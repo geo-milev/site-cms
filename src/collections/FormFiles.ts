@@ -12,7 +12,10 @@ const FormFiles: CollectionConfig = {
         }
     },
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'file', 'updatedAt'],
+        listSearchableFields: ['file'],
+        group: 'Организация'
     },
     access: {
         read: () => true
