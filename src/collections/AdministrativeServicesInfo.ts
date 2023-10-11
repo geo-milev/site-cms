@@ -1,5 +1,6 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
 
 const AdministrativeServicesInfo: CollectionConfig = {
     slug: 'administrative-services-info',
@@ -15,10 +16,14 @@ const AdministrativeServicesInfo: CollectionConfig = {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
         listSearchableFields: ['file'],
-        group: 'Организация'
+        group: 'Организация',
+        hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {
-        read: () => true
+        read: () => true,
+        update: isAdminOrEditor,
+        create: isAdminOrEditor,
+        delete: isAdminOrEditor
     },
     hooks: {
         afterChange: [updateLastMod("/organisation/administrative-services")]

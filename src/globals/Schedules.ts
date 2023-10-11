@@ -3,9 +3,9 @@ import {validateDates} from '../lib/validateHourRange';
 import updateLastMod from "../lib/updateLastMod";
 import onlyCsv from "../lib/filters/onlyCsv";
 import { autofillSchedules } from "../lib/autoFillSchedules";
+import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
 
 const dateError = 'Не може началото на час да е след края.'
-
 
 // @ts-ignore is needed because the generic Field type doesn't recognise the custom date admin properties like 'pickerAppearance'
 //@ts-ignore
@@ -15,10 +15,12 @@ export const Schedules: GlobalConfig = {
         en: 'Schedule', bg: 'Програма'
     },
     admin: {
-        group: 'Програма'
+        group: 'Програма',
+        hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {
         read: () => true,
+        update: isAdminOrEditor,
     },
     hooks: {
         beforeValidate: [autofillSchedules],

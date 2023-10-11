@@ -31,6 +31,7 @@ const Users: CollectionConfig = {
       options: [
         { label: { en: 'Admin', bg: 'Администратор' }, value: 'admin' },
         { label: { en: 'Editor', bg: 'Редактор' }, value: 'editor' },
+        { label: { en: 'Student editor', bg: 'Редактор: Ученик' }, value: 'studentEditor' },
       ],
       required: true,
       saveToJWT: true,

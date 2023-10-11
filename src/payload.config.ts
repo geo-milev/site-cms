@@ -33,6 +33,8 @@ import Exercises from "./collections/Exercises";
 import { getSitemap } from "./lib/sitemap";
 import { getRssFeed } from "./lib/rssFeed";
 import GeneratedFiles from "./globals/GeneratedFiles";
+import {isAdmin} from "./lib/access/isAdmin";
+import {isAdminOrEditor} from "./lib/access/isAdminOrEditor";
 
 const adapter = gcsAdapter({
   options: {
@@ -114,10 +116,7 @@ export default buildConfig({
       formOverrides: {
         admin: {
           group: 'Администрация',
-          hidden: ({user}) => {
-            console.log("User", user)
-            return !isAdmin({req: { user }})
-          }
+          hidden: ({user}) => !isAdmin({req: { user }})
         },
         access: {
           update: isAdmin,
@@ -136,6 +135,7 @@ export default buildConfig({
         admin: {
           group: 'Администрация',
           defaultColumns: ['id', 'form', 'createdAt'],
+          hidden: ({user}) => !isAdminOrEditor({req: { user }})
         },
         labels: {
           singular: {

@@ -2,6 +2,7 @@ import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import onlyCsv from "../lib/filters/onlyCsv";
 import {autofillBooks} from "../lib/autofillBooks";
+import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
 
 export const BooksInfo: GlobalConfig = {
     slug: 'books-info',
@@ -9,10 +10,12 @@ export const BooksInfo: GlobalConfig = {
         en: 'Books info', bg: 'Информация за учебниците'
     },
     admin: {
-        group: 'Учебници'
+        group: 'Учебници',
+        hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {
         read: () => true,
+        update: isAdminOrEditor
     },
     hooks: {
         afterChange: [updateLastMod("/student/books")],

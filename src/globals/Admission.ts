@@ -2,6 +2,7 @@ import {GlobalConfig} from 'payload/types';
 import richTextUploadMetadata from "../lib/richTextUploadMetadata";
 import updateLastMod from "../lib/updateLastMod";
 import blocks from "../blocks/blocks";
+import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
 
 // The definitions for the admin field on richText don't properly include the upload field, causing errors
 //@ts-ignore
@@ -11,10 +12,12 @@ export const Admission: GlobalConfig = {
         en: 'Admission', bg: 'Прием'
     },
     admin: {
-        group: 'Прием'
+        group: 'Прием',
+        hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {
         read: () => true,
+        update: isAdminOrEditor,
     },
     hooks: {
         afterChange: [updateLastMod("/admission")]
