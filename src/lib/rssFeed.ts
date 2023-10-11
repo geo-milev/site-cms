@@ -18,7 +18,7 @@ const generateRssFeed = async (payload: Payload) => {
         <item>
             <title><![CDATA[${doc.title}]]></title>
             <link>${process.env.FRONTEND_URL}/news/${doc.id}</link>
-            <description><![CDATA[${doc.description}]]></description>
+            <description><![CDATA[${doc.description ? doc.description: ''}]]></description>
             <pubDate>${new Date(doc.publishDate).toUTCString()}</pubDate>
             <category><![CDATA[${doc.category.name}]]></category>
             <guid>${process.env.FRONTEND_URL}/news/${doc.id}</guid>
