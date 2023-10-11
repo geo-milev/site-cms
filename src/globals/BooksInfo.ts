@@ -1,8 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
-import {getFile} from "../lib/getFile";
-import {parseBooks} from "../lib/parseBooks";
 import onlyCsv from "../lib/filters/onlyCsv";
+import {autofillBooks} from "../lib/autofillBooks";
 
 export const BooksInfo: GlobalConfig = {
     slug: 'books-info',
@@ -17,62 +16,7 @@ export const BooksInfo: GlobalConfig = {
     },
     hooks: {
         afterChange: [updateLastMod("/student/books")],
-        beforeValidate: [async ({req, data}) => {
-            const payload = req.payload
-            if (!payload.local) {
-                const config = data.booksAutofill
-
-                const fileObject = await req.payload.findByID({
-                    collection: 'media',
-                    id: config.fileCsv
-                })
-
-                const csvText = await getFile(fileObject)
-
-                const columnNames = new Map<string, string>()
-
-                for (const [key, value] of Object.entries(config.columnNames)) {
-                    if (typeof value === 'string') {
-                        columnNames.set(value.trim(), key)
-                    }
-                }
-
-                const books = await parseBooks(csvText,
-                    config.delimiter,
-                    config.authorDelimiter,
-                    columnNames)
-
-                await payload.delete({
-                    collection: "books",
-                    where: {}
-                })
-
-                for (const book of books) {
-                    await payload.create({
-                        collection: 'books',
-                        data: {
-                            class: book.class,
-                            name: book.name,
-                            authors: (!!book.authors ? book.authors.map((author) => {
-                                return { author }
-                            }): undefined),
-                            year: book.year,
-                            publisher: book.publisher,
-                            note: book.note
-                        }
-                    })
-                }
-
-                return {
-                    ...data,
-                    classes: books.map((book) => book.class)
-                        .filter((value, index, array) => array.indexOf(value) === index)
-                        .map((c) => {
-                            return { class: c }
-                        })
-                }
-            }
-        }]
+        beforeValidate: [autofillBooks]
     },
     fields: [
         {
@@ -125,6 +69,15 @@ export const BooksInfo: GlobalConfig = {
                     label: {
                         en: 'File .csv (autofill books)',
                         bg: 'Файл във формат .csv (за автоматично попълване на учебниците)'
+                    }
+                },
+                {
+                    name: 'checksum',
+                    type: 'text',
+                    admin: {
+                        condition: () => {
+                            return false;
+                        }
                     }
                 },
                 {
