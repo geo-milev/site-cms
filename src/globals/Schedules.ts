@@ -4,6 +4,7 @@ import updateLastMod from "../lib/updateLastMod";
 import onlyCsv from "../lib/filters/onlyCsv";
 import { autofillSchedules } from "../lib/autoFillSchedules";
 import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
+import {schedule} from "../lib/groups";
 
 const dateError = 'Не може началото на час да е след края.'
 
@@ -15,7 +16,7 @@ export const Schedules: GlobalConfig = {
         en: 'Schedule', bg: 'Програма'
     },
     admin: {
-        group: 'Програма',
+        group: schedule,
         hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {

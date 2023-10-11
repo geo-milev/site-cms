@@ -3,6 +3,7 @@ import updateLastMod from "../lib/updateLastMod";
 import onlyCsv from "../lib/filters/onlyCsv";
 import {autofillBooks} from "../lib/autofillBooks";
 import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
+import {books} from "../lib/groups";
 
 export const BooksInfo: GlobalConfig = {
     slug: 'books-info',
@@ -10,7 +11,7 @@ export const BooksInfo: GlobalConfig = {
         en: 'Books info', bg: 'Информация за учебниците'
     },
     admin: {
-        group: 'Учебници',
+        group: books,
         hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {

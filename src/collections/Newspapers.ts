@@ -1,5 +1,6 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import {organisation} from "../lib/groups";
 
 const Newspapers: CollectionConfig = {
     slug: 'newspaper',
@@ -15,7 +16,7 @@ const Newspapers: CollectionConfig = {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
         listSearchableFields: ['name', 'file'],
-        group: 'Организация'
+        group: organisation
     },
     hooks: {
         afterChange: [updateLastMod("/student/newspaper")]

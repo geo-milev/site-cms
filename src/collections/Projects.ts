@@ -1,6 +1,7 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import imageOnly from "../lib/filters/onlyImage";
+import {organisation} from "../lib/groups";
 
 const Projects: CollectionConfig = {
     slug: 'projects',
@@ -16,7 +17,7 @@ const Projects: CollectionConfig = {
         useAsTitle: 'name',
         defaultColumns: ['name', 'description', 'article'],
         listSearchableFields: ['description', 'article'],
-        group: 'Организация'
+        group: organisation
     },
     hooks: {
         afterChange: [updateLastMod("/projects")]

@@ -1,5 +1,6 @@
 import {CollectionConfig} from 'payload/types';
 import {isAdmin} from "../lib/access/isAdmin";
+import {news} from "../lib/groups";
 
 const NewsCategory: CollectionConfig = {
     slug: 'news-category',
@@ -14,7 +15,7 @@ const NewsCategory: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['createdAt', 'updatedAt'],
-        group: 'Новини',
+        group: news,
         hidden: ({user}) => !isAdmin({req: { user }})
     },
     access: {

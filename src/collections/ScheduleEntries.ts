@@ -1,6 +1,7 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
+import {organisation} from "../lib/groups";
 
 const ScheduleEntries: CollectionConfig = {
     slug: 'schedule-entries',
@@ -16,7 +17,7 @@ const ScheduleEntries: CollectionConfig = {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
         listSearchableFields: ['name', 'file'],
-        group: 'Организация',
+        group: organisation,
         hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {

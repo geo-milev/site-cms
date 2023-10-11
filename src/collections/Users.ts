@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import {isAdmin} from "../lib/access/isAdmin";
 import {isAdminOrSelf} from "../lib/access/isAdminOrSelf";
+import {administration} from "../lib/groups";
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -15,7 +16,7 @@ const Users: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'email',
-    group: 'Администрация',
+    group: administration,
     hidden: (user) => !isAdmin({ req: user })
   },
   access: {

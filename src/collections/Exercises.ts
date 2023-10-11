@@ -1,6 +1,7 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
+import {admission} from "../lib/groups";
 
 const Exercises: CollectionConfig = {
     slug: 'exercises',
@@ -16,7 +17,7 @@ const Exercises: CollectionConfig = {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
         listSearchableFields: ['file'],
-        group: 'Прием',
+        group: admission,
         hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {

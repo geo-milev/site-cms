@@ -3,6 +3,7 @@ import imageOnly from "../lib/filters/onlyImage";
 import {updateRssFeed} from "../lib/rssFeed";
 import {updateSitemap} from "../lib/sitemap";
 import {isAdmin} from "../lib/access/isAdmin";
+import {administration} from "../lib/groups";
 
 const PagesSeoData: CollectionConfig = {
     slug: 'pages-seo-data',
@@ -18,7 +19,7 @@ const PagesSeoData: CollectionConfig = {
         useAsTitle: 'relativeUrl',
         defaultColumns: ['relativeUrl', 'title', 'lastUpdate'],
         listSearchableFields: ['title', 'description'],
-        group: 'Администрация',
+        group: administration,
         hidden: (user) => !isAdmin({ req: user })
     },
     access: {

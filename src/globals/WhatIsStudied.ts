@@ -1,6 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import imageOnly from "../lib/filters/onlyImage";
+import {mainPage} from "../lib/groups";
 
 export const WhatIsStudied: GlobalConfig = {
     slug: 'what-is-studied',
@@ -8,7 +9,7 @@ export const WhatIsStudied: GlobalConfig = {
         en: 'What is studied', bg: 'Какво се учи'
     },
     admin: {
-        group: 'Главна страница'
+        group: mainPage
     },
     access: {
         read: () => true,

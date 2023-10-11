@@ -2,6 +2,7 @@ import {GlobalConfig} from 'payload/types';
 import {validateDates} from "../lib/validateHourRange";
 import updateLastMod from "../lib/updateLastMod";
 import {isAdmin} from "../lib/access/isAdmin";
+import {mainInfo} from "../lib/groups";
 
 const dateError = 'Не може началото на работните часове да е след края.'
 
@@ -13,7 +14,7 @@ export const Contact: GlobalConfig = {
         en: 'Contacts', bg: 'Контакти'
     },
     admin: {
-        group: 'Главна информация',
+        group: mainInfo,
         hidden: (user) => !isAdmin({ req: user })
     },
     access: {

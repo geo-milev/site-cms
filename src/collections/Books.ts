@@ -2,6 +2,7 @@ import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import imageOnly from "../lib/filters/onlyImage";
 import {isAdmin} from "../lib/access/isAdmin";
+import {books} from "../lib/groups";
 
 const Books: CollectionConfig = {
     slug: 'books',
@@ -17,7 +18,7 @@ const Books: CollectionConfig = {
         useAsTitle: 'name',
         defaultColumns: ['name', 'class', 'publisher', 'note'],
         listSearchableFields: ['class', 'year', 'publisher', 'note'],
-        group: 'Учебници',
+        group: books,
         hidden: (user) => !isAdmin({ req: user })
     },
     access: {

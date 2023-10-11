@@ -1,6 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
+import {organisation} from "../lib/groups";
 
 export const Budgets: GlobalConfig = {
     slug: 'budgets',
@@ -8,7 +9,7 @@ export const Budgets: GlobalConfig = {
         en: 'Budgets', bg: 'Бюджети'
     },
     admin: {
-        group: 'Организация',
+        group: organisation,
         hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {

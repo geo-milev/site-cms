@@ -1,6 +1,7 @@
 import path from 'path';
 import {CollectionConfig} from 'payload/types';
 import {isAdmin} from "../lib/access/isAdmin";
+import {administration} from "../lib/groups";
 
 export const Media: CollectionConfig = {
     slug: 'media',
@@ -16,7 +17,7 @@ export const Media: CollectionConfig = {
         useAsTitle: 'alt',
         defaultColumns: ['alt', 'filename', 'filesize'],
         listSearchableFields: ['filename', 'mimeType'],
-        group: 'Администрация'
+        group: administration
     },
     upload: {
         staticDir: path.resolve(__dirname, '../../media'),
