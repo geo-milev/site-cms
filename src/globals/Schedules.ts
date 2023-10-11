@@ -17,7 +17,7 @@ const checksum = (text) => {
 export const Schedules: GlobalConfig = {
     slug: 'schedules',
     label: {
-        en: 'Schedules', bg: 'Графици'
+        en: 'Schedule', bg: 'Програма'
     },
     admin: {
         group: 'Програма'
