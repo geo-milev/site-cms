@@ -1,5 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import {mainPage} from "../lib/groups";
 
 export const VideoSection: GlobalConfig = {
     slug: 'video-section',
@@ -7,7 +8,7 @@ export const VideoSection: GlobalConfig = {
         en: 'Video section', bg: 'Видео секция'
     },
     admin: {
-        group: 'Главна страница'
+        group: mainPage
     },
     access: {
         read: () => true,

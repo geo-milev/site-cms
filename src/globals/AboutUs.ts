@@ -1,6 +1,7 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
 import imageOnly from "../lib/filters/onlyImage";
+import {mainPage} from "../lib/groups";
 
 export const AboutUs: GlobalConfig = {
     slug: 'about-us',
@@ -8,7 +9,7 @@ export const AboutUs: GlobalConfig = {
         en: 'About Us', bg: 'За нас'
     },
     admin: {
-        group: 'Главна информация'
+        group: mainPage
     },
     access: {
         read: () => true,

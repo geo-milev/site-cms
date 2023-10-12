@@ -4,6 +4,7 @@ import blocks from "../blocks/blocks";
 import imageOnly from "../lib/filters/onlyImage";
 import createSeoEntry from "../lib/createSeoEntry";
 import deleteSeoEntry from "../lib/deleteSeoEntry";
+import {news} from "../lib/groups";
 
 const updatePublishDate = ({ data, req, operation }) => {
     if (operation === 'create' || operation === 'update') {
@@ -33,7 +34,7 @@ const News: CollectionConfig = {
         useAsTitle: 'title',
         defaultColumns: ['title', 'publishDate'],
         listSearchableFields: ['description'],
-        group: 'Новини'
+        group: news
     },
     hooks: {
         beforeChange: [updatePublishDate],

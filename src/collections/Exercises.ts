@@ -1,24 +1,30 @@
 import {CollectionConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
+import {admission} from "../lib/groups";
 
 const Exercises: CollectionConfig = {
     slug: 'exercises',
     labels: {
         singular: {
-            en: 'Exercise', bg: 'Упражнение'
+            en: 'Exercise', bg: 'Упражнение за прием'
         },
         plural: {
-            en: 'Exercises', bg: 'Упражнения'
+            en: 'Exercises', bg: 'Упражнения за прием'
         }
     },
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'file', 'updatedAt'],
         listSearchableFields: ['file'],
-        group: 'Прием'
+        group: admission,
+        hidden: ({user}) => !isAdminOrEditor({req: { user }})
     },
     access: {
-        read: () => true
+        read: () => true,
+        update: isAdminOrEditor,
+        create: isAdminOrEditor,
+        delete: isAdminOrEditor
     },
     hooks: {
         afterChange: [updateLastMod("/admission/exercises")]

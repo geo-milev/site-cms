@@ -1,4 +1,6 @@
 import {CollectionConfig} from 'payload/types';
+import {isAdmin} from "../lib/access/isAdmin";
+import {schedule} from "../lib/groups";
 
 const WeeklySchedules: CollectionConfig = {
     slug: 'weekly-schedules',
@@ -14,10 +16,14 @@ const WeeklySchedules: CollectionConfig = {
         useAsTitle: 'class',
         defaultColumns: ['class', 'createdAt', 'updatedAt'],
         listSearchableFields: [],
-        group: 'Програма'
+        group: schedule,
+        hidden: (user) => !isAdmin({ req: user })
     },
     access: {
-        read: () => true
+        read: () => true,
+        update: isAdmin,
+        create: isAdmin,
+        delete: isAdmin
     },
     fields: [
         {

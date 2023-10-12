@@ -1,6 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 
-export const MainInfo: GlobalConfig = {
+export const GeneratedFiles: GlobalConfig = {
     slug: 'generated-files',
     label: {
         en: 'Generated files', bg: 'Генерирани файлове'
@@ -24,4 +24,4 @@ export const MainInfo: GlobalConfig = {
     ]
 }
 
-export default MainInfo;
+export default GeneratedFiles;

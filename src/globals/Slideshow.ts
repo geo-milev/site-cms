@@ -1,5 +1,6 @@
 import {GlobalConfig} from 'payload/types';
 import updateLastMod from "../lib/updateLastMod";
+import {mainPage} from "../lib/groups";
 
 // @ts-ignore is needed because the admin.placeholder does not exist in the generic Field typescript definition
 // This means that the button link text field placeholder is flagged as an error
@@ -10,7 +11,7 @@ export const Slideshow: GlobalConfig = {
         en: 'Slideshow', bg: 'Слайдшоу'
     },
     admin: {
-        group: 'Главна страница'
+        group: mainPage
     },
     access: {
         read: () => true,
