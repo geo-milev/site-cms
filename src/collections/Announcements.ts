@@ -1,6 +1,6 @@
 import {CollectionConfig} from "payload/types";
-import {books, news} from "../lib/groups";
 import {isAdminOrEditor} from "../lib/access/isAdminOrEditor";
+import {news} from "../lib/groups"
 
 const Announcements: CollectionConfig = {
     slug: 'announcements',
@@ -24,6 +24,17 @@ const Announcements: CollectionConfig = {
         update: isAdminOrEditor,
         create: isAdminOrEditor,
         delete: isAdminOrEditor
+    },
+    hooks: {
+        beforeChange: [
+            ({data}) => {
+                if (!data.link.startsWith('http')) {
+                    if (!data.link.startsWith('/')) data.link = "/" + data.link;
+                    data.link = process.env.FRONTEND_URL + data.link;
+                }
+                return data;
+            }
+        ]
     },
     fields: [
         {
