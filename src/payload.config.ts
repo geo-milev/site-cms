@@ -3,8 +3,6 @@ import path from 'path';
 import Users from './collections/Users';
 import News from "./collections/News";
 import Media from "./collections/Media";
-import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
-import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
 import formBuilder from "@payloadcms/plugin-form-builder";
 import NewsCategory from "./collections/NewsCategory";
 import MainInfo from "./globals/MainInfo";
@@ -36,13 +34,7 @@ import GeneratedFiles from "./globals/GeneratedFiles";
 import {isAdmin} from "./lib/access/isAdmin";
 import {isAdminOrEditor} from "./lib/access/isAdminOrEditor";
 import {administration} from "./lib/groups";
-
-const adapter = gcsAdapter({
-  options: {
-    projectId: process.env.GCS_PROJECT_ID,
-  },
-  bucket: process.env.GCS_BUCKET,
-})
+import Announcements from "./collections/Announcements";
 
 export default buildConfig({
   admin: {
@@ -80,6 +72,7 @@ export default buildConfig({
     Newspapers,
     Projects,
     PagesSeoData,
+    Announcements
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, Budgets, BooksInfo, Admission, GeneratedFiles
@@ -92,15 +85,6 @@ export default buildConfig({
   },
   cors: [String(process.env.FRONTEND_URL)],
   plugins: [
-    // Only use cloud storage in prod
-    process.env.NODE_ENV == 'production' ? cloudStorage({
-      collections: {
-        'media': {
-          adapter,
-          disableLocalStorage: true
-        },
-      },
-    }) : null,
     formBuilder({
       fields: {
         text: true,
