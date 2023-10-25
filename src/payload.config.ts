@@ -3,6 +3,8 @@ import path from 'path';
 import Users from './collections/Users';
 import News from "./collections/News";
 import Media from "./collections/Media";
+import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
+import { gcsAdapter } from "@payloadcms/plugin-cloud-storage/gcs";
 import formBuilder from "@payloadcms/plugin-form-builder";
 import NewsCategory from "./collections/NewsCategory";
 import MainInfo from "./globals/MainInfo";
@@ -35,6 +37,13 @@ import {isAdmin} from "./lib/access/isAdmin";
 import {isAdminOrEditor} from "./lib/access/isAdminOrEditor";
 import {administration} from "./lib/groups";
 import Announcements from "./collections/Announcements";
+
+const adapter = gcsAdapter({
+  options: {
+    projectId: process.env.GCS_PROJECT_ID,
+  },
+  bucket: process.env.GCS_BUCKET,
+})
 
 export default buildConfig({
   admin: {
@@ -85,6 +94,15 @@ export default buildConfig({
   },
   cors: [String(process.env.FRONTEND_URL)],
   plugins: [
+    // Only use cloud storage in prod
+    process.env.NODE_ENV == 'production' ? cloudStorage({
+      collections: {
+        'media': {
+          adapter,
+          disableLocalStorage: true
+        },
+      },
+    }) : null,
     formBuilder({
       fields: {
         text: true,

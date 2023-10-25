@@ -41,6 +41,8 @@ const Announcements: CollectionConfig = {
             name: 'text',
             type: 'text',
             label: { en: 'Text', bg: 'Текст'},
+            minLength: 1,
+            maxLength: 60,
             required: true,
         },
         {
