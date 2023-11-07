@@ -20,6 +20,19 @@ const updatePublishDate = ({ data, req, operation }) => {
     return data
 }
 
+const setDefaultDescription = ({ data, req, operation }) => {
+    if (operation === 'create' || operation === 'update') {
+        if (req.body && !req.body.description) {
+            return {
+                ...data,
+                description: ""
+            }
+        }
+    }
+
+    return data
+}
+
 const News: CollectionConfig = {
     slug: 'news',
     labels: {
@@ -37,7 +50,7 @@ const News: CollectionConfig = {
         group: news
     },
     hooks: {
-        beforeChange: [updatePublishDate],
+        beforeChange: [updatePublishDate, setDefaultDescription],
         afterChange: [updateLastMod("/news"),
             createSeoEntry("/news", (doc) => {
             return {
