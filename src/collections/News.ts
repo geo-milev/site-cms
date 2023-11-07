@@ -55,8 +55,9 @@ const News: CollectionConfig = {
             createSeoEntry("/news", (doc) => {
             return {
                 title: doc.title,
-                description: doc.description? doc.description: doc.title,
-                image: doc.postImage? doc.postImage.id: null
+                description: doc.description,
+                image: doc.postImage? doc.postImage.id: null,
+                hideFromSitemap: doc._status !== "published"
             }
         })],
         afterDelete: [deleteSeoEntry("/news")]

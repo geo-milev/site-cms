@@ -14,6 +14,7 @@ const generateRssFeed = async (payload: Payload) => {
     });
 
     entries.docs.forEach((doc) => {
+        if (doc._status !== "published") return;
         news += `
         <item>
             <title><![CDATA[${doc.title}]]></title>

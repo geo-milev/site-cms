@@ -21,7 +21,8 @@ const collectionToPartialSitemap = async (collection: string,
 
     do {
         entries.docs.forEach((doc) => {
-            const documentData = extractDocumentData(doc)
+            const documentData = extractDocumentData(doc);
+            if (!documentData) return
             partialSitemap += `
 <url>
     <loc>${process.env.FRONTEND_URL}${documentData.relativeUrl}</loc>
@@ -42,6 +43,7 @@ const collectionToPartialSitemap = async (collection: string,
 
 const generateSitemap = async (payload: Payload) => {
     const pages = await collectionToPartialSitemap('pages-seo-data', payload, (doc) => {
+        if (doc.hideFromSitemap) return undefined;
         return {
             relativeUrl: doc.relativeUrl,
             lastMod: new Date(doc.lastUpdate)
