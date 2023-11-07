@@ -23,7 +23,24 @@ const PagesSeoData: CollectionConfig = {
         hidden: (user) => !isAdmin({ req: user })
     },
     access: {
-        read: () => true,
+        read: ({ req }) => {
+            if (req.user) return true
+
+            return {
+                or: [
+                    {
+                        hideFromSitemap: {
+                            equals: false,
+                        },
+                    },
+                    {
+                        hideFromSitemap: {
+                            exists: false,
+                        },
+                    },
+                ],
+            }
+        },
         create: isAdmin,
         delete: isAdmin,
         update: isAdmin,
