@@ -8,7 +8,7 @@ export interface SeoInfoDocument {
 }
 
 export default function createSeoEntry(relativeUrl: string, filler: (doc) => SeoInfoDocument) {
-    const afterChangeHook: CollectionAfterChangeHook = async ({doc, req, operation}) => {
+    const afterChangeHook: CollectionAfterChangeHook = async ({doc, req}) => {
         const url = relativeUrl + '/' + doc.id;
         const entry = await req.payload.find({
             collection: 'pages-seo-data',

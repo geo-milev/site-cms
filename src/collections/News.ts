@@ -56,7 +56,7 @@ const News: CollectionConfig = {
             return {
                 title: doc.title,
                 description: doc.description,
-                image: doc.postImage? doc.postImage.id: null,
+                image: doc.postImage? doc.postImage: null,
                 hideFromSitemap: doc._status !== "published"
             }
         })],

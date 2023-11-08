@@ -16,13 +16,14 @@ const collectionToPartialSitemap = async (collection: string,
     let entries = await payload.find({
         collection: collection,
         page: 1,
-        limit: 50
+        limit: 50,
+        overrideAccess: false,
+        user: undefined
     });
 
     do {
         entries.docs.forEach((doc) => {
-            const documentData = extractDocumentData(doc);
-            if (!documentData) return
+            const documentData = extractDocumentData(doc)
             partialSitemap += `
 <url>
     <loc>${process.env.FRONTEND_URL}${documentData.relativeUrl}</loc>
@@ -34,7 +35,9 @@ const collectionToPartialSitemap = async (collection: string,
         entries = await payload.find({
             collection: collection,
             page: entries.page + 1,
-            limit: 50
+            limit: 50,
+            overrideAccess: false,
+            user: undefined
         });
     } while (entries.hasNextPage)
 
@@ -43,7 +46,6 @@ const collectionToPartialSitemap = async (collection: string,
 
 const generateSitemap = async (payload: Payload) => {
     const pages = await collectionToPartialSitemap('pages-seo-data', payload, (doc) => {
-        if (doc.hideFromSitemap) return undefined;
         return {
             relativeUrl: doc.relativeUrl,
             lastMod: new Date(doc.lastUpdate)

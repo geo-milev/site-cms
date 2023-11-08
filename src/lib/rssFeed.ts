@@ -10,11 +10,12 @@ const generateRssFeed = async (payload: Payload) => {
     let entries = await payload.find({
         collection: 'news',
         page: 1,
-        limit: 15
+        limit: 15,
+        overrideAccess: false,
+        user: undefined
     });
 
     entries.docs.forEach((doc) => {
-        if (doc._status !== "published") return;
         news += `
         <item>
             <title><![CDATA[${doc.title}]]></title>
