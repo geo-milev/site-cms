@@ -1,5 +1,5 @@
 import {GlobalConfig} from 'payload/types';
-import {mainPage} from "../lib/groups";
+import {mainInfo} from "../lib/groups";
 import {isAdmin} from "../lib/access/isAdmin";
 
 export const Navigation: GlobalConfig = {
@@ -8,7 +8,7 @@ export const Navigation: GlobalConfig = {
         en: 'Navigation', bg: 'Навигация'
     },
     admin: {
-        group: mainPage,
+        group: mainInfo,
         description: { en: 'A section with subsections cannot have a link', bg: 'Секция с подсекции не може да има връзка' },
         hidden: ({user}) => !isAdmin({req: { user }})
     },
