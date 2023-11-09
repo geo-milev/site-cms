@@ -15,7 +15,7 @@ const Announcements: CollectionConfig = {
     admin: {
         useAsTitle: 'text',
         defaultColumns: ['text', 'createdAt'],
-        listSearchableFields: ['text', 'link'],
+        listSearchableFields: ['text', 'href'],
         group: news,
         hidden: (user) => !isAdminOrEditor({ req: user })
     },
@@ -28,9 +28,9 @@ const Announcements: CollectionConfig = {
     hooks: {
         beforeChange: [
             ({data}) => {
-                if (!data.link.startsWith('http')) {
-                    if (!data.link.startsWith('/')) data.link = "/" + data.link;
-                    data.link = process.env.FRONTEND_URL + data.link;
+                if (data.href && data.href != "" && !data.href.startsWith('http')) {
+                    if (!data.href.startsWith('/')) data.href = "/" + data.href;
+                    data.href = process.env.FRONTEND_URL + data.href;
                 }
                 return data;
             }
@@ -46,10 +46,9 @@ const Announcements: CollectionConfig = {
             required: true,
         },
         {
-            name: 'link',
+            name: 'href',
             type: 'text',
-            label: { en: 'Link', bg: 'Връзка'},
-            required: true,
+            label: { en: 'Link', bg: 'Връзка'}
         },
     ]
 }
