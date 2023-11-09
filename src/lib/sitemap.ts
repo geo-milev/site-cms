@@ -16,7 +16,9 @@ const collectionToPartialSitemap = async (collection: string,
     let entries = await payload.find({
         collection: collection,
         page: 1,
-        limit: 50
+        limit: 50,
+        overrideAccess: false,
+        user: undefined
     });
 
     do {
@@ -33,7 +35,9 @@ const collectionToPartialSitemap = async (collection: string,
         entries = await payload.find({
             collection: collection,
             page: entries.page + 1,
-            limit: 50
+            limit: 50,
+            overrideAccess: false,
+            user: undefined
         });
     } while (entries.hasNextPage)
 

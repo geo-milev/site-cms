@@ -20,6 +20,19 @@ const updatePublishDate = ({ data, req, operation }) => {
     return data
 }
 
+const setDefaultDescription = ({ data, req, operation }) => {
+    if (operation === 'create' || operation === 'update') {
+        if (req.body && !req.body.description) {
+            return {
+                ...data,
+                description: ""
+            }
+        }
+    }
+
+    return data
+}
+
 const News: CollectionConfig = {
     slug: 'news',
     labels: {
@@ -37,13 +50,14 @@ const News: CollectionConfig = {
         group: news
     },
     hooks: {
-        beforeChange: [updatePublishDate],
+        beforeChange: [updatePublishDate, setDefaultDescription],
         afterChange: [updateLastMod("/news"),
             createSeoEntry("/news", (doc) => {
             return {
                 title: doc.title,
-                description: doc.description? doc.description: doc.title,
-                image: doc.postImage? doc.postImage.id: null
+                description: doc.description,
+                image: doc.postImage? doc.postImage: null,
+                hideFromSitemap: doc._status !== "published"
             }
         })],
         afterDelete: [deleteSeoEntry("/news")]
@@ -52,7 +66,24 @@ const News: CollectionConfig = {
         drafts: true,
     },
     access: {
-        read: () => true
+        read: ({ req }) => {
+            if (req.user) return true
+
+            return {
+                or: [
+                    {
+                        _status: {
+                            equals: 'published',
+                        },
+                    },
+                    {
+                        _status: {
+                            exists: false,
+                        },
+                    },
+                ],
+            }
+        },
     },
     fields: [
         {
