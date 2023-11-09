@@ -37,6 +37,7 @@ export default function createSeoEntry(relativeUrl: string, filler: (doc) => Seo
                 data: data
             })
         } else {
+            if (filledData.hideFromSitemap) return;
             await req.payload.create({
                 collection: 'pages-seo-data',
                 data: data
