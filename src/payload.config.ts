@@ -36,6 +36,7 @@ import GeneratedFiles from "./globals/GeneratedFiles";
 import {isAdmin} from "./lib/access/isAdmin";
 import {isAdminOrEditor} from "./lib/access/isAdminOrEditor";
 import {administration} from "./lib/groups";
+import Announcements from "./collections/Announcements";
 
 const adapter = gcsAdapter({
   options: {
@@ -80,6 +81,7 @@ export default buildConfig({
     Newspapers,
     Projects,
     PagesSeoData,
+    Announcements
   ],
   globals: [
     MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, Budgets, BooksInfo, Admission, GeneratedFiles
