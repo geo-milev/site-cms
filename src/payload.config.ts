@@ -9,6 +9,7 @@ import formBuilder from "@payloadcms/plugin-form-builder";
 import NewsCategory from "./collections/NewsCategory";
 import MainInfo from "./globals/MainInfo";
 import Slideshow from "./globals/Slideshow";
+import Navigation from "./globals/Navigation";
 import VideoSection from "./globals/VideoSection";
 import WhatIsStudied from "./globals/WhatIsStudied";
 import Contact from "./globals/Contact";
@@ -84,7 +85,7 @@ export default buildConfig({
     Announcements
   ],
   globals: [
-    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, Budgets, BooksInfo, Admission, GeneratedFiles
+    MainInfo, Slideshow, VideoSection, WhatIsStudied, Contact, Schedules, AboutUs, Budgets, BooksInfo, Admission, GeneratedFiles, Navigation
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
